@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Get~Pet</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_home">home</string>
+    <string name="title_activity_main2">Main2Activity</string>
+
+    <string name="text1">电视</string>
+    <string name="text2">冰箱</string>
+    <string name="text3">洗衣机</string>
+    <string name="text4">内容区</string>
+
+
+    <string name="openOrClose">抽屉开关</string>
+
+</resources>
