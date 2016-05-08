@@ -102,7 +102,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="30dp"
                         android:textSize="20sp"
-                        android:text="我的信息墙"/>
+                        android:text="我的宠物"/>
 
                 </LinearLayout>
 
@@ -172,34 +172,13 @@
 
                 </LinearLayout>
 
+
                 <LinearLayout
                     android:id="@+id/ll8"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layout_below="@+id/ll7"
-                    android:layout_marginTop="18dp">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@mipmap/home_ic_update"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
-                        android:textSize="20sp"
-                        android:text="版本更新"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/ll9"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_below="@+id/ll8"
                     android:layout_marginTop="18dp">
 
                     <ImageView
@@ -312,6 +291,7 @@
                             android:layout_marginTop="25dp"/>
 
                     </LinearLayout>
+
                     <LinearLayout
                         android:id="@+id/ll_xunhui"
                         android:layout_width="wrap_content"
