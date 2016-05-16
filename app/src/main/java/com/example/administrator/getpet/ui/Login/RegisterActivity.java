@@ -44,34 +44,41 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                 finish();
                 break;
             case R.id.ib_register:
-                if (TextUtils.isEmpty(et_phone.getText()))
+                String phone = et_phone.getText().toString();
+                String password = et_password.getText().toString();
+
+                if (TextUtils.isEmpty(phone))
                 {
                     ToastUtils.showToast(mContext,"手机号不能为空！");
                     return;
                 }
-                if (!StringUtils.isPhoneNumberValid(et_phone.getText().toString()))
+                if (!StringUtils.isPhoneNumberValid(phone))
                 {
                     ToastUtils.showToast(mContext,"请输入正确的手机号码！");
                     return;
                 }
-                if (TextUtils.isEmpty(et_password.getText()))
+                if (TextUtils.isEmpty(password))
                 {
                     ToastUtils.showToast(mContext,"密码不能为空！");
                     return;
                 }
-                if (!StringUtils.isValidPassword(et_password.getText().toString()))
+                if (!StringUtils.isValidPassword(password))
                 {
                     ToastUtils.showToast(mContext,"密码长度必须为6-16位字符！");
                     return;
                 }
-                if (!et_password.getText().toString().equals(et_password_again.getText().toString()))
+                if (!password.equals(et_password_again.getText().toString()))
                 {
                     ToastUtils.showToast(mContext,"密码和确认密码不一致！");
                     return;
                 }
                 //注册操作
-
+                register(phone,password);
                 break;
         }
+    }
+
+    private void register(String phone,String password) {
+
     }
 }

@@ -4,7 +4,6 @@ import android.os.Bundle;
 
 import com.example.administrator.getpet.R;
 import com.example.administrator.getpet.base.BaseActivity;
-import com.example.administrator.getpet.bean.UserBean;
 import com.example.administrator.getpet.presenter.UserPresenter;
 
 public class PersonalActivity extends BaseActivity implements IUserView {

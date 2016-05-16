@@ -1,7 +1,5 @@
 package com.example.administrator.getpet.ui.Me;
 
-import com.example.administrator.getpet.bean.UserBean;
-
 /**
  * Created by Administrator on 2016/5/12.
  */

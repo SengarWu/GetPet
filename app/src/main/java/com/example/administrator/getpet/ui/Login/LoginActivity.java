@@ -49,32 +49,38 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 startAnimActivity(RegisterActivity.class);
                 break;
             case R.id.ib_login:
-                if (TextUtils.isEmpty(et_phone.getText()))
+                String password = et_password.getText().toString();
+                String phone = et_phone.getText().toString();
+                if (TextUtils.isEmpty(phone))
                 {
                     ToastUtils.showToast(mContext,"手机号不能为空！");
                     return;
                 }
-                if (!StringUtils.isPhoneNumberValid(et_phone.getText().toString()))
+                if (!StringUtils.isPhoneNumberValid(phone))
                 {
                     ToastUtils.showToast(mContext,"手机号格式不正确！");
                     return;
                 }
-                if (TextUtils.isEmpty(et_password.getText()))
+                if (TextUtils.isEmpty(password))
                 {
                     ToastUtils.showToast(mContext,"密码不能为空！");
                     return;
                 }
-                if (!StringUtils.isValidPassword(et_password.getText().toString()))
+                if (!StringUtils.isValidPassword(password))
                 {
                     ToastUtils.showToast(mContext,"密码长度必须为6-16位！");
                     return;
                 }
                 //登录操作
-
+                login(phone,password);
                 break;
             case R.id.ib_find_password:
                 startAnimActivity(FindPasswordActivity.class);
                 break;
         }
+    }
+
+    private void login(String phone, String password) {
+
     }
 }

@@ -148,7 +148,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="籍        贯:"
+                    android:text="工作单位:"
                     android:textSize="@dimen/TextView_textSize"
                     android:textColor="@color/me_textView_pink"/>
 
