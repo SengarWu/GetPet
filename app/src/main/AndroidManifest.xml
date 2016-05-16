@@ -29,7 +29,9 @@
         <activity android:name=".ui.Me.Identity1Activity" />
         <activity android:name=".ui.Me.Identity2Activity" />
         <activity android:name=".ui.Me.Identity3Activity" />
-        <activity android:name=".ui.Me.IntroduceActivity"></activity>
+        <activity android:name=".ui.Me.IntroduceActivity" />
+        <activity android:name=".ui.Me.EditIntroduceActivity" />
+        <activity android:name=".ui.Me.InformActivity"></activity>
     </application>
 
 </manifest>
