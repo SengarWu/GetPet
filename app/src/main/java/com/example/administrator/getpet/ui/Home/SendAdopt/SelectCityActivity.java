@@ -1,11 +1,11 @@
 package com.example.administrator.getpet.ui.Home.SendAdopt;
 
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.PixelFormat;
+import android.media.Image;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -20,6 +20,7 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -63,11 +64,13 @@ public class SelectCityActivity extends AppCompatActivity implements View.OnClic
     private static final int SHOWDIALOG = 2;
     private static final int DISMISSDIALOG = 3;
     private Button al_city;
+    private ImageView bac;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_city);
+        bac=(ImageView)findViewById(R.id.back);
         al_city=(Button)findViewById(R.id.allcity);
         al_city.setOnClickListener(this);
         personList = (ListView) findViewById(R.id.list_view);
@@ -209,6 +212,9 @@ public class SelectCityActivity extends AppCompatActivity implements View.OnClic
                 intent.putExtra("lngCityName", "所有城市");
                 setResult(99, intent);
                 finish();
+                break;
+            case R.id.back:
+                this.finish();
                 break;
         }
 

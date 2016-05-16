@@ -37,6 +37,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.Home.SendAdopt.EntrustMainActivity">
+        </activity>
+        <activity android:name=".ui.Home.SendAdopt.PublishEntrust">
+        </activity>
+        <activity android:name=".ui.Home.SendAdopt.SelectCityActivity"></activity>
         <activity android:name=".ui.Me.AccountActivity" />
         <activity android:name=".ui.Me.Identity1Activity" />
         <activity android:name=".ui.Me.Identity2Activity" />
