@@ -17,4 +17,14 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="ActionBarKK">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">48dip</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+    <style name="ActionBarTitle">
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">@color/KK_white</item>
+        <item name="android:gravity">center</item>
+    </style>
 </resources>

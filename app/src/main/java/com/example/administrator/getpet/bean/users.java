@@ -13,6 +13,6 @@ public String address;
 public String email;
 public String personal;
 public String occupation;
-public int identify;
+public indentified identify;
 public int user_reputation;
 }
