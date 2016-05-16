@@ -9,8 +9,6 @@ public String detail;
 public String phoneNumber;
 public int result;
 public String comment;
-public String entrustId;
-public String userId;
 public Date applyDate;
 public String applyMessage;
 public String connectPlace;
