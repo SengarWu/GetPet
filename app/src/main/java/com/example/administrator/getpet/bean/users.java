@@ -1,18 +1,17 @@
 package com.example.administrator.getpet.bean;
 
 import java.io.Serializable;
-import java.util.Date;
 public class users  implements Serializable {
 
-public String id;
-public String phone;
-public String nickName;
-public String sex;
-public int age;
-public String address;
-public String email;
-public String personal;
-public String occupation;
-public int identify;
-public int user_reputation;
+public String id;               //id
+public String phone;            //手机号
+public String nickName;         //昵称
+public String sex;              //性别
+public int age;                 //年龄
+public String address;          //所在地
+public String email;            //邮箱
+public String personal;         //个人说明
+public String occupation;       //职业
+public indentified indentified; //是否认证
+public int user_reputation;     //声望
 }

@@ -4,7 +4,6 @@ import java.io.Serializable;
 public class indentified  implements Serializable {
 
 public String id;
-public String userId;
 public String name;  //姓名
 public String marStatus;  //婚姻状况
 public String origin;     //籍贯

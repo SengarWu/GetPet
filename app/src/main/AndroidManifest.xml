@@ -27,7 +27,9 @@
         </activity>
         <activity android:name=".ui.Me.AccountActivity" />
         <activity android:name=".ui.Me.Identity1Activity" />
-        <activity android:name=".ui.Me.Identity2Activity"></activity>
+        <activity android:name=".ui.Me.Identity2Activity" />
+        <activity android:name=".ui.Me.Identity3Activity" />
+        <activity android:name=".ui.Me.IntroduceActivity"></activity>
     </application>
 
 </manifest>
