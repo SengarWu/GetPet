@@ -7,7 +7,7 @@ import com.example.administrator.getpet.R;
 
 
 public class SearchEntrust extends AppCompatActivity {
-
+    private String ty="所有类型";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

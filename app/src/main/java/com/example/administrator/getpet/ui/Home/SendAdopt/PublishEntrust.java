@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -21,7 +22,7 @@ public class PublishEntrust extends BaseActivity implements View.OnClickListener
     private EditText award;//悬赏金额
     private Spinner pet_list;//宠物列表
     private TextView city;//城市
-    private Button sumit;//提交
+    private ImageView sumit;//提交
     private String citystr;//
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +37,7 @@ public class PublishEntrust extends BaseActivity implements View.OnClickListener
         pet_list=(Spinner) findViewById(R.id.pet_list);
         award=(EditText)findViewById(R.id.award);
         city=(TextView) findViewById(R.id.city);
-        sumit=(Button)findViewById(R.id.submit);
+        sumit=(ImageView) findViewById(R.id.submit);
         city.setOnClickListener(this);
         sumit.setOnClickListener(this);
     }
