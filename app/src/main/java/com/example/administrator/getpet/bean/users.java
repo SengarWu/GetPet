@@ -17,5 +17,102 @@ public class users  implements Serializable {
      * 用户类型0为普通用户，1为救助站用户
      */
     public int indentify;
-    public int user_reputation;     //声望
+    public int user_reputation;     //信誉度
+
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPersonal() {
+        return personal;
+    }
+
+    public void setPersonal(String personal) {
+        this.personal = personal;
+    }
+
+    public String getOccupation() {
+        return occupation;
+    }
+
+    public void setOccupation(String occupation) {
+        this.occupation = occupation;
+    }
+
+    public com.example.administrator.getpet.bean.indentified getIndentified() {
+        return indentified;
+    }
+
+    public void setIndentified(com.example.administrator.getpet.bean.indentified indentified) {
+        this.indentified = indentified;
+    }
+
+    public int getIndentify() {
+        return indentify;
+    }
+
+    public void setIndentify(int indentify) {
+        this.indentify = indentify;
+    }
+
+    public int getUser_reputation() {
+        return user_reputation;
+    }
+
+    public void setUser_reputation(int user_reputation) {
+        this.user_reputation = user_reputation;
+    }
 }

@@ -42,7 +42,7 @@
                 android:id="@+id/tv_city"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="正在定位"
+                android:text="所有城市"
                 android:textColor="@color/KK_white"
                 android:textSize="16sp"/>
 
@@ -59,10 +59,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 </LinearLayout>
-    <fragmen
+    <fragment
         android:id="@+id/drawer_select"
         android:layout_width="300dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        tools:layout="@layout/fragment_selectdrawer"/>
+        tools:layout="@layout/fragment_selectpet"/>
 </android.support.v4.widget.DrawerLayout>
