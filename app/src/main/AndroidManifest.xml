@@ -31,7 +31,10 @@
         <activity android:name=".ui.Me.Identity3Activity" />
         <activity android:name=".ui.Me.IntroduceActivity" />
         <activity android:name=".ui.Me.EditIntroduceActivity" />
-        <activity android:name=".ui.Me.InformActivity"></activity>
+        <activity android:name=".ui.Me.InformActivity" />
+        <activity android:name=".ui.Me.DonateRecordeActivity" />
+        <activity android:name=".ui.Me.MyPetActivity" />
+        <activity android:name=".ui.Me.AddPetActivity"></activity>
     </application>
 
 </manifest>
