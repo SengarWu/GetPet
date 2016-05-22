@@ -18,7 +18,7 @@ import com.example.administrator.getpet.view.xlistview.ZrcListView;
 import java.util.ArrayList;
 
 
-public class SearchEntrust extends AppCompatActivity {
+public class SearchEntrust extends AppCompatActivity implements View.OnClickListener {
     private String ty="所有类型";
     public String city="";
     private DrawerLayout petlayout;
@@ -41,7 +41,10 @@ public class SearchEntrust extends AppCompatActivity {
         dog=(ImageView)findViewById(R.id.dog);
         fish=(ImageView)findViewById(R.id.fish);
         other=(ImageView)findViewById(R.id.other);
-
+        cat.setOnClickListener(this);
+        dog.setOnClickListener(this);
+        fish.setOnClickListener(this);
+        other.setOnClickListener(this);
         listView = (ZrcListView)findViewById(R.id.other_entrust_list);
         handler = new Handler();
         // 设置下拉刷新的样式（可选，但如果没有Header则无法下拉刷新）
@@ -118,4 +121,17 @@ public class SearchEntrust extends AppCompatActivity {
         
     }
 
+    @Override
+    public void onClick(View v) {
+        switch(v.getId()) {
+            case R.id.cat:
+                break;
+            case R.id.dog:
+                break;
+            case R.id.fish:
+                break;
+            case R.id.other:
+                break;
+        }
+    }
 }

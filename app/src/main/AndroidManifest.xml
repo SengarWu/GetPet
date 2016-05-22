@@ -2,13 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.administrator.getpet">
 
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
 
     <application
@@ -21,6 +21,7 @@
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="K4avkUbXEqLRbnMfuCotsrMjGzm79oFI" />
+
         <activity
             android:name=".ui.home"
             android:label="@string/title_activity_home"
@@ -37,18 +38,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.Home.SendAdopt.EntrustMainActivity">
-        </activity>
-        <activity android:name=".ui.Home.SendAdopt.PublishEntrust">
-        </activity>
-        <activity android:name=".ui.Home.SendAdopt.SelectCityActivity"></activity>
+        <activity android:name=".ui.Home.SendAdopt.EntrustMainActivity"></activity>
+        <activity android:name=".ui.Home.SendAdopt.PublishEntrust"></activity>
+        <activity android:name=".ui.Home.SendAdopt.SelectCityActivity" />
         <activity android:name=".ui.Me.AccountActivity" />
         <activity android:name=".ui.Me.Identity1Activity" />
         <activity android:name=".ui.Me.Identity2Activity" />
         <activity android:name=".ui.Me.Identity3Activity" />
         <activity android:name=".ui.Me.IntroduceActivity" />
         <activity android:name=".ui.Me.EditIntroduceActivity" />
-        <activity android:name=".ui.Me.InformActivity"></activity>
+        <activity android:name=".ui.Me.InformActivity" />
+        <activity android:name=".ui.Home.SendAdopt.OtherEntrustDetail"></activity>
     </application>
 
 </manifest>
