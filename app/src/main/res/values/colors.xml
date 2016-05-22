@@ -22,4 +22,7 @@
 
     <color name="me_textView_pink">#ebad7b</color>
 
+    <color name="KK_theme_color">#ECAE7B</color>
+    <color name="KK_white">#FFFFFF</color>
+
 </resources>
