@@ -1,6 +1,5 @@
 package com.example.administrator.getpet.ui;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.AnimationUtils;
@@ -9,10 +8,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.example.administrator.getpet.R;
+import com.example.administrator.getpet.base.BaseActivity;
 import com.example.administrator.getpet.view.DragLayout;
 import com.nineoldandroids.view.ViewHelper;
 
-public class home extends Activity implements View.OnClickListener {
+public class home extends BaseActivity implements View.OnClickListener {
 
     private DragLayout dl;
     private ImageView iv_icon;

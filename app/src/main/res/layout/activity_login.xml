@@ -42,8 +42,8 @@
 
             <ImageView
                 android:id="@+id/iv_logo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:layout_marginTop="40dp"
                 android:layout_centerHorizontal="true"
                 android:src="@mipmap/logo" />
@@ -52,7 +52,7 @@
                 android:id="@+id/ll1"
                 android:layout_below="@+id/iv_logo"
                 android:layout_width="300dp"
-                android:layout_height="90dp"
+                android:layout_height="80dp"
                 android:layout_marginTop="20dp"
                 android:layout_centerHorizontal="true"
                 android:gravity="center"
@@ -74,7 +74,7 @@
             <LinearLayout
                 android:id="@+id/ll2"
                 android:layout_width="300dp"
-                android:layout_height="90dp"
+                android:layout_height="80dp"
                 android:layout_below="@+id/ll1"
                 android:gravity="center"
                 android:layout_centerHorizontal="true"
@@ -95,22 +95,24 @@
 
             <ImageButton
                 android:id="@+id/ib_login_register"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:layout_marginTop="20dp"
                 android:layout_below="@+id/ll2"
                 android:layout_alignLeft="@+id/ll2"
                 android:background="@color/color_transparent_bg"
-                android:src="@mipmap/register_icon" />
+                android:src="@mipmap/register_icon"
+                android:scaleType="fitCenter"/>
 
 
             <ImageButton
                 android:id="@+id/ib_login"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
                 android:layout_marginTop="20dp"
                 android:background="@color/color_transparent_bg"
                 android:src="@mipmap/login_login"
+                android:scaleType="fitCenter"
                 android:layout_below="@+id/ll2"
                 android:layout_alignRight="@+id/ll2"/>
 
