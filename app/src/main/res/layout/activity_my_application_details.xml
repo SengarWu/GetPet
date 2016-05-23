@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.administrator.getpet.ui.Home.SendAdopt.myApplicationDetails">
+    <RelativeLayout
+        android:background="@color/KK_theme_color"
+        android:layout_width="match_parent"
+        android:layout_height="48dp">
+        <ImageView
+            android:id="@+id/back"
+            android:src="@mipmap/kk_back"
+            android:layout_width="50dp"
+            android:layout_height="match_parent" />
+        <TextView
+            android:textSize="22sp"
+            android:textColor="@color/KK_white"
+            android:gravity="center"
+            android:text="详情"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:textSize="25sp"
+            android:textColor="@color/KK_theme_color"
+            android:layout_marginRight="10dp"
+            android:layout_gravity="center"
+            android:text="寄养信息"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:src="@mipmap/icon_title_kk"
+                android:layout_width="30dp"
+                android:layout_height="30dp" />
+            <TextView
+                android:textSize="@dimen/TextView_textSize"
+                android:text="标题"
+                android:layout_gravity="center"
+                android:id="@+id/title"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content" />
+            <ImageView
+                android:src="@mipmap/notknow"
+                android:layout_width="30dp"
+                android:layout_height="30dp" />
+            <TextView
+                android:textSize="@dimen/TextView_textSize"
+                android:text="标题"
+                android:layout_gravity="center"
+                android:id="@+id/character"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textSize="@dimen/TextView_textSize"
+                    android:text="宠物性格"
+                    android:layout_width="80dp"
+                    android:layout_height="20dp" />
+                <TextView
+                    android:text="..."
+                    android:textSize="@dimen/TextView_textSize"
+                    android:id="@+id/username"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:src="@mipmap/givemonkk"
+                    android:textSize="25sp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp" />
+                <TextView
+                    android:id="@+id/award"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:textSize="@dimen/TextView_textSize"
+                    android:text=""
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <ImageView
+                android:layout_marginTop="5dp"
+                android:id="@+id/type"
+                android:src="@mipmap/type_other"
+                android:layout_width="30dp"
+                android:layout_height="30dp" />
+        </LinearLayout>
+        <ImageView
+            android:layout_gravity="center"
+            android:src="@mipmap/details_kk"
+            android:layout_width="100dp"
+            android:layout_height="50dp" />
+        <TextView
+            android:layout_marginRight="10dp"
+            android:id="@+id/details"
+            android:textSize="@dimen/editText_textSize"
+            android:textColor="@color/KK_white"
+            android:singleLine="false"
+            android:layout_width="match_parent"
+            android:layout_height="100dp" />
+        <TextView
+            android:textSize="25sp"
+            android:textColor="@color/KK_theme_color"
+            android:layout_marginRight="10dp"
+            android:layout_gravity="center"
+            android:text="我的申请"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+         <TextView
+            android:layout_marginRight="5dp"
+             android:id="@+id/apply_message"
+             android:layout_width="match_parent"
+             android:layout_height="100dp" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:src="@mipmap/ic_location"
+                android:layout_width="30dp"
+                android:layout_height="30dp" />
+            <TextView
+                android:layout_marginTop="10dp"
+                android:text=",,,"
+                android:singleLine="false"
+                android:textSize="@dimen/TextView_textSize"
+                android:layout_width="120dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_height="wrap_content" />
+            <ImageView
+                android:src="@mipmap/ic_connectphone"
+                android:layout_width="30dp"
+                android:layout_height="30dp" />
+            <TextView
+                android:layout_marginTop="10dp"
+                android:text=",,,"
+                android:singleLine="false"
+                android:textSize="@dimen/TextView_textSize"
+                android:layout_width="120dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp">
+            <TextView
+                android:textColor="@color/pink_KK"
+                android:layout_marginTop="10dp"
+                android:singleLine="false"
+                android:textSize="@dimen/TextView_textSize"
+                android:layout_width="120dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_marginTop="10dp"
+                android:text="评价"
+                android:singleLine="false"
+                android:textSize="@dimen/TextView_textSize"
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="10dp"
+                android:layout_height="wrap_content" />
+            <ImageView
+                android:id="@+id/comment_result"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:text="撤回"
+                android:textSize="@dimen/btn_textsize"
+                android:textColor="@color/KK_white"
+                android:background="@drawable/btn_style"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content" />
+            <Button
+                android:layout_marginLeft="50dp"
+                android:text="修改"
+                android:textSize="@dimen/btn_textsize"
+                android:textColor="@color/KK_white"
+                android:background="@drawable/btn_style"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>
