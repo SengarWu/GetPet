@@ -3,8 +3,8 @@ package com.example.administrator.getpet.utils;
 import android.os.Handler;
 import android.os.Message;
 
-import com.example.caolin.lovepet.bean.Columns;
-import com.example.caolin.lovepet.bean.Wheres;
+import com.example.administrator.getpet.bean.Columns;
+import com.example.administrator.getpet.bean.Wheres;
 
 import org.json.JSONObject;
 

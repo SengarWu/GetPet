@@ -17,7 +17,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     private TextView tv_station;
     private EditText et_phone;
     private EditText et_password;
-    private ImageButton ib_register;
+    private ImageButton ib_login_register;
     private ImageButton ib_login;
     private ImageButton ib_find_password;
 
@@ -33,8 +33,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         tv_station.setOnClickListener(this);
         et_phone = (EditText) findViewById(R.id.et_phone);
         et_password = (EditText) findViewById(R.id.et_password);
-        ib_register = (ImageButton) findViewById(R.id.ib_register);
-        ib_register.setOnClickListener(this);
+        ib_login_register = (ImageButton) findViewById(R.id.ib_login_register);
+        ib_login_register.setOnClickListener(this);
         ib_login = (ImageButton) findViewById(R.id.ib_login);
         ib_login.setOnClickListener(this);
         ib_find_password = (ImageButton) findViewById(R.id.ib_find_password);
@@ -45,7 +45,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     public void onClick(View v) {
         switch (v.getId())
         {
-            case R.id.ib_register:
+            case R.id.ib_login_register:
                 startAnimActivity(RegisterActivity.class);
                 break;
             case R.id.ib_login:

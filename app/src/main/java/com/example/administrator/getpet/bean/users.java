@@ -5,6 +5,7 @@ public class users  implements Serializable {
 
     public String id;               //id
     public String phone;            //手机号
+    public String password;         //密码
     public String nickName;         //昵称
     public String sex;              //性别
     public int age;                 //年龄
@@ -13,6 +14,7 @@ public class users  implements Serializable {
     public String personal;         //个人说明
     public String occupation;       //职业
     public indentified indentified; //是否认证
+    public String photo;            //头像
     /**
      * 用户类型0为普通用户，1为救助站用户
      */
@@ -34,6 +36,14 @@ public class users  implements Serializable {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getNickName() {
@@ -115,4 +125,13 @@ public class users  implements Serializable {
     public void setUser_reputation(int user_reputation) {
         this.user_reputation = user_reputation;
     }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
 }

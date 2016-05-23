@@ -1,14 +1,13 @@
 package com.example.administrator.getpet.bean;
 
 import java.io.Serializable;
-import java.util.Date;
 public class pet  implements Serializable {
 
 public String id;
-public int name;
-public int age;
-public String phone;
-public String character;
+public int name;            //名字
+public int age;             //年龄
+public String photo;        //头像
+public String character;    //性格
 public users users ;
 public category category ;
 
@@ -36,14 +35,6 @@ public category category ;
         this.age = age;
     }
 
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
     public com.example.administrator.getpet.bean.users getUsers() {
         return users;
     }
@@ -66,5 +57,12 @@ public category category ;
 
     public void setCategory(com.example.administrator.getpet.bean.category category) {
         this.category = category;
+    }
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    public String getPhoto() {
+        return photo;
     }
 }
