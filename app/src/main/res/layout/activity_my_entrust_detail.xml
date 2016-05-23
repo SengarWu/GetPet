@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.administrator.getpet.ui.Home.SendAdopt.MyEntrustDetail">
+    <RelativeLayout
+        android:background="@color/KK_theme_color"
+        android:layout_width="match_parent"
+        android:layout_height="48dp">
+        <ImageView
+            android:id="@+id/back"
+            android:src="@mipmap/kk_back"
+            android:layout_width="50dp"
+            android:layout_height="match_parent" />
+        <TextView
+            android:textSize="22sp"
+            android:textColor="@color/KK_white"
+            android:gravity="center"
+            android:text="详情"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
+    <LinearLayout
+        android:paddingTop="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="5dp"
+        android:background="#efe8d799"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:src="@mipmap/icon_title_kk"
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
+        <TextView
+            android:layout_marginTop="8dp"
+            android:textSize="@dimen/TextView_textSize"
+            android:id="@+id/username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:src="@mipmap/icon_dog"
+                android:layout_width="30dp"
+                android:layout_height="30dp" />
+            <TextView
+                android:layout_marginTop="8dp"
+                android:textSize="@dimen/TextView_textSize"
+                android:id="@+id/petname"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content" />
+            <ImageView
+                android:src="@mipmap/givemonkk"
+                android:layout_width="30dp"
+                android:layout_height="30dp" />
+            <TextView
+                android:layout_marginTop="8dp"
+                android:textSize="@dimen/TextView_textSize"
+                android:id="@+id/award"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <ImageView
+            android:layout_gravity="center"
+            android:src="@mipmap/details_kk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/details"
+            android:textSize="@dimen/editText_textSize"
+            android:textColor="@color/KK_white"
+            android:singleLine="false"
+            android:layout_width="match_parent"
+            android:layout_height="120dp" />
+        <LinearLayout
+            android:layout_gravity="right"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/Pubtime"
+                android:textSize="25sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <ImageView
+                android:src="@mipmap/ic_time"
+                android:layout_width="40dp"
+                android:layout_height="40dp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="100dp"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/cancle"
+            android:text="撤回"
+            android:textSize="@dimen/btn_size"
+            android:textColor="@color/KK_white"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/btn_style"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/modify"
+                android:text="修改"
+                android:textSize="@dimen/btn_size"
+                android:textColor="@color/KK_white"
+                android:layout_marginLeft="20dp"
+                android:background="@drawable/btn_style"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/look_apply"
+                android:text="查看申请"
+                android:textSize="@dimen/btn_size"
+                android:textColor="@color/KK_white"
+                android:layout_marginLeft="20dp"
+                android:background="@drawable/btn_style"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
