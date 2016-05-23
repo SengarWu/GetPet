@@ -1,5 +1,6 @@
 package com.example.administrator.getpet.ui.Login;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -10,6 +11,7 @@ import android.widget.ImageButton;
 import com.example.administrator.getpet.R;
 import com.example.administrator.getpet.base.BaseActivity;
 import com.example.administrator.getpet.bean.users;
+import com.example.administrator.getpet.ui.home;
 import com.example.administrator.getpet.utils.HttpCallBack;
 import com.example.administrator.getpet.utils.JSONUtil;
 import com.example.administrator.getpet.utils.SimpleHttpPostUtil;
@@ -26,6 +28,9 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     private EditText et_password_again;
     private ImageButton ib_register;
 
+    private ProgressDialog progress;
+    private String errors;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,10 +42,13 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         ib_back = (ImageButton) findViewById(R.id.ib_back);
         ib_back.setOnClickListener(this);
         et_phone = (EditText) findViewById(R.id.et_phone);
-        et_password = (EditText) findViewById(R.id.et_phone);
-        et_password_again = (EditText) findViewById(R.id.et_phone);
+        et_password = (EditText) findViewById(R.id.et_password);
+        et_password_again = (EditText) findViewById(R.id.et_password_again);
         ib_register = (ImageButton) findViewById(R.id.ib_register);
         ib_register.setOnClickListener(this);
+        progress = new ProgressDialog(RegisterActivity.this);
+        progress.setMessage("正在注册...");
+        progress.setCanceledOnTouchOutside(false);
     }
 
     @Override
@@ -79,27 +87,45 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                     ToastUtils.showToast(mContext,"密码和确认密码不一致！");
                     return;
                 }
+                //显示进度条
+                progress.show();
                 //注册操作
-                register(phone,password);
+                if (register(phone,password))
+                {
+                    progress.dismiss();
+                    ToastUtils.showToast(mContext,"注册成功！正在跳转");
+                    startAnimActivity(home.class);
+                }
+                else
+                {
+                    progress.dismiss();
+                    ToastUtils.showToast(mContext,errors);
+                }
                 break;
         }
     }
 
-    private void register(String phone,String password) {
-        SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("Users","register");
-        httpReponse.addParams("phone",phone);
-        httpReponse.addParams("password",password);
-        httpReponse.send(new HttpCallBack() {
+    private boolean register(String phone,String password) {
+        final boolean[] isSuccess = {false};
+        final SimpleHttpPostUtil[] httpReponse = {new SimpleHttpPostUtil("users", "register")};
+        httpReponse[0].addParams("phone",phone);
+        httpReponse[0].addParams("password",password);
+        httpReponse[0].send(new HttpCallBack() {
             @Override
             public void Success(String data) {
                 Log.i(TAG, "Success: data:"+data);
-                JSONUtil.parseObject(data,users.class);
+                users user = JSONUtil.parseObject(data,users.class);
+                if (user.id != null)
+                {
+                    isSuccess[0] = true;
+                }
             }
-
             @Override
             public void Fail(String e) {
-                Log.i(TAG, "Fail:"+e);
+                isSuccess[0] = false;
+                errors = e;
             }
         });
+        return isSuccess[0];
     }
 }
