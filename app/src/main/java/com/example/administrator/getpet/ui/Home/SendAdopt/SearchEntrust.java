@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.example.administrator.getpet.R;
+import com.example.administrator.getpet.base.BaseActivity;
 import com.example.administrator.getpet.bean.entrust;
 import com.example.administrator.getpet.ui.Home.SendAdopt.Adapter.OtherEntrustAdapter;
 import com.example.administrator.getpet.view.xlistview.SimpleFooter;
@@ -18,7 +19,7 @@ import com.example.administrator.getpet.view.xlistview.ZrcListView;
 import java.util.ArrayList;
 
 
-public class SearchEntrust extends AppCompatActivity implements View.OnClickListener {
+public class SearchEntrust extends BaseActivity implements View.OnClickListener {
     private String ty="所有类型";
     public String city="";
     private DrawerLayout petlayout;

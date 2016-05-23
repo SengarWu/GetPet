@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.example.administrator.getpet.R;
+import com.example.administrator.getpet.base.BaseActivity;
 import com.example.administrator.getpet.bean.applyApplication;
 import com.example.administrator.getpet.bean.entrust;
 import com.example.administrator.getpet.ui.Home.SendAdopt.Adapter.ApplicationAdapter;
@@ -17,7 +18,7 @@ import com.example.administrator.getpet.view.xlistview.ZrcListView;
 
 import java.util.ArrayList;
 
-public class LookApplication extends AppCompatActivity implements View.OnClickListener {
+public class LookApplication extends BaseActivity implements View.OnClickListener {
     private ZrcListView listView;
     private Handler handler;//用于接收子线程的信息以刷新主线程
     int curPage = 0;//页码

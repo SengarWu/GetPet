@@ -7,8 +7,9 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.administrator.getpet.R;
+import com.example.administrator.getpet.base.BaseActivity;
 
-public class MyEntrustDetail extends AppCompatActivity implements View.OnClickListener {
+public class MyEntrustDetail extends BaseActivity implements View.OnClickListener {
     private Button cancle;
     private Button modify;
     private Button lookapply;

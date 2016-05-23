@@ -9,8 +9,9 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 
 import com.example.administrator.getpet.R;
+import com.example.administrator.getpet.base.BaseActivity;
 
-public class ModifyEntrust extends AppCompatActivity implements View.OnClickListener {
+public class ModifyEntrust extends BaseActivity implements View.OnClickListener {
     private ImageView back;//返回
     private EditText award;//悬赏金额
     private Spinner pet_list;//宠物列表

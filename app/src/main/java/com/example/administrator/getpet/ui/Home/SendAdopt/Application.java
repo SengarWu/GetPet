@@ -8,8 +8,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.example.administrator.getpet.R;
+import com.example.administrator.getpet.base.BaseActivity;
 
-public class Application extends AppCompatActivity implements View.OnClickListener {
+public class Application extends BaseActivity implements View.OnClickListener {
     private EditText detail;
     private EditText connectplace;
     private EditText connectphone;

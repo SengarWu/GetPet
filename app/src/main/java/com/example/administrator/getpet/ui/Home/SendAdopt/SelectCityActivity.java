@@ -31,6 +31,7 @@ import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 
 import com.example.administrator.getpet.R;
+import com.example.administrator.getpet.base.BaseActivity;
 import com.example.administrator.getpet.bean.City;
 import com.example.administrator.getpet.view.HeaderLayout;
 import com.example.administrator.getpet.view.MyLetterListView;
@@ -45,7 +46,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.regex.Pattern;
 
-public class SelectCityActivity extends AppCompatActivity implements View.OnClickListener {
+public class SelectCityActivity extends BaseActivity implements View.OnClickListener {
     private ListAdapter adapter;
     private ListView personList;
     private TextView overlay; // 对话框首字母textview
