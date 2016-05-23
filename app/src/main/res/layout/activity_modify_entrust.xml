@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.administrator.getpet.ui.Home.SendAdopt.ModifyEntrust">
+    <RelativeLayout
+        android:background="@color/KK_theme_color"
+        android:layout_width="match_parent"
+        android:layout_height="48dp">
+        <ImageView
+            android:id="@+id/back"
+            android:src="@mipmap/kk_back"
+            android:layout_width="50dp"
+            android:layout_height="match_parent" />
+        <TextView
+            android:textSize="22sp"
+            android:textColor="@color/KK_white"
+            android:gravity="center"
+            android:text="修改寄养信息"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_gravity="center"
+        android:paddingTop="10dp"
+        android:orientation="vertical"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_marginLeft="25dp"
+        android:orientation="horizontal"
+        android:layout_width="50dp"
+        android:layout_height="50dp">
+        <ImageView
+            android:src="@mipmap/icon_title_kk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:layout_marginTop="8dp"
+            android:textSize="@dimen/editText_textSize"
+            android:id="@+id/title"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+        <LinearLayout
+            android:layout_marginLeft="25dp"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:src="@mipmap/givemonkk"
+                android:layout_width="50dp"
+                android:layout_height="50dp" />
+            <EditText
+                android:layout_marginTop="8dp"
+                android:textSize="@dimen/editText_textSize"
+                android:id="@+id/award"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginLeft="25dp"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:src="@mipmap/icon_dog"
+                android:layout_width="50dp"
+                android:layout_height="80dp" />
+            <Spinner
+                android:layout_weight="1"
+                android:background="@mipmap/bone"
+                android:layout_marginLeft="10dp"
+                android:textAlignment="center"
+                android:id="@+id/pet_list"
+                android:layout_width="200dp"
+                android:layout_height="80dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:background="@mipmap/publish_messagebox"
+            android:layout_width="match_parent"
+            android:layout_height="240dp">
+            <ImageView
+                android:layout_gravity="center"
+                android:background="@mipmap/text_contain"
+                android:layout_width="100dp"
+                android:layout_height="50dp" />
+            <EditText
+                android:singleLine="false"
+                android:id="@+id/content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+        <Button
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:id="@+id/modify"
+            android:text="修改"
+            android:textSize="@dimen/btn_size"
+            android:textColor="@color/KK_white"
+            android:background="@drawable/btn_style"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</LinearLayout>

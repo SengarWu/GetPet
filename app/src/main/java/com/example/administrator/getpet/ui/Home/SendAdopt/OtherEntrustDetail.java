@@ -8,8 +8,9 @@ import android.widget.TextView;
 
 import com.baidu.mapapi.map.Text;
 import com.example.administrator.getpet.R;
+import com.example.administrator.getpet.base.BaseActivity;
 
-public class OtherEntrustDetail extends AppCompatActivity implements View.OnClickListener {
+public class OtherEntrustDetail extends BaseActivity implements View.OnClickListener {
    private ImageView usex;//用户性别
     private TextView username;//用户名
     private TextView award;//悬赏

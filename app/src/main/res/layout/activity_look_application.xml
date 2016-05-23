@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.administrator.getpet.ui.Home.SendAdopt.LookApplication">
+    <RelativeLayout
+        android:background="@color/KK_theme_color"
+        android:layout_width="match_parent"
+        android:layout_height="48dp">
+        <ImageView
+            android:id="@+id/back"
+            android:src="@mipmap/kk_back"
+            android:layout_width="50dp"
+            android:layout_height="match_parent" />
+        <TextView
+            android:textSize="22sp"
+            android:textColor="@color/KK_white"
+            android:gravity="center"
+            android:text="领养申请"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
+    <com.example.administrator.getpet.view.xlistview.ZrcListView
+        android:id="@+id/application_list"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+    </com.example.administrator.getpet.view.xlistview.ZrcListView>
+</LinearLayout>

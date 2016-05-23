@@ -13,8 +13,11 @@ import android.widget.TextView;
 import com.example.administrator.getpet.R;
 import com.example.administrator.getpet.base.BaseActivity;
 import com.example.administrator.getpet.bean.entrust;
+import com.example.administrator.getpet.utils.SimpleHttpPostUtil;
+import com.example.administrator.getpet.utils.TimeUtils;
 
 import java.util.Calendar;
+import java.util.Date;
 
 public class PublishEntrust extends BaseActivity implements View.OnClickListener {
     private EditText title;//标题
@@ -52,11 +55,21 @@ public class PublishEntrust extends BaseActivity implements View.OnClickListener
                 //n_entrust.setPetId(pet_list.getSelectedItem().toString());
                 //n_entrust.setUser_id();
                 n_entrust.setAward(Integer.valueOf(award.getText().toString()));
+                //获取系统当前时间
                 Calendar a= Calendar.getInstance();
                 java.util.Date d=a.getTime();
-                n_entrust.setDate(d);
+                String datestr=String.valueOf(d.getYear())+"/"+String.valueOf(d.getMonth())+"/"+
+                        String.valueOf(d.getDate())+" "+String.valueOf(d.getHours())+":"+String.valueOf(d.getMinutes())
+                        +":"+String.valueOf(d.getSeconds());
+                Date date= TimeUtils.stringToDate(datestr,TimeUtils.FORMAT_DATE_TIME_SECOND);
+                n_entrust.setDate(date);
+                //设置用户
+
+                //设置宠物
+
                 n_entrust.setCity(citystr);
                 //发送发布寄养信息的数据请求
+
                 break;
             case R.id.city:
                 startActivityForResult(new Intent(this, SelectCityActivity.class), 99);
@@ -64,6 +77,10 @@ public class PublishEntrust extends BaseActivity implements View.OnClickListener
         }
     }
 
+    public void submit() {
+        SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("entrust","Insert");
+
+    }
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         // TODO Auto-generated method stub

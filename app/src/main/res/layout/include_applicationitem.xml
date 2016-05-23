@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:paddingTop="10dp"
+    android:paddingRight="10dp"
+    android:paddingLeft="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/usersex"
+            android:src="@mipmap/notknow"
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
+        <TextView
+            android:layout_marginTop="5dp"
+            android:id="@+id/username"
+            android:textSize="25sp"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:src="@mipmap/reputation"
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
+        <TextView
+            android:layout_marginTop="5dp"
+            android:id="@+id/reputation"
+            android:textSize="25sp"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:id="@+id/state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <TextView
+        android:id="@+id/details"
+        android:textColor="@color/KK_white"
+        android:textSize="@dimen/TextView_textSize"
+        android:layout_width="match_parent"
+        android:layout_height="80dp" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+      <Button
+          android:id="@+id/select"
+          android:layout_marginLeft="20dp"
+          android:text="选中"
+          android:textSize="@dimen/btn_size"
+          android:textColor="@color/KK_white"
+          android:background="@drawable/btn_style"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content" />
+    <LinearLayout
+        android:layout_alignParentRight="true"
+        android:layout_gravity="right"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/Subtime"
+            android:textSize="25sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:src="@mipmap/ic_time"
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
+    </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

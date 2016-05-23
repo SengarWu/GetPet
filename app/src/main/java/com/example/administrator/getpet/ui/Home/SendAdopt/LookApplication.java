@@ -1,16 +1,16 @@
 package com.example.administrator.getpet.ui.Home.SendAdopt;
 
-import android.content.Intent;
-import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.example.administrator.getpet.R;
 import com.example.administrator.getpet.base.BaseActivity;
+import com.example.administrator.getpet.bean.applyApplication;
 import com.example.administrator.getpet.bean.entrust;
+import com.example.administrator.getpet.ui.Home.SendAdopt.Adapter.ApplicationAdapter;
 import com.example.administrator.getpet.ui.Home.SendAdopt.Adapter.OtherEntrustAdapter;
 import com.example.administrator.getpet.view.xlistview.SimpleFooter;
 import com.example.administrator.getpet.view.xlistview.SimpleHeader;
@@ -18,35 +18,27 @@ import com.example.administrator.getpet.view.xlistview.ZrcListView;
 
 import java.util.ArrayList;
 
-
-public class SearchEntrust extends BaseActivity implements View.OnClickListener {
-    private String ty="所有类型";
-    public String city="";
-    private DrawerLayout petlayout;
-    private ImageView cat,dog,fish,other;
+public class LookApplication extends BaseActivity implements View.OnClickListener {
     private ZrcListView listView;
     private Handler handler;//用于接收子线程的信息以刷新主线程
     int curPage = 0;//页码
-    private OtherEntrustAdapter adapter;
-    private ArrayList<entrust> items = new ArrayList<>();
+    private ApplicationAdapter adapter;
+    private ArrayList<applyApplication> items = new ArrayList<>();
+    private ImageView back;//返回按钮
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search_entrust);
+        setContentView(R.layout.activity_look_application);
         initView();
     }
 
     private void initView() {
-        petlayout=(DrawerLayout)findViewById(R.id.drawer_select);
-        cat=(ImageView)findViewById(R.id.cat);
-        dog=(ImageView)findViewById(R.id.dog);
-        fish=(ImageView)findViewById(R.id.fish);
-        other=(ImageView)findViewById(R.id.other);
-        cat.setOnClickListener(this);
-        dog.setOnClickListener(this);
-        fish.setOnClickListener(this);
-        other.setOnClickListener(this);
-        listView = (ZrcListView)findViewById(R.id.other_entrust_list);
+        back=(ImageView)findViewById(R.id.back);
+        back.setOnClickListener(this);
+
+
+        //列表的初始化
+        listView = (ZrcListView)findViewById(R.id.application_list);
         handler = new Handler();
         // 设置下拉刷新的样式（可选，但如果没有Header则无法下拉刷新）
         SimpleHeader header = new SimpleHeader(this);
@@ -63,7 +55,7 @@ public class SearchEntrust extends BaseActivity implements View.OnClickListener 
         listView.setItemAnimForTopIn(R.anim.top_item_in);
         listView.setItemAnimForBottomIn(R.anim.bottom_item_in);
 
-        adapter = new OtherEntrustAdapter(this, items);
+        adapter = new ApplicationAdapter(this, items);
         listView.setAdapter(adapter);
 
         if (items.size() <= 0)
@@ -91,48 +83,25 @@ public class SearchEntrust extends BaseActivity implements View.OnClickListener 
             public void onItemClick(ZrcListView parent, View view, int position, long id) {
                 //Intent item = new Intent(SearchQuestion.this, ShowQuesiondetails.class);
 
-               // startActivity(item);
+                // startActivity(item);
             }
         });
     }
 
-    private void loadMore() {
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-                QueryCountEntrust();
-            }
-        });
-    }
-
-    private void QueryCountEntrust() {
-    }
-
+    //刷新
     private void refresh() {
-        curPage=0;
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-                QueryEntrust();//queryProxy为自定义的查询类
-            }
-        });
     }
 
-    private void QueryEntrust() {
-        
-    }
+    private void loadMore(){
 
+    }
     @Override
     public void onClick(View v) {
-        switch(v.getId()) {
-            case R.id.cat:
+        switch (v.getId()){
+            case R.id.back:
+                this.finish();
                 break;
-            case R.id.dog:
-                break;
-            case R.id.fish:
-                break;
-            case R.id.other:
-                break;
+
         }
     }
 }
