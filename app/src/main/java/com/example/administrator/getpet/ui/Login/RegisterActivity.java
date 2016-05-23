@@ -2,16 +2,23 @@ package com.example.administrator.getpet.ui.Login;
 
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.example.administrator.getpet.R;
 import com.example.administrator.getpet.base.BaseActivity;
+import com.example.administrator.getpet.bean.users;
+import com.example.administrator.getpet.utils.HttpCallBack;
+import com.example.administrator.getpet.utils.JSONUtil;
+import com.example.administrator.getpet.utils.SimpleHttpPostUtil;
 import com.example.administrator.getpet.utils.StringUtils;
 import com.example.administrator.getpet.utils.ToastUtils;
 
 public class RegisterActivity extends BaseActivity implements View.OnClickListener {
+
+    private static final String TAG = "RegisterActivity";
 
     private ImageButton ib_back;
     private EditText et_phone;
@@ -79,6 +86,20 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     }
 
     private void register(String phone,String password) {
+        SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("Users","register");
+        httpReponse.addParams("phone",phone);
+        httpReponse.addParams("password",password);
+        httpReponse.send(new HttpCallBack() {
+            @Override
+            public void Success(String data) {
+                Log.i(TAG, "Success: data:"+data);
+                JSONUtil.parseObject(data,users.class);
+            }
 
+            @Override
+            public void Fail(String e) {
+                Log.i(TAG, "Fail:"+e);
+            }
+        });
     }
 }

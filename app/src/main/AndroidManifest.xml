@@ -14,16 +14,20 @@
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ui.Me.MyAttentionActivity" />
-        <activity android:name=".ui.Login.LoginActivity" />
-        <activity android:name=".ui.Login.RegisterActivity" />
-        <activity android:name=".ui.Login.FindPasswordActivity" />
-        <activity android:name=".ui.Login.FindPassword1Activity" />
-        <activity android:name=".ui.Me.PersonalActivity">
+        <activity android:name=".ui.Login.LoginActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+        </activity>
+        <activity android:name=".ui.Login.RegisterActivity" />
+        <activity android:name=".ui.Login.FindPasswordActivity" />
+        <activity android:name=".ui.Login.FindPassword1Activity" />
+        <activity android:name=".ui.Me.PersonalActivity">
+
         </activity>
         <activity android:name=".ui.Me.AccountActivity" />
         <activity android:name=".ui.Me.Identity1Activity" />
