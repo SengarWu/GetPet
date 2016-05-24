@@ -106,7 +106,7 @@
         <Button
             android:id="@+id/cancle"
             android:text="撤回"
-            android:textSize="@dimen/btn_size"
+            android:textSize="@dimen/btn_textsize"
             android:textColor="@color/KK_white"
             android:layout_marginLeft="10dp"
             android:background="@drawable/btn_style"
@@ -115,7 +115,7 @@
             <Button
                 android:id="@+id/modify"
                 android:text="修改"
-                android:textSize="@dimen/btn_size"
+                android:textSize="@dimen/btn_textsize"
                 android:textColor="@color/KK_white"
                 android:layout_marginLeft="20dp"
                 android:background="@drawable/btn_style"
@@ -124,7 +124,7 @@
             <Button
                 android:id="@+id/look_apply"
                 android:text="查看申请"
-                android:textSize="@dimen/btn_size"
+                android:textSize="@dimen/btn_textsize"
                 android:textColor="@color/KK_white"
                 android:layout_marginLeft="20dp"
                 android:background="@drawable/btn_style"
