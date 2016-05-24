@@ -9,6 +9,11 @@ import android.widget.LinearLayout;
 
 import com.example.administrator.getpet.R;
 import com.example.administrator.getpet.base.BaseActivity;
+import com.example.administrator.getpet.ui.Me.DonateRecordeActivity;
+import com.example.administrator.getpet.ui.Me.InformActivity;
+import com.example.administrator.getpet.ui.Me.MyAttentionActivity;
+import com.example.administrator.getpet.ui.Me.MyPetActivity;
+import com.example.administrator.getpet.ui.Me.PersonalActivity;
 import com.example.administrator.getpet.view.DragLayout;
 import com.nineoldandroids.view.ViewHelper;
 
@@ -93,34 +98,34 @@ public class home extends BaseActivity implements View.OnClickListener {
             case R.id.iv_icon:
                 dl.open();
                 break;
-            case R.id.ll3:
+            case R.id.ll3://我的关注
+                startAnimActivity(MyAttentionActivity.class);
+                break;
+            case R.id.ll4://我的宠物
+                startAnimActivity(MyPetActivity.class);
+                break;
+            case R.id.ll5://个人信息
+                startAnimActivity(PersonalActivity.class);
+                break;
+            case R.id.ll6://消息通知
+                startAnimActivity(InformActivity.class);
+                break;
+            case R.id.ll7://交易记录
+                startAnimActivity(DonateRecordeActivity.class);
+                break;
+            case R.id.ll8://退出账号
 
                 break;
-            case R.id.ll4:
+            case R.id.ib_xinxiqiang://信息墙
 
                 break;
-            case R.id.ll5:
+            case R.id.ll_jyly:////寄养领养
 
                 break;
-            case R.id.ll6:
+            case R.id.ll_jiuzhu: //救助
 
                 break;
-            case R.id.ll7:
-
-                break;
-            case R.id.ll8:
-
-                break;
-            case R.id.ib_xinxiqiang:
-
-                break;
-            case R.id.ll_jyly:
-
-                break;
-            case R.id.ll_jiuzhu:
-
-                break;
-            case R.id.ll_xunhui:
+            case R.id.ll_xunhui://寻回
 
                 break;
         }

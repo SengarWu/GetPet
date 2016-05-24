@@ -13,7 +13,7 @@ public class users  implements Serializable {
     public String email;            //邮箱
     public String personal;         //个人说明
     public String occupation;       //职业
-    public indentified indentified; //是否认证
+    public indentified indentified; //认证信息
     public String photo;            //头像
     /**
      * 用户类型0为普通用户，1为救助站用户

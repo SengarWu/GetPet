@@ -44,7 +44,8 @@
 
             </RelativeLayout>
 
-            <ImageView
+            <com.example.administrator.getpet.view.RoundImageView
+                android:id="@+id/personal_iv_photo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/home_ic_photo"
@@ -63,6 +64,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/personal_tv_nickname"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/base_color_text_black"
@@ -78,6 +80,7 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:id="@+id/personal_tv_sex"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="@dimen/TextView_textSize"
@@ -85,14 +88,22 @@
                             android:text="女"/>
 
                         <TextView
+                            android:id="@+id/personal_tv_age"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
                             android:textSize="@dimen/TextView_textSize"
                             android:textColor="@color/base_color_text_black"
-                            android:text="19岁"/>
+                            android:text="19"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/TextView_textSize"
+                            android:textColor="@color/base_color_text_black"
+                            android:text="岁"/>
 
                         <TextView
+                            android:id="@+id/personal_tv_address"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
@@ -111,6 +122,7 @@
                     android:background="@color/base_color_text_black"/>
 
                 <RelativeLayout
+                    android:id="@+id/personal_rl_account"
                     android:layout_width="match_parent"
                     android:layout_height="60dp">
 
@@ -139,6 +151,8 @@
                     android:background="@color/base_color_text_black"/>
 
                 <RelativeLayout
+                    android:id="@+id/personal_rl_introduce
+                    "
                     android:layout_width="match_parent"
                     android:layout_height="60dp">
 

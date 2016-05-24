@@ -11,7 +11,6 @@ import android.widget.ImageButton;
 import com.example.administrator.getpet.R;
 import com.example.administrator.getpet.base.BaseActivity;
 import com.example.administrator.getpet.bean.users;
-import com.example.administrator.getpet.ui.home;
 import com.example.administrator.getpet.utils.HttpCallBack;
 import com.example.administrator.getpet.utils.JSONUtil;
 import com.example.administrator.getpet.utils.SimpleHttpPostUtil;
@@ -29,7 +28,6 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     private ImageButton ib_register;
 
     private ProgressDialog progress;
-    private String errors;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,42 +88,39 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                 //显示进度条
                 progress.show();
                 //注册操作
-                if (register(phone,password))
-                {
-                    progress.dismiss();
-                    ToastUtils.showToast(mContext,"注册成功！正在跳转");
-                    startAnimActivity(home.class);
-                }
-                else
-                {
-                    progress.dismiss();
-                    ToastUtils.showToast(mContext,errors);
-                }
+                register(phone,password);
                 break;
         }
     }
 
-    private boolean register(String phone,String password) {
-        final boolean[] isSuccess = {false};
-        final SimpleHttpPostUtil[] httpReponse = {new SimpleHttpPostUtil("users", "register")};
-        httpReponse[0].addParams("phone",phone);
-        httpReponse[0].addParams("password",password);
-        httpReponse[0].send(new HttpCallBack() {
+    /**
+     * 注册操作
+     * @param phone
+     * @param password
+     */
+    private void register(final String phone, final String password) {
+        //调用注册接口
+        SimpleHttpPostUtil httpReponse = new SimpleHttpPostUtil("users", "register");
+        httpReponse.addParams("phone",phone);
+        httpReponse.addParams("password",password);
+        httpReponse.send(new HttpCallBack() {
             @Override
             public void Success(String data) {
                 Log.i(TAG, "Success: data:"+data);
+                //Json解析，反序列化user
                 users user = JSONUtil.parseObject(data,users.class);
                 if (user.id != null)
                 {
-                    isSuccess[0] = true;
+                    progress.dismiss();
+                    ToastUtils.showToast(mContext,"注册成功！正在跳转");
+                    RegisterActivity.this.finish();
                 }
             }
             @Override
             public void Fail(String e) {
-                isSuccess[0] = false;
-                errors = e;
+                progress.dismiss();
+                ToastUtils.showToast(mContext,e);
             }
         });
-        return isSuccess[0];
     }
 }
