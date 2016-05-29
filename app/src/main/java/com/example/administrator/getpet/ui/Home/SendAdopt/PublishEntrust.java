@@ -77,6 +77,9 @@ public class PublishEntrust extends BaseActivity implements View.OnClickListener
         }
     }
 
+    /**
+     *
+     */
     public void submit() {
         SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("entrust","Insert");
 
