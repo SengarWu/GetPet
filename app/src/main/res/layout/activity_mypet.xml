@@ -12,6 +12,7 @@
         android:background="@color/actionbar">
 
         <ImageButton
+            android:id="@+id/ib_back"
             android:layout_width="30dp"
             android:layout_height="48dp"
             android:background="@color/color_transparent_bg"
@@ -26,6 +27,7 @@
             android:textColor="@color/base_color_text_white"/>
 
         <TextView
+            android:id="@+id/tv_add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp"

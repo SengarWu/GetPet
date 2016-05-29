@@ -117,12 +117,13 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 editor.putString("id",user.id);
                 editor.putString("phone",user.phone);
                 editor.putString("nickName",user.nickName);
-                editor.putString("nickName",user.nickName);
+                editor.putString("sex",user.sex);
                 editor.putInt("age",user.age);
                 editor.putString("address",user.address);
                 editor.putString("email",user.email);
                 editor.putString("personal",user.personal);
                 editor.putString("occupation",user.occupation);
+                editor.putString("photo",user.photo);
                 if (user.indentified != null)
                 {
                     editor.putString("indentifiedId",user.indentified.id);

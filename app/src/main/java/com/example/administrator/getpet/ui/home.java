@@ -1,21 +1,39 @@
 package com.example.administrator.getpet.ui;
 
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
+import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.example.administrator.getpet.R;
 import com.example.administrator.getpet.base.BaseActivity;
+import com.example.administrator.getpet.bean.sPet;
 import com.example.administrator.getpet.ui.Me.DonateRecordeActivity;
 import com.example.administrator.getpet.ui.Me.InformActivity;
 import com.example.administrator.getpet.ui.Me.MyAttentionActivity;
 import com.example.administrator.getpet.ui.Me.MyPetActivity;
 import com.example.administrator.getpet.ui.Me.PersonalActivity;
+import com.example.administrator.getpet.ui.Me.SpetDetailActivity;
+import com.example.administrator.getpet.ui.Me.adapter.sPetAdapter;
+import com.example.administrator.getpet.utils.HttpCallBack;
+import com.example.administrator.getpet.utils.JSONUtil;
+import com.example.administrator.getpet.utils.SimpleHttpPostUtil;
+import com.example.administrator.getpet.utils.ToastUtils;
 import com.example.administrator.getpet.view.DragLayout;
 import com.nineoldandroids.view.ViewHelper;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class home extends BaseActivity implements View.OnClickListener {
 
@@ -32,6 +50,26 @@ public class home extends BaseActivity implements View.OnClickListener {
     private LinearLayout ll_jyly;
     private LinearLayout ll_jiuzhu;
     private LinearLayout ll_xunhui;
+    private GridView gv_jiuzhu;
+
+    sPet[] sPetArry ; //定义接收服务器数据的数组
+
+    private ProgressDialog progress;
+
+    private final int LOADSUCCESS = 1001;
+
+    private Handler handler = new Handler()
+    {
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what)
+            {
+                case LOADSUCCESS:
+                    setupView();
+                    break;
+            }
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +77,69 @@ public class home extends BaseActivity implements View.OnClickListener {
         setContentView(R.layout.activity_home);
         initDragLayout();
         initView();
+        progress = new ProgressDialog(mContext);
+        progress.setMessage("正在加载数据，请稍后...");
+        progress.setCanceledOnTouchOutside(false);
+        progress.show();
+        LoadData();
+        setupView();
+    }
+
+    /**
+     * 显示宠物列表
+     */
+    private void setupView() {
+        List<Map<String, Object>> listItems=getData();// 创建一个List集合，List集合的元素是Map
+        gv_jiuzhu.setAdapter(new sPetAdapter(mContext,listItems));
+        // 为ListView的列表项的单击事件绑定事件监听器
+        gv_jiuzhu.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(home.this, SpetDetailActivity.class);
+                Bundle data = new Bundle(); //Bundle对象用于传递果种对象
+                /*
+                Seeds seeds = SaveData(position); //种子对象，用于传递数据
+                data.putSerializable("seeds", seeds);
+                intent.putExtras(data);
+                startActivity(intent);*/
+            }
+        });
+    }
+
+    private List<Map<String,Object>> getData() {
+        List<Map<String, Object>> listItems=new ArrayList<Map<String,Object>>();
+        for (int i = 0; i < sPetArry.length; i++) {
+            Map<String,Object> listItem = new HashMap<String,Object>();
+            listItem.put("pet_photo",sPetArry[i].photo);
+            listItem.put("pet_name",sPetArry[i].name);
+            listItems.add(listItem);
+        }
+        return listItems;
+    }
+
+    /**
+     * 从网络宠物加载数据
+     */
+    private void LoadData() {
+        SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("sPet","QueryListX");
+        httpReponse.addViewColumnsParams("name");
+        httpReponse.addViewColumnsParams("photo");
+        httpReponse.addIsDescParams(true);
+        httpReponse.QueryList(1, 10, new HttpCallBack() {
+            @Override
+            public void Success(String data) {
+                //Json解析，反序列化sPet
+                sPetArry = JSONUtil.parseArray(data,sPet.class);
+                handler.sendEmptyMessage(LOADSUCCESS);
+            }
+
+            @Override
+            public void Fail(String e) {
+                progress.dismiss();
+                ToastUtils.showToast(mContext,e);
+            }
+        });
+
     }
 
     private void initDragLayout() {
@@ -84,6 +185,7 @@ public class home extends BaseActivity implements View.OnClickListener {
         ll_jiuzhu.setOnClickListener(this);
         ll_xunhui = (LinearLayout) findViewById(R.id.ll_xunhui);
         ll_xunhui.setOnClickListener(this);
+        gv_jiuzhu = (GridView) findViewById(R.id.gv_jiuzhu);
     }
 
 
