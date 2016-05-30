@@ -50,7 +50,8 @@
         <activity android:name=".ui.Home.SendAdopt.ModifyEntrust" />
         <activity android:name=".ui.Home.SendAdopt.ApplicationHistory" />
         <activity android:name=".ui.Home.SendAdopt.myApplicationDetails" />
-        <activity android:name=".ui.Me.SpetDetailActivity"></activity>
+        <activity android:name=".ui.Me.SpetDetailActivity" />
+        <activity android:name=".ui.Home.FindPet.Main2Activity"></activity>
     </application>
 
 </manifest>
