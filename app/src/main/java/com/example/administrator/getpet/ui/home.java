@@ -19,7 +19,6 @@ import com.example.administrator.getpet.bean.sPet;
 import com.example.administrator.getpet.ui.Me.DonateRecordeActivity;
 import com.example.administrator.getpet.ui.Me.InformActivity;
 import com.example.administrator.getpet.ui.Me.MyAttentionActivity;
-import com.example.administrator.getpet.ui.Me.MyPetActivity;
 import com.example.administrator.getpet.ui.Me.PersonalActivity;
 import com.example.administrator.getpet.ui.Me.SpetDetailActivity;
 import com.example.administrator.getpet.ui.Me.adapter.sPetAdapter;
@@ -204,7 +203,7 @@ public class home extends BaseActivity implements View.OnClickListener {
                 startAnimActivity(MyAttentionActivity.class);
                 break;
             case R.id.ll4://我的宠物
-                startAnimActivity(MyPetActivity.class);
+
                 break;
             case R.id.ll5://个人信息
                 startAnimActivity(PersonalActivity.class);

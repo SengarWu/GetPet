@@ -103,7 +103,7 @@
             android:layout_gravity="center"
             android:id="@+id/modify"
             android:text="修改"
-            android:textSize="@dimen/btn_size"
+            android:textSize="@dimen/btn_textsize"
             android:textColor="@color/KK_white"
             android:background="@drawable/btn_style"
             android:layout_width="100dp"

@@ -29,6 +29,7 @@ public class SearchEntrust extends BaseActivity implements View.OnClickListener 
     int curPage = 0;//页码
     private OtherEntrustAdapter adapter;
     private ArrayList<entrust> items = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
