@@ -110,7 +110,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         httpReponse.send(new HttpCallBack() {
             @Override
             public void Success(String data) {
-                Log.i(TAG, "Success: data:"+data);
+                //Log.i(TAG, "Success: data:"+data);
                 //Json解析，反序列化user
                 users user = JSONUtil.parseObject(data,users.class);
                 //将服务器返回的用户信息保存到本地
@@ -150,6 +150,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                     editor.putString("wechat","");
                     editor.putString("others","");
                 }
+                //提交
+                editor.commit();
                 progress.dismiss();
                 ToastUtils.showToast(mContext,"登录成功！");
                 startAnimActivity(home.class);

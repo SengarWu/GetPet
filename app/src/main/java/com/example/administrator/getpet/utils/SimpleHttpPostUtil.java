@@ -236,33 +236,13 @@ public class SimpleHttpPostUtil{
         addParams(staticConfig.id, id);
         send(httpCall);
     }
-    public void QueryList(int index, int size, String wheres, String orderField,HttpCallBack httpCall){
-        skip(index);
-        limit(size);
-        addOrderFieldParams(orderField);
-        send(httpCall);
-    }
-    public void QueryList(int index, int size, String wheres,HttpCallBack httpCall){
-        skip(index);
-        limit(size);
-        send(httpCall);
-    }
+
     public void QueryList(int index, int size,HttpCallBack httpCall){
         skip(index);
         limit(size);
         send(httpCall);
     }
-    public void QueryListX(int index, int size, String wheres, String orderField,HttpCallBack httpCall){
-        skip(index);
-        limit(size);
-        addOrderFieldParams(orderField);
-        send(httpCall);
-    }
-    public void QueryListX(int index, int size, String wheres,HttpCallBack httpCall){
-        skip(index);
-        limit(size);
-        send(httpCall);
-    }
+
     public void QueryListX(int index, int size,HttpCallBack httpCall){
         skip(index);
         limit(size);

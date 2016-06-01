@@ -3,15 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/base_color_text_white"
     android:orientation="vertical"
-    tools:context="com.example.administrator.getpet.ui.Me.SpetDetailActivity">
+    android:background="@color/base_color_text_white"
+    tools:context="com.example.administrator.getpet.ui.Me.adapter.MyPetActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:background="@color/actionbar"
-        android:gravity="center_vertical">
+        android:gravity="center_vertical"
+        android:background="@color/actionbar">
 
         <ImageButton
             android:id="@+id/ib_back"
@@ -26,16 +26,34 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/actionBar_textSize"
-            android:text="救助站宠物"
+            android:text="我的宠物"
             android:textColor="@color/base_color_text_white"
             android:layout_centerInParent="true"/>
 
-        <ImageButton
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+        <TextView
+            android:id="@+id/tv_add_pet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
             android:layout_alignParentRight="true"
-            android:src="@mipmap/home_ic_attention"/>
+            android:layout_centerVertical="true"
+            android:textSize="18sp"
+            android:textColor="@color/base_color_text_white"
+            android:text="添加"/>
 
     </RelativeLayout>
+
+    <GridView
+        android:id="@+id/gv_my_pet"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:numColumns="2"
+        android:layout_centerInParent="true"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="20dp"
+        android:horizontalSpacing="20dp">
+
+
+    </GridView>
 
 </LinearLayout>

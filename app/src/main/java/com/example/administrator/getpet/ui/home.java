@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
@@ -21,6 +22,7 @@ import com.example.administrator.getpet.ui.Me.InformActivity;
 import com.example.administrator.getpet.ui.Me.MyAttentionActivity;
 import com.example.administrator.getpet.ui.Me.PersonalActivity;
 import com.example.administrator.getpet.ui.Me.SpetDetailActivity;
+import com.example.administrator.getpet.ui.Me.adapter.MyPetActivity;
 import com.example.administrator.getpet.ui.Me.adapter.sPetAdapter;
 import com.example.administrator.getpet.utils.HttpCallBack;
 import com.example.administrator.getpet.utils.JSONUtil;
@@ -35,6 +37,8 @@ import java.util.List;
 import java.util.Map;
 
 public class home extends BaseActivity implements View.OnClickListener {
+
+    private static final String TAG = "home";
 
     private DragLayout dl;
     private ImageView iv_icon;
@@ -64,7 +68,7 @@ public class home extends BaseActivity implements View.OnClickListener {
             switch (msg.what)
             {
                 case LOADSUCCESS:
-                    setupView();
+                    //setupView();
                     break;
             }
         }
@@ -76,12 +80,11 @@ public class home extends BaseActivity implements View.OnClickListener {
         setContentView(R.layout.activity_home);
         initDragLayout();
         initView();
-        progress = new ProgressDialog(mContext);
+        progress = new ProgressDialog(this);
         progress.setMessage("正在加载数据，请稍后...");
         progress.setCanceledOnTouchOutside(false);
         progress.show();
         LoadData();
-        setupView();
     }
 
     /**
@@ -109,6 +112,7 @@ public class home extends BaseActivity implements View.OnClickListener {
         List<Map<String, Object>> listItems=new ArrayList<Map<String,Object>>();
         for (int i = 0; i < sPetArry.length; i++) {
             Map<String,Object> listItem = new HashMap<String,Object>();
+
             listItem.put("pet_photo",sPetArry[i].photo);
             listItem.put("pet_name",sPetArry[i].name);
             listItems.add(listItem);
@@ -117,25 +121,26 @@ public class home extends BaseActivity implements View.OnClickListener {
     }
 
     /**
-     * 从网络宠物加载数据
+     * 从网络加载宠物数据
      */
     private void LoadData() {
         SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("sPet","QueryListX");
         httpReponse.addViewColumnsParams("name");
         httpReponse.addViewColumnsParams("photo");
-        httpReponse.addIsDescParams(true);
-        httpReponse.QueryList(1, 10, new HttpCallBack() {
+        httpReponse.QueryListX(2, 3, new HttpCallBack() {
             @Override
             public void Success(String data) {
-                //Json解析，反序列化sPet
+                Log.d(TAG, "Success: data:"+data);
                 sPetArry = JSONUtil.parseArray(data,sPet.class);
                 handler.sendEmptyMessage(LOADSUCCESS);
+                return;
             }
 
             @Override
             public void Fail(String e) {
-                progress.dismiss();
+                Log.d(TAG, "Fail: "+e);
                 ToastUtils.showToast(mContext,e);
+                return;
             }
         });
 
@@ -203,7 +208,7 @@ public class home extends BaseActivity implements View.OnClickListener {
                 startAnimActivity(MyAttentionActivity.class);
                 break;
             case R.id.ll4://我的宠物
-
+                startAnimActivity(MyPetActivity.class);
                 break;
             case R.id.ll5://个人信息
                 startAnimActivity(PersonalActivity.class);

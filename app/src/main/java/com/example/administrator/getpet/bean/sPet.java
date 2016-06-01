@@ -10,6 +10,5 @@ public String address;
 public int age;
 public String state;
 public String name;
-public String StationId;
 public Station Station ;
 }

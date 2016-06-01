@@ -3,12 +3,10 @@ package com.example.administrator.getpet.ui.Home.SendAdopt;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
-
 
 import com.example.administrator.getpet.R;
 import com.example.administrator.getpet.base.BaseActivity;
