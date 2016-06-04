@@ -80,8 +80,8 @@ public class EntrustMainActivity extends BaseActivity implements View.OnClickLis
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.add_entrust:
-                //Intent item=new Intent(this, PublishEntrust.class);
-                //startActivity(item);
+                Intent item=new Intent(this, PublishEntrust.class);
+                startActivity(item);
                 break;
             case R.id.back:
                 break;

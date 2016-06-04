@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.administrator.getpet">
+    package="com.example.administrator.getpet" >
 
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
@@ -18,12 +18,15 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
+        <activity android:name=".ui.Home.SendAdopt.EntrustMainActivity"/>
+        <activity android:name=".ui.Home.SendAdopt.PublishEntrust"/>
+        <activity android:name=".ui.Home.SendAdopt.SelectCityActivity"/>
         <activity
             android:name=".ui.home"
             android:label="@string/title_activity_home" />
         <activity android:name=".ui.Me.MyAttentionActivity" />
-        <activity android:name=".ui.Login.LoginActivity"></activity>
+        <activity android:name=".ui.Login.LoginActivity" />
         <activity android:name=".ui.Login.RegisterActivity" />
         <activity android:name=".ui.Login.FindPasswordActivity" />
         <activity android:name=".ui.Login.FindPassword1Activity" />
@@ -43,14 +46,16 @@
         <activity android:name=".ui.Home.SendAdopt.myApplicationDetails" />
         <activity android:name=".ui.Me.SpetDetailActivity" />
         <activity android:name=".ui.Home.PetCircle.SearchPost" />
-        <activity android:name=".ui.Login.SplashActivity">
+        <activity android:name=".ui.Login.SplashActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.Me.adapter.MyPetActivity"></activity>
+        <activity android:name=".ui.Me.adapter.MyPetActivity" />
+        <activity android:name=".ui.Home.SendAdopt.EntrustAdoptMainActivity" >
+        </activity>
     </application>
 
 </manifest>
