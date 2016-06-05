@@ -22,6 +22,7 @@ import com.example.administrator.getpet.utils.SimpleHttpPostUtil;
 import com.example.administrator.getpet.utils.TimeUtils;
 
 import java.lang.reflect.Array;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -67,7 +68,7 @@ public class PublishEntrust extends BaseActivity implements View.OnClickListener
             @Override
             public void Success(String data) {
                 //解析jason
-                List<pet> mypetList= Arrays.asList(JSONUtil.parseArray(data,pet.class));
+                mypetList= Arrays.asList(JSONUtil.parseArray(data,pet.class));
                 //设置宠物名称字符
                 List<String> namelist=new ArrayList<String>();
                 //设置默认的寄养宠物
@@ -128,14 +129,16 @@ public class PublishEntrust extends BaseActivity implements View.OnClickListener
         //n_entrust.setPetId(pet_list.getSelectedItem().toString());
         //n_entrust.setUser_id();
         n_entrust.setAward(Integer.valueOf(award.getText().toString()));
+        //时间的处理
+        String str="2013/2/3 2:2:2";
+        Date date2=TimeUtils.stringToDate(str,TimeUtils.FORMAT_DATE_TIME_SECOND);
         //获取系统当前时间
-        Calendar a= Calendar.getInstance();
-        java.util.Date d=a.getTime();
-        String datestr=String.valueOf(d.getYear())+"/"+String.valueOf(d.getMonth())+"/"+
-                String.valueOf(d.getDate())+" "+String.valueOf(d.getHours())+":"+String.valueOf(d.getMinutes())
-                +":"+String.valueOf(d.getSeconds());
+        SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
+        String datestr = sDateFormat.format(new java.util.Date());
         Date date= TimeUtils.stringToDate(datestr,TimeUtils.FORMAT_DATE_TIME_SECOND);
         n_entrust.setDate(date);
+        //设置状态
+        n_entrust.setStatus("正常");
         //设置用户
         users x=new users();
         x.setId(preferences.getString("id",""));

@@ -25,10 +25,10 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.baidu.location.BDLocation;
+/*import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
-import com.baidu.location.LocationClientOption;
+import com.baidu.location.LocationClientOption;*/
 
 import com.example.administrator.getpet.R;
 import com.example.administrator.getpet.base.BaseActivity;
@@ -58,7 +58,7 @@ public class SelectCityActivity extends BaseActivity implements View.OnClickList
     private ArrayList<City> ShowCity_lists; // 需要显示的城市列表-随搜索而改变
     private ArrayList<City> city_lists;// 城市列表
     private String lngCityName = "";//存放返回的城市名
-    private LocationClient locationClient = null;
+    /*private LocationClient locationClient = null;*/
     private EditText sh;
     private TextView lng_city;
     private ProgressDialog progress;
@@ -106,7 +106,7 @@ public class SelectCityActivity extends BaseActivity implements View.OnClickList
             }
         });
 
-        initGps();
+        /*initGps();*/
         initOverlay();
         handler2.sendEmptyMessage(SHOWDIALOG);
         Thread thread = new Thread() {
@@ -379,7 +379,7 @@ public class SelectCityActivity extends BaseActivity implements View.OnClickList
         }
     }
 
-    private void initGps() {
+/*    private void initGps() {
         try {
             MyLocationListenner myListener = new MyLocationListenner();
             locationClient = new LocationClient(SelectCityActivity.this);
@@ -394,17 +394,17 @@ public class SelectCityActivity extends BaseActivity implements View.OnClickList
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
-    @Override
+/*    @Override
     public void onDestroy() {
         // TODO Auto-generated method stub
         super.onDestroy();
         locationClient.stop();
-    }
+    }*/
 
 
-    private class MyLocationListenner implements BDLocationListener {
+    /*private class MyLocationListenner implements BDLocationListener {
         @Override
         public void onReceiveLocation(BDLocation location) {
 
@@ -424,7 +424,7 @@ public class SelectCityActivity extends BaseActivity implements View.OnClickList
 
         }
 
-    }
+    }*/
 
     private ProgressDialog showProgress(Activity activity, String hintText) {
         Activity mActivity;
