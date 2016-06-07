@@ -134,14 +134,12 @@ public class home extends BaseActivity implements View.OnClickListener {
                 Log.d(TAG, "Success: data:"+data);
                 sPetArry = JSONUtil.parseArray(data,sPet.class);
                 handler.sendEmptyMessage(LOADSUCCESS);
-                return;
             }
 
             @Override
             public void Fail(String e) {
                 Log.d(TAG, "Fail: "+e);
                 ToastUtils.showToast(mContext,e);
-                return;
             }
         });
 

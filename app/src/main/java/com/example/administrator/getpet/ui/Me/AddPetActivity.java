@@ -96,14 +96,12 @@ public class AddPetActivity extends BaseActivity implements View.OnClickListener
                 Log.d(TAG, "Success: data:"+data);
                 cateArry = JSONUtil.parseArray(data,category.class);
                 handler.sendEmptyMessage(LOADSUCCESS);
-                return;
             }
 
             @Override
             public void Fail(String e) {
                 progressDialog.dismiss();
                 ToastUtils.showToast(mContext,e);
-                return;
             }
         });
     }
@@ -203,6 +201,7 @@ public class AddPetActivity extends BaseActivity implements View.OnClickListener
                 ToastUtils.showToast(mContext,"添加成功！");
                 clear();
                 finish();
+
             }
 
             @Override

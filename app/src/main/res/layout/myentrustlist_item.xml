@@ -11,9 +11,10 @@
             android:layout_width="40dp"
             android:layout_height="40dp" />
         <TextView
+            android:gravity="center"
             android:id="@+id/title"
             android:text="dhaiosdhawio"
-            android:textSize="26sp"
+            android:textSize="@dimen/TextView_textSize"
             android:textAlignment="center"
             android:layout_width="wrap_content"
             android:layout_height="40dp" />
@@ -31,30 +32,38 @@
             android:layout_width="30dp"
             android:layout_height="wrap_content" />
         <TextView
+            android:gravity="center"
             android:id="@+id/pet"
-            android:textSize="26sp"
+            android:textSize="@dimen/TextView_textSize"
             android:layout_width="wrap_content"
             android:layout_height="match_parent" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginLeft="5dp"
+            android:layout_width="80dp"
+            android:layout_height="match_parent">
+            <ImageView
+                android:src="@mipmap/applynumkk"
+                android:layout_width="30dp"
+                android:layout_height="match_parent" />
+            <TextView
+                android:gravity="center"
+                android:id="@+id/applynum"
+                android:textSize="@dimen/TextView_textSize"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <ImageView
-                android:src="@mipmap/applynumkk"
-                android:layout_width="50dp"
-                android:layout_height="match_parent" />
-            <TextView
-                android:id="@+id/applynum"
-                android:textSize="26sp"
-                android:layout_width="70dp"
-                android:layout_height="match_parent" />
-            <ImageView
                 android:src="@mipmap/givemonkk"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
+                android:gravity="center"
                 android:id="@+id/award"
-                android:textSize="26sp"
+                android:textSize="@dimen/TextView_textSize"
                 android:layout_width="70dp"
                 android:layout_height="match_parent" />
         </LinearLayout>
@@ -63,9 +72,16 @@
         android:layout_width="match_parent"
         android:layout_height="30dp">
         <TextView
+            android:layout_alignParentLeft="true"
+            android:id="@+id/state"
+            android:textSize="@dimen/TextView_textSize"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+        <TextView
+            android:layout_marginLeft="10dp"
             android:id="@+id/publishTime"
             android:layout_alignParentRight="true"
-            android:textSize="20sp"
+            android:textSize="@dimen/TextView_textSize"
             android:layout_width="wrap_content"
             android:layout_height="match_parent" />
     </RelativeLayout>

@@ -36,55 +36,12 @@
 
     </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/gps_city_lay"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/search_lay">
-
-        <TextView
-            android:id="@+id/alpha"
-            android:layout_width="fill_parent"
-            android:layout_height="25dip"
-            android:background="#B7B7B7"
-            android:paddingBottom="2dip"
-            android:paddingLeft="13dip"
-            android:paddingTop="2dip"
-            android:textColor="#515151"
-            android:textSize="14sp"
-            android:visibility="gone"/>
-
-        <LinearLayout
-            android:id="@+id/lng_city_lay"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/alpha"
-            android:background="@drawable/wireframe"
-            android:padding="10dip">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="10dip"
-                android:background="@mipmap/ic_citylist_gps"/>
-
-            <TextView
-                android:id="@+id/lng_city"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="10dip"
-                android:text="正在定位所在城市.."
-                android:textColor="#515151"/>
-        </LinearLayout>
-    </RelativeLayout>
 <Button
     android:textSize="20sp"
     android:gravity="left"
     android:layout_below="@+id/gps_city_lay"
     android:id="@+id/allcity"
-    android:text="所有城市"
+    android:text="不分城市"
     android:layout_width="fill_parent"
     android:layout_height="35dp"
     android:background="@color/KK_theme_color" />

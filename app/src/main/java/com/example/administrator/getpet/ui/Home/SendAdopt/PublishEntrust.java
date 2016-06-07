@@ -19,13 +19,9 @@ import com.example.administrator.getpet.bean.users;
 import com.example.administrator.getpet.utils.HttpCallBack;
 import com.example.administrator.getpet.utils.JSONUtil;
 import com.example.administrator.getpet.utils.SimpleHttpPostUtil;
-import com.example.administrator.getpet.utils.TimeUtils;
 
-import java.lang.reflect.Array;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -39,6 +35,7 @@ public class PublishEntrust extends BaseActivity implements View.OnClickListener
     private String citystr="所有城市";//城市
     private List<pet> mypetList;//个人宠物列表
     private int petIndex;
+    private ImageView back;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +50,8 @@ public class PublishEntrust extends BaseActivity implements View.OnClickListener
         award=(EditText)findViewById(R.id.award);
         city=(TextView) findViewById(R.id.city);
         sumit=(ImageView) findViewById(R.id.submit);
+        back=(ImageView)findViewById(R.id.back);
+        back.setOnClickListener(this);
         city.setOnClickListener(this);
         sumit.setOnClickListener(this);
         showmypet();
@@ -115,7 +114,9 @@ public class PublishEntrust extends BaseActivity implements View.OnClickListener
             case R.id.city:
                 startActivityForResult(new Intent(this, SelectCityActivity.class), 99);
                 break;
-
+            case R.id.back:
+                this.finish();
+                break;
         }
     }
 
@@ -129,14 +130,11 @@ public class PublishEntrust extends BaseActivity implements View.OnClickListener
         //n_entrust.setPetId(pet_list.getSelectedItem().toString());
         //n_entrust.setUser_id();
         n_entrust.setAward(Integer.valueOf(award.getText().toString()));
-        //时间的处理
-        String str="2013/2/3 2:2:2";
-        Date date2=TimeUtils.stringToDate(str,TimeUtils.FORMAT_DATE_TIME_SECOND);
         //获取系统当前时间
-        SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
-        String datestr = sDateFormat.format(new java.util.Date());
-        Date date= TimeUtils.stringToDate(datestr,TimeUtils.FORMAT_DATE_TIME_SECOND);
-        n_entrust.setDate(date);
+       /* SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
+        String datestr = sDateFormat.format(new java.util.Date());*/
+        //String now=TimeUtils.dateToString(d,TimeUtils.FORMAT_DATE);
+        n_entrust.setDate(new Date());
         //设置状态
         n_entrust.setStatus("正常");
         //设置用户
@@ -149,7 +147,7 @@ public class PublishEntrust extends BaseActivity implements View.OnClickListener
         if(citystr!="所有城市") {
             n_entrust.setCity(citystr);
         }else {
-            n_entrust.setCity("");
+            n_entrust.setCity("所有城市");
         }
         //发送发布寄养信息的数据请求
         SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("entrust","Insert");
@@ -160,7 +158,7 @@ public class PublishEntrust extends BaseActivity implements View.OnClickListener
             }
             @Override
             public void Fail(String e) {
-                Toast.makeText(getApplicationContext(), "插入失败",Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), e.toString(),Toast.LENGTH_LONG).show();
             }
         });
 

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.administrator.getpet" >
+    package="com.example.administrator.getpet">
 
-    <!-- 胡明科-->
+    <!-- 胡明科 -->
     <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.GET_TASKS" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
-    <!-- 胡明科-->
+    <!-- 胡明科 -->
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
@@ -25,13 +25,14 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="K4avkUbXEqLRbnMfuCotsrMjGzm79oFI" />
-        <activity android:name=".ui.Home.SendAdopt.EntrustMainActivity"/>
-        <activity android:name=".ui.Home.SendAdopt.PublishEntrust"/>
-        <activity android:name=".ui.Home.SendAdopt.SelectCityActivity"/>
+
+        <activity android:name=".ui.Home.SendAdopt.EntrustMainActivity" />
+        <activity android:name=".ui.Home.SendAdopt.PublishEntrust" />
+        <activity android:name=".ui.Home.SendAdopt.SelectCityActivity" />
         <activity
             android:name=".ui.home"
             android:label="@string/title_activity_home" />
@@ -56,7 +57,7 @@
         <activity android:name=".ui.Home.SendAdopt.myApplicationDetails" />
         <activity android:name=".ui.Me.SpetDetailActivity" />
         <activity android:name=".ui.Home.PetCircle.SearchPost" />
-        <activity android:name=".ui.Login.SplashActivity" >
+        <activity android:name=".ui.Login.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -64,8 +65,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.Me.adapter.MyPetActivity" />
-        <activity android:name=".ui.Home.SendAdopt.EntrustAdoptMainActivity" >
-        </activity>
+        <activity android:name=".ui.Home.SendAdopt.EntrustAdoptMainActivity" />
+        <activity android:name=".ui.Home.SendAdopt.endEntrust" />
+        <activity android:name=".ui.changeApplyApplication"></activity>
     </application>
 
 </manifest>

@@ -7,6 +7,9 @@ import android.widget.TextView;
 
 import com.example.administrator.getpet.R;
 import com.example.administrator.getpet.bean.entrust;
+import com.example.administrator.getpet.utils.HttpCallBack;
+import com.example.administrator.getpet.utils.SimpleHttpPostUtil;
+import com.example.administrator.getpet.utils.TimeUtils;
 
 import java.util.List;
 
@@ -25,19 +28,38 @@ public class MyEntrustListAdapter extends BaseListAdapter<entrust> {
         final entrust contract=getList().get(position);
         TextView title=(TextView) ViewHolder.get(convertView,R.id.title);
         TextView pet=(TextView) ViewHolder.get(convertView,R.id.pet);
-        TextView applynum=(TextView) ViewHolder.get(convertView,R.id.applynum);
         TextView award=(TextView) ViewHolder.get(convertView,R.id.award);
+        final TextView applynum=(TextView) ViewHolder.get(convertView,R.id.applynum);
         TextView publishTime=(TextView) ViewHolder.get(convertView,R.id.publishTime);
+        TextView state=(TextView) ViewHolder.get(convertView,R.id.state);
+        //显示该消息的状态
+        state.setText(contract.getStatus());
         if(contract.getTitle()!=null) {
             title.setText(contract.getTitle());
         }
         if(contract.getPet()!=null) {
-            title.setText(contract.getPet().name);
+            pet.setText(contract.getPet().name);
         }
-        title.setText(String.valueOf(contract.getAward()));
+        award.setText(String.valueOf(contract.getAward()));
         if(contract.getDate()!=null) {
-            title.setText(String.valueOf(contract.getDate()));
+            TimeUtils.dateToString(contract.getDate(),TimeUtils.FORMAT_DATE_TIME_SECOND);
         }
+
+        SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("applyApplication","QueryCount");
+        //添加条件 查询对于该寄养信息的领养申请
+        httpReponse.addWhereParams("entrustId","=",contract.getId());
+        //调用QueryCount方法
+        httpReponse.QueryCount(new HttpCallBack() {
+            @Override
+            public void Success(String data) {
+               applynum.setText(data);
+            }
+            @Override
+            public void Fail(String e)
+            {
+                applynum.setText("未知");
+            }
+        });
         return convertView;
     }
 }

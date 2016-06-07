@@ -124,6 +124,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 editor.putString("personal",user.personal);
                 editor.putString("occupation",user.occupation);
                 editor.putString("photo",user.photo);
+                editor.putString("reputation",String.valueOf(user.getUser_reputation()));
                 if (user.indentified != null)
                 {
                     editor.putString("indentifiedId",user.indentified.id);

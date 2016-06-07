@@ -2,6 +2,7 @@ package com.example.administrator.getpet.utils;
 
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 
 import com.example.administrator.getpet.bean.Columns;
 import com.example.administrator.getpet.bean.Wheres;
@@ -217,6 +218,7 @@ public class SimpleHttpPostUtil{
         //去掉最后一个&
         buf.deleteCharAt(buf.length() - 1);
         ds.write(buf.toString().getBytes());
+        Log.e("debug",buf.toString());
     }
     //编码方式
     private String encode(Object value) throws Exception{
