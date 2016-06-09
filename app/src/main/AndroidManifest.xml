@@ -51,6 +51,7 @@
         <activity android:name=".ui.Me.InformActivity" />
         <activity android:name=".ui.Me.DonateRecordeActivity" />
         <activity android:name=".ui.Me.AddPetActivity" />
+        <activity android:name=".ui.Me.MyPetActivity"/>
         <activity android:name=".ui.Home.SendAdopt.LookApplication" />
         <activity android:name=".ui.Home.SendAdopt.ModifyEntrust" />
         <activity android:name=".ui.Home.SendAdopt.ApplicationHistory" />
@@ -66,6 +67,13 @@
         <activity android:name=".ui.Home.SendAdopt.EntrustAdoptMainActivity" />
         <activity android:name=".ui.Home.SendAdopt.endEntrust" />
         <activity android:name=".ui.changeApplyApplication"></activity>
+        <activity android:name=".ui.HelpStation.AddsPetActivity"></activity>
+        <activity android:name=".ui.HelpStation.AdminLoginActivity"></activity>
+        <activity android:name=".ui.HelpStation.AdoptMsgActivity"></activity>
+        <activity android:name=".ui.HelpStation.sPetActivity"></activity>
+        <activity android:name=".ui.HelpStation.StationActiveActivity"></activity>
+        <activity android:name=".ui.HelpStation.StationActivity"></activity>
+        <activity android:name=".ui.HelpStation.StationMsgActivity"></activity>
     </application>
 
 </manifest>
