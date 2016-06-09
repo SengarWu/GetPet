@@ -27,6 +27,7 @@
             android:textColor="@color/base_color_text_white"/>
 
         <TextView
+            android:id="@+id/tv_finish"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -59,9 +60,11 @@
             android:textColor="@color/me_textView_pink"/>
 
         <EditText
+            android:id="@+id/et_nickname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
+            android:maxLength="15"
             android:textSize="@dimen/editText_textSize"
             android:singleLine="true"/>
 
@@ -94,6 +97,7 @@
                 android:layout_marginLeft="20dp">
 
                 <RadioButton
+                    android:id="@+id/rb_man"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
@@ -101,6 +105,7 @@
                     android:textSize="@dimen/TextView_textSize"/>
 
                 <RadioButton
+                    android:id="@+id/rb_woman"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
@@ -132,9 +137,11 @@
                 android:textColor="@color/me_textView_pink"/>
 
             <EditText
+                android:id="@+id/et_age"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
+                android:maxLength="3"
                 android:textSize="@dimen/editText_textSize"
                 android:singleLine="true"
                 android:inputType="number"
@@ -163,9 +170,11 @@
                 android:textColor="@color/me_textView_pink"/>
 
             <EditText
+                android:id="@+id/et_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
+                android:maxLength="15"
                 android:textSize="@dimen/editText_textSize"
                 android:singleLine="true"/>
 
@@ -192,10 +201,12 @@
                 android:textColor="@color/me_textView_pink"/>
 
             <EditText
+                android:id="@+id/et_phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:textSize="@dimen/editText_textSize"
+                android:maxLength="11"
                 android:singleLine="true"
                 android:inputType="phone"/>
 
@@ -222,9 +233,11 @@
                 android:textColor="@color/me_textView_pink"/>
 
             <EditText
+                android:id="@+id/et_occupation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
+                android:maxLength="15"
                 android:textSize="@dimen/editText_textSize"
                 android:singleLine="true"/>
 
@@ -251,9 +264,11 @@
                 android:textColor="@color/me_textView_pink"/>
 
             <EditText
+                android:id="@+id/et_personal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
+                android:maxLength="50"
                 android:textSize="@dimen/editText_textSize" />
 
         </LinearLayout>

@@ -32,7 +32,6 @@ public class PersonalActivity extends BaseActivity implements View.OnClickListen
     private TextView personal_tv_address;
     private RelativeLayout personal_rl_account;
     private RelativeLayout personal_rl_introduce;
-    private RelativeLayout personal_rl_my_adopt;
     private Button personal_btn_edit;
 
     private final int LOADSUCCESS = 1001;
@@ -142,10 +141,6 @@ public class PersonalActivity extends BaseActivity implements View.OnClickListen
         personal_rl_account.setOnClickListener(this);
         personal_rl_introduce = (RelativeLayout) findViewById(R.id.personal_rl_introduce);
         personal_rl_introduce.setOnClickListener(this);
-        personal_rl_my_adopt = (RelativeLayout) findViewById(R.id.personal_rl_my_adopt);
-        personal_rl_my_adopt.setOnClickListener(this);
-        personal_btn_edit = (Button) findViewById(R.id.personal_btn_edit);
-        personal_btn_edit.setOnClickListener(this);
     }
 
     @Override
@@ -160,12 +155,6 @@ public class PersonalActivity extends BaseActivity implements View.OnClickListen
                 break;
             case R.id.personal_rl_introduce:
                 startAnimActivity(IntroduceActivity.class);
-                break;
-            case R.id.personal_rl_my_adopt://我领养的
-                //startAnimActivity();
-                break;
-            case R.id.personal_btn_edit://编辑
-                startAnimActivity(EditIntroduceActivity.class);
                 break;
         }
     }

@@ -27,6 +27,7 @@
             android:textColor="@color/base_color_text_white"/>
 
         <TextView
+            android:id="@+id/tv_edit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -58,6 +59,7 @@
                 android:textColor="@color/me_textView_pink"/>
 
             <TextView
+                android:id="@+id/tv_nickname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="毛毛猫"
@@ -86,6 +88,7 @@
                 android:textColor="@color/me_textView_pink"/>
 
             <TextView
+                android:id="@+id/tv_sex"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="毛毛猫"
@@ -114,6 +117,7 @@
                 android:textColor="@color/me_textView_pink"/>
 
             <TextView
+                android:id="@+id/tv_age"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="毛毛猫"
@@ -142,6 +146,7 @@
                 android:textColor="@color/me_textView_pink"/>
 
             <TextView
+                android:id="@+id/tv_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="毛毛猫"
@@ -170,6 +175,7 @@
                 android:textColor="@color/me_textView_pink"/>
 
             <TextView
+                android:id="@+id/tv_phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="毛毛猫"
@@ -198,6 +204,7 @@
                 android:textColor="@color/me_textView_pink"/>
 
             <TextView
+                android:id="@+id/tv_personal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="毛毛猫"
@@ -226,6 +233,7 @@
                 android:textColor="@color/me_textView_pink"/>
 
             <TextView
+                android:id="@+id/tv_occupation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="毛毛猫"
