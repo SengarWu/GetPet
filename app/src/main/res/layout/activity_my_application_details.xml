@@ -52,6 +52,7 @@
                 android:layout_width="200dp"
                 android:layout_height="wrap_content" />
             <ImageView
+                android:id="@+id/sex"
                 android:src="@mipmap/notknow"
                 android:layout_width="30dp"
                 android:layout_height="30dp" />
@@ -59,7 +60,7 @@
                 android:textSize="@dimen/TextView_textSize"
                 android:text="标题"
                 android:layout_gravity="center"
-                android:id="@+id/character"
+                android:id="@+id/username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </LinearLayout>
@@ -80,8 +81,8 @@
                 <TextView
                     android:text="..."
                     android:textSize="@dimen/TextView_textSize"
-                    android:id="@+id/username"
-                    android:layout_width="100dp"
+                    android:id="@+id/pet_chatacter"
+                    android:layout_width="80dp"
                     android:layout_height="wrap_content" />
             </LinearLayout>
             <LinearLayout
@@ -100,7 +101,7 @@
                     android:gravity="center"
                     android:textSize="@dimen/TextView_textSize"
                     android:text=""
-                    android:layout_width="100dp"
+                    android:layout_width="50dp"
                     android:layout_height="wrap_content" />
             </LinearLayout>
             <ImageView
@@ -145,6 +146,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp" />
             <TextView
+                android:id="@+id/conect_place"
                 android:layout_marginTop="10dp"
                 android:text=",,,"
                 android:singleLine="false"
@@ -158,6 +160,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp" />
             <TextView
+                android:id="@+id/connect_phone"
                 android:layout_marginTop="10dp"
                 android:text=",,,"
                 android:singleLine="false"
@@ -167,38 +170,17 @@
                 android:layout_marginRight="10dp"
                 android:layout_height="wrap_content" />
         </LinearLayout>
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp">
-            <TextView
-                android:textColor="@color/pink_KK"
-                android:layout_marginTop="10dp"
-                android:singleLine="false"
-                android:textSize="@dimen/TextView_textSize"
-                android:layout_width="120dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:layout_marginTop="10dp"
-                android:text="评价"
-                android:singleLine="false"
-                android:textSize="@dimen/TextView_textSize"
-                android:layout_width="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="10dp"
-                android:layout_height="wrap_content" />
-            <ImageView
-                android:id="@+id/comment_result"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
+        <ImageView
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/comment_result"
+            android:layout_width="100dp"
+            android:layout_height="50dp" />
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <Button
+                android:id="@+id/remove"
                 android:text="撤回"
                 android:textSize="@dimen/btn_textsize"
                 android:textColor="@color/KK_white"
@@ -206,6 +188,7 @@
                 android:layout_width="150dp"
                 android:layout_height="wrap_content" />
             <Button
+                android:id="@+id/modify"
                 android:layout_marginLeft="50dp"
                 android:text="修改"
                 android:textSize="@dimen/btn_textsize"

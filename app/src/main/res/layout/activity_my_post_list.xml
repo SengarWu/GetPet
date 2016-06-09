@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.administrator.getpet.ui.Home.SendAdopt.EntrustMainActivity">
+    tools:context=".ui.Home.PetCircle.myPostHistory">
     <RelativeLayout
         android:background="@color/KK_theme_color"
         android:layout_width="match_parent"
@@ -18,20 +18,15 @@
             android:textSize="22sp"
             android:textColor="@color/KK_white"
             android:gravity="center"
-            android:text="宠物寄养信息"
+            android:text="我的宠物贴"
             android:layout_centerInParent="true"
             android:layout_width="wrap_content"
             android:layout_height="match_parent" />
-        <ImageView
-            android:layout_marginRight="10dp"
-            android:id="@+id/add_entrust"
-            android:src="@mipmap/addmore_kk"
-            android:layout_alignParentRight="true"
-            android:layout_width="wrap_content"
-            android:layout_height="45dp" />
     </RelativeLayout>
     <com.example.administrator.getpet.view.xlistview.ZrcListView
-        android:id="@+id/my_entrust_list"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:id="@+id/answer_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 </LinearLayout>

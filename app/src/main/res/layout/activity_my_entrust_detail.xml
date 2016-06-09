@@ -42,7 +42,7 @@
         <TextView
             android:layout_marginTop="8dp"
             android:textSize="@dimen/TextView_textSize"
-            android:id="@+id/username"
+            android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>
@@ -99,9 +99,9 @@
                 android:layout_height="40dp" />
         </LinearLayout>
         <LinearLayout
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="50dp"
             android:orientation="horizontal"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content">
         <Button
             android:id="@+id/cancle"
@@ -110,7 +110,7 @@
             android:textColor="@color/KK_white"
             android:layout_marginLeft="10dp"
             android:background="@drawable/btn_style"
-            android:layout_width="100dp"
+            android:layout_width="150dp"
             android:layout_height="wrap_content" />
             <Button
                 android:id="@+id/modify"
@@ -119,16 +119,31 @@
                 android:textColor="@color/KK_white"
                 android:layout_marginLeft="20dp"
                 android:background="@drawable/btn_style"
-                android:layout_width="100dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
             <Button
+                android:layout_marginLeft="10dp"
                 android:id="@+id/look_apply"
                 android:text="查看申请"
                 android:textSize="@dimen/btn_textsize"
                 android:textColor="@color/KK_white"
-                android:layout_marginLeft="20dp"
                 android:background="@drawable/btn_style"
-                android:layout_width="100dp"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content" />
+            <Button
+                android:layout_marginLeft="20dp"
+                android:id="@+id/giveComment"
+                android:text="事务完结"
+                android:textSize="@dimen/btn_textsize"
+                android:textColor="@color/KK_white"
+                android:background="@drawable/btn_style"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content" />
         </LinearLayout>
     </LinearLayout>
