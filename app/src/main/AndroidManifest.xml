@@ -55,7 +55,6 @@
         <activity android:name=".ui.Home.SendAdopt.ModifyEntrust" />
         <activity android:name=".ui.Home.SendAdopt.ApplicationHistory" />
         <activity android:name=".ui.Home.SendAdopt.myApplicationDetails" />
-        <activity android:name=".ui.Me.SpetDetailActivity" />
         <activity android:name=".ui.Home.PetCircle.SearchPost" />
         <activity android:name=".ui.Login.SplashActivity">
             <intent-filter>
@@ -64,7 +63,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.Me.adapter.MyPetActivity" />
         <activity android:name=".ui.Home.SendAdopt.EntrustAdoptMainActivity" />
         <activity android:name=".ui.Home.SendAdopt.endEntrust" />
         <activity android:name=".ui.changeApplyApplication"></activity>
