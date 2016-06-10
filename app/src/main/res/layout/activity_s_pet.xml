@@ -12,6 +12,7 @@
         android:background="@color/actionbar">
 
         <ImageButton
+            android:id="@+id/ib_back"
             android:layout_width="30dp"
             android:layout_height="48dp"
             android:background="@color/color_transparent_bg"
@@ -43,13 +44,18 @@
         android:layout_height="match_parent"
         android:background="@color/base_color_text_white">
 
-        <ListView
+        <GridView
             android:id="@+id/lv_spet"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:numColumns="2"
+            android:layout_centerInParent="true"
+            android:stretchMode="columnWidth"
+            android:verticalSpacing="20dp"
+            android:horizontalSpacing="10dp">
 
 
-        </ListView>
+        </GridView>
 
     </LinearLayout>
 

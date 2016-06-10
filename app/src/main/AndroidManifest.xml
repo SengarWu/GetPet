@@ -29,13 +29,10 @@
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="K4avkUbXEqLRbnMfuCotsrMjGzm79oFI" />
-        <activity android:name=".ui.Home.SendAdopt.Application"></activity>
+
         <activity android:name=".ui.Home.SendAdopt.EntrustMainActivity" />
         <activity android:name=".ui.Home.SendAdopt.PublishEntrust" />
         <activity android:name=".ui.Home.SendAdopt.SelectCityActivity" />
-        <activity android:name=".ui.Home.SendAdopt.SearchEntrust" />
-        <activity android:name=".ui.Home.SendAdopt.OtherEntrustDetail"></activity>
-        <activity android:name=".ui.Home.SendAdopt.MyEntrustDetail"></activity>
         <activity
             android:name=".ui.home"
             android:label="@string/title_activity_home" />
@@ -54,11 +51,11 @@
         <activity android:name=".ui.Me.InformActivity" />
         <activity android:name=".ui.Me.DonateRecordeActivity" />
         <activity android:name=".ui.Me.AddPetActivity" />
+        <activity android:name=".ui.Me.MyPetActivity" />
         <activity android:name=".ui.Home.SendAdopt.LookApplication" />
         <activity android:name=".ui.Home.SendAdopt.ModifyEntrust" />
         <activity android:name=".ui.Home.SendAdopt.ApplicationHistory" />
         <activity android:name=".ui.Home.SendAdopt.myApplicationDetails" />
-        <activity android:name=".ui.Me.SpetDetailActivity" />
         <activity android:name=".ui.Home.PetCircle.SearchPost" />
         <activity android:name=".ui.Login.SplashActivity">
             <intent-filter>
@@ -67,10 +64,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.Me.adapter.MyPetActivity" />
         <activity android:name=".ui.Home.SendAdopt.EntrustAdoptMainActivity" />
         <activity android:name=".ui.Home.SendAdopt.endEntrust" />
-        <activity android:name=".ui.Home.SendAdopt.changeApplyApplication"></activity>
+        <activity android:name=".ui.changeApplyApplication" />
+        <activity android:name=".ui.HelpStation.AddsPetActivity" />
+        <activity android:name=".ui.HelpStation.AdminLoginActivity" />
+        <activity android:name=".ui.HelpStation.AdoptMsgActivity" />
+        <activity android:name=".ui.HelpStation.sPetActivity" />
+        <activity android:name=".ui.HelpStation.StationActiveActivity" />
+        <activity android:name=".ui.HelpStation.StationActivity" />
+        <activity android:name=".ui.HelpStation.StationMsgActivity" />
+        <activity android:name=".ui.HelpStation.RegisterAdminActivity"></activity>
     </application>
 
 </manifest>
