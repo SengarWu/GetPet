@@ -28,6 +28,7 @@
                     android:textColor="@color/me_textView_pink"/>
 
                 <TextView
+                    android:id="@+id/tv_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="毛毛猫"
@@ -56,6 +57,7 @@
                     android:textColor="@color/me_textView_pink"/>
 
                 <TextView
+                    android:id="@+id/tv_sex"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="女"
@@ -84,6 +86,7 @@
                     android:textColor="@color/me_textView_pink"/>
 
                 <TextView
+                    android:id="@+id/tv_age"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="11"
@@ -113,9 +116,10 @@
                     android:textColor="@color/me_textView_pink"/>
 
                 <TextView
+                    android:id="@+id/tv_marStatus"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="天津"
+                    android:text="未婚"
                     android:textSize="@dimen/TextView_textSize"
                     android:gravity="right"/>
 
@@ -141,6 +145,7 @@
                     android:textColor="@color/me_textView_pink"/>
 
                 <TextView
+                    android:id="@+id/tv_address"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="天津市西青区"
@@ -169,6 +174,7 @@
                     android:textColor="@color/me_textView_pink"/>
 
                 <TextView
+                    android:id="@+id/tv_company"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="天津工业大学"
@@ -197,6 +203,7 @@
                     android:textColor="@color/me_textView_pink"/>
 
                 <TextView
+                    android:id="@+id/tv_post"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="食堂大妈"
@@ -225,6 +232,7 @@
                     android:textColor="@color/me_textView_pink"/>
 
                 <TextView
+                    android:id="@+id/tv_income"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="5000"
@@ -253,6 +261,7 @@
                     android:textColor="@color/me_textView_pink"/>
 
                 <TextView
+                    android:id="@+id/tv_phone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="18201234567"
@@ -281,6 +290,7 @@
                     android:textColor="@color/me_textView_pink"/>
 
                 <TextView
+                    android:id="@+id/tv_qq"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="10000"
@@ -309,6 +319,7 @@
                     android:textColor="@color/me_textView_pink"/>
 
                 <TextView
+                    android:id="@+id/tv_wechat"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="miao"
@@ -337,6 +348,7 @@
                     android:textColor="@color/me_textView_pink"/>
 
                 <TextView
+                    android:id="@+id/tv_others"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="我想领养一个人"

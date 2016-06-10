@@ -21,20 +21,10 @@ public class ImageDownLoader {
 				.cacheOnDisk(false)
 						//		.considerExifParams(true)
 				.imageScaleType(ImageScaleType.IN_SAMPLE_INT)//设置图片以如何的编码方式显示
-						////			.imageScaleType(ImageScaleType.EXACTLY_STRETCHED)//设置图片以如何的编码方式显示
 				.bitmapConfig(Bitmap.Config.RGB_565)//设置 图片的解码类�?//
 				.resetViewBeforeLoading(true)
-						//		.imageScaleType(ImageScaleType.IN_SAMPLE_INT)//设置图片以如何的编码方式显示
-						//		.resetViewBeforeLoading(true)
-						//			.bitmapConfig(Bitmap.Config.RGB_565)//设置 图片的解码类�?//
-						//设置图片在下载前是否重置，复�?
 				.build();
 		String imageUrl=UrlAddress;
-//		if (file!=null){
-//			imageUrl=file.getFileUrl(my);
-//		}
-		//String imageUrl = Scheme.FILE.wrap(path);
-		//String imageUrl = "http://img.my.csdn.net/uploads/201309/01/1378037235_7476.jpg";
 		ImageLoader.getInstance().displayImage(imageUrl, imageView, options);
 	}
 	public static void showLocationImage(String path,
@@ -48,16 +38,11 @@ public class ImageDownLoader {
 		//		.considerExifParams(true)
 		.imageScaleType(ImageScaleType.IN_SAMPLE_INT)//设置图片以如何的编码方式显示  
 		////			.imageScaleType(ImageScaleType.EXACTLY_STRETCHED)//设置图片以如何的编码方式显示  
-		.bitmapConfig(Bitmap.Config.RGB_565)//设置 图片的解码类�?//
+		.bitmapConfig(Bitmap.Config.RGB_565)//设置 图片的解码类
 		.resetViewBeforeLoading(true)
-		//		.imageScaleType(ImageScaleType.IN_SAMPLE_INT)//设置图片以如何的编码方式显示  
-		//		.resetViewBeforeLoading(true)
-		//			.bitmapConfig(Bitmap.Config.RGB_565)//设置 图片的解码类�?//
-		//设置图片在下载前是否重置，复�?
 		.build();
 		//
 		String imageUrl = Scheme.FILE.wrap(path);
-		//String imageUrl = "http://img.my.csdn.net/uploads/201309/01/1378037235_7476.jpg";
 		ImageLoader.getInstance().displayImage(imageUrl, imageView, options);
 
 	}

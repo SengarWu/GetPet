@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -34,8 +33,8 @@ public class AddPetActivity extends BaseActivity implements View.OnClickListener
     private EditText et_pet_age;
     private EditText et_pet_character;
     private Spinner sp_pet_category;
-    private ImageView iv_pet_photo;
-    private ImageButton ib_pet_photo;
+    //private ImageView iv_pet_photo;
+    //private ImageButton ib_pet_photo;
 
     private ProgressDialog progressDialog;
 
@@ -44,6 +43,7 @@ public class AddPetActivity extends BaseActivity implements View.OnClickListener
     private String[] cateIdArry;
 
     private final int LOADSUCCESS = 1001;
+
 
     private Handler handler = new Handler()
     {
@@ -115,9 +115,10 @@ public class AddPetActivity extends BaseActivity implements View.OnClickListener
         et_pet_age = $(R.id.et_pet_age);
         et_pet_character = $(R.id.et_pet_character);
         sp_pet_category = $(R.id.sp_pet_category);
-        iv_pet_photo = $(R.id.iv_pet_photo);
+        /*iv_pet_photo = $(R.id.iv_pet_photo);
+        iv_pet_photo.setOnClickListener(this);
         ib_pet_photo = $(R.id.ib_pet_photo);
-        ib_pet_photo.setOnClickListener(this);
+        ib_pet_photo.setOnClickListener(this);*/
     }
 
     @Override
@@ -155,9 +156,10 @@ public class AddPetActivity extends BaseActivity implements View.OnClickListener
                 pet pet = new pet();
                 pet.name = pet_name;
                 pet.age = pet_age;
-
-
                 pet.character = pet_character;
+                //图片
+                //pet.photo =
+
                 category ch=new category();
                 ch.id=pet_category_Id;
                 pet.category = ch;
@@ -169,10 +171,14 @@ public class AddPetActivity extends BaseActivity implements View.OnClickListener
                 progressDialog.show();
                 submit(pet);
                 break;
-            case R.id.ib_pet_photo:
+            /*case R.id.ib_pet_photo:
                 //点击进行图片上传
 
                 break;
+            case R.id.iv_pet_photo:
+                //打开图片查看器
+
+                break;*/
         }
     }
 
@@ -217,7 +223,7 @@ public class AddPetActivity extends BaseActivity implements View.OnClickListener
         et_pet_age.setText("");
         et_pet_character.setText("");
         et_pet_name.setText("");
-        iv_pet_photo.setVisibility(View.GONE);
-        ib_pet_photo.setVisibility(View.VISIBLE);
+        /*iv_pet_photo.setVisibility(View.GONE);
+        ib_pet_photo.setVisibility(View.VISIBLE);*/
     }
 }

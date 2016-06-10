@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/base_color_text_white"
-    tools:context="com.example.administrator.getpet.ui.Me.adapter.MyPetActivity">
+    tools:context=".ui.Me.MyPetActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -20,6 +20,7 @@
             android:paddingLeft="10dp"
             android:paddingRight="5dp"
             android:src="@mipmap/icon_back_white"
+            android:background="@color/color_transparent_bg"
             android:scaleType="fitCenter"/>
 
         <TextView
@@ -43,17 +44,12 @@
 
     </RelativeLayout>
 
-    <GridView
-        android:id="@+id/gv_my_pet"
+    <ListView
+        android:id="@+id/lv_my_pet"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:numColumns="2"
-        android:layout_centerInParent="true"
-        android:stretchMode="columnWidth"
-        android:verticalSpacing="20dp"
-        android:horizontalSpacing="20dp">
+        android:layout_height="match_parent">
 
 
-    </GridView>
+    </ListView>
 
 </LinearLayout>

@@ -22,9 +22,10 @@ import com.example.administrator.getpet.ui.Me.DonateRecordeActivity;
 import com.example.administrator.getpet.ui.Me.InformActivity;
 import com.example.administrator.getpet.ui.Me.MyAttentionActivity;
 import com.example.administrator.getpet.ui.Me.PersonalActivity;
-import com.example.administrator.getpet.ui.Me.SpetDetailActivity;
-import com.example.administrator.getpet.ui.Me.adapter.MyPetActivity;
+import com.example.administrator.getpet.ui.PetHelp.SpetDetailActivity;
+import com.example.administrator.getpet.ui.Me.MyPetActivity;
 import com.example.administrator.getpet.ui.Me.adapter.sPetAdapter;
+import com.example.administrator.getpet.utils.GetPictureUtils;
 import com.example.administrator.getpet.utils.HttpCallBack;
 import com.example.administrator.getpet.utils.JSONUtil;
 import com.example.administrator.getpet.utils.SimpleHttpPostUtil;
@@ -56,7 +57,8 @@ public class home extends BaseActivity implements View.OnClickListener {
     private LinearLayout ll_xunhui;
     private GridView gv_jiuzhu;
 
-    sPet[] sPetArry ; //定义接收服务器数据的数组
+    private sPet[] sPetArry ; //定义接收服务器数据的数组
+    private String[] pet_name={"嗨咻","小婷婷","小淘淘","倪美儿","旺财","瓦尼克"};
 
     private ProgressDialog progress;
 
@@ -69,7 +71,7 @@ public class home extends BaseActivity implements View.OnClickListener {
             switch (msg.what)
             {
                 case LOADSUCCESS:
-                    //setupView();
+                    setupView();
                     break;
             }
         }
@@ -100,22 +102,27 @@ public class home extends BaseActivity implements View.OnClickListener {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(home.this, SpetDetailActivity.class);
                 Bundle data = new Bundle(); //Bundle对象用于传递果种对象
-                /*
-                Seeds seeds = SaveData(position); //种子对象，用于传递数据
-                data.putSerializable("seeds", seeds);
+                sPet spet = sPetArry[position]; //点中的对象
+                data.putSerializable("spet", spet);
                 intent.putExtras(data);
-                startActivity(intent);*/
+                startActivity(intent);
             }
         });
     }
 
     private List<Map<String,Object>> getData() {
-        List<Map<String, Object>> listItems=new ArrayList<Map<String,Object>>();
+        /*List<Map<String, Object>> listItems=new ArrayList<Map<String,Object>>();
         for (int i = 0; i < sPetArry.length; i++) {
             Map<String,Object> listItem = new HashMap<String,Object>();
-
-            listItem.put("pet_photo",sPetArry[i].photo);
+            listItem.put("pet_photo", GetPictureUtils.GetPicture(sPetArry.length)[i]);
             listItem.put("pet_name",sPetArry[i].name);
+            listItems.add(listItem);
+        }*/
+        List<Map<String, Object>> listItems=new ArrayList<Map<String,Object>>();
+        for (int i = 0; i < pet_name.length; i++) {
+            Map<String,Object> listItem = new HashMap<String,Object>();
+            listItem.put("pet_photo", GetPictureUtils.GetPicture(pet_name.length)[i]);
+            listItem.put("pet_name",pet_name[i]);
             listItems.add(listItem);
         }
         return listItems;
@@ -128,9 +135,10 @@ public class home extends BaseActivity implements View.OnClickListener {
         SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("sPet","QueryListX");
         httpReponse.addViewColumnsParams("name");
         httpReponse.addViewColumnsParams("photo");
-        httpReponse.QueryListX(2, 3, new HttpCallBack() {
+        httpReponse.QueryListX(-1, 3, new HttpCallBack() {
             @Override
             public void Success(String data) {
+                progress.dismiss();
                 Log.d(TAG, "Success: data:"+data);
                 sPetArry = JSONUtil.parseArray(data,sPet.class);
                 handler.sendEmptyMessage(LOADSUCCESS);
@@ -138,6 +146,7 @@ public class home extends BaseActivity implements View.OnClickListener {
 
             @Override
             public void Fail(String e) {
+                progress.dismiss();
                 Log.d(TAG, "Fail: "+e);
                 ToastUtils.showToast(mContext,e);
             }

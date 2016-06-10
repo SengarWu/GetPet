@@ -33,7 +33,13 @@
         android:layout_height="match_parent"
         android:background="@mipmap/register_bg">
 
+        <ListView
+            android:id="@+id/lv_donate"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
+
+        </ListView>
 
     </LinearLayout>
 

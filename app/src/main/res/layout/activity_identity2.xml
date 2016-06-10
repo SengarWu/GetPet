@@ -73,10 +73,12 @@
                     android:textColor="@color/me_textView_pink"/>
 
                 <EditText
+                    android:id="@+id/et_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="15dp"
                     android:textSize="@dimen/editText_textSize"
+                    android:maxLength="10"
                     android:singleLine="true"/>
 
             </LinearLayout>
@@ -102,9 +104,11 @@
                     android:textColor="@color/me_textView_pink"/>
 
                 <EditText
+                    android:id="@+id/et_marStatus"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
+                    android:maxLength="10"
                     android:textSize="@dimen/editText_textSize"
                     android:singleLine="true"/>
 
@@ -129,9 +133,11 @@
                     android:textColor="@color/me_textView_pink"/>
 
                 <EditText
+                    android:id="@+id/et_origin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
+                    android:maxLength="15"
                     android:textSize="@dimen/editText_textSize"
                     android:singleLine="true"/>
 
@@ -156,9 +162,11 @@
                     android:textColor="@color/me_textView_pink"/>
 
                 <EditText
+                    android:id="@+id/et_company"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
+                    android:maxLength="15"
                     android:textSize="@dimen/editText_textSize"
                     android:singleLine="true"/>
 
@@ -183,9 +191,11 @@
                     android:textColor="@color/me_textView_pink"/>
 
                 <EditText
+                    android:id="@+id/et_post"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
+                    android:maxLength="15"
                     android:textSize="@dimen/editText_textSize"
                     android:singleLine="true"/>
 
@@ -202,6 +212,7 @@
                 android:gravity="right">
 
                 <ImageButton
+                    android:id="@+id/ib_next"
                     android:layout_width="140dp"
                     android:layout_height="50dp"
                     android:scaleType="fitCenter"

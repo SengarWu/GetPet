@@ -72,8 +72,8 @@
                     android:id="@+id/et_pet_name"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:layout_marginRight="30dp"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_marginLeft="40dp"
                     android:background="@color/color_transparent_bg"
                     android:textSize="@dimen/editText_textSize"
                     android:singleLine="false"
@@ -106,8 +106,8 @@
                     android:id="@+id/et_pet_age"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:layout_marginRight="30dp"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_marginLeft="40dp"
                     android:background="@color/color_transparent_bg"
                     android:textSize="@dimen/editText_textSize"
                     android:singleLine="false"
@@ -141,8 +141,8 @@
                     android:id="@+id/et_pet_character"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:layout_marginRight="30dp"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_marginLeft="40dp"
                     android:background="@color/color_transparent_bg"
                     android:textSize="@dimen/editText_textSize"
                     android:singleLine="false"
@@ -176,7 +176,7 @@
 
         </LinearLayout>
 
-        <FrameLayout
+        <!--<FrameLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp">
@@ -194,7 +194,7 @@
                 android:src="@mipmap/add_picture"
                 android:scaleType="fitCenter"/>
 
-        </FrameLayout>
+        </FrameLayout>-->
 
     </LinearLayout>
 
