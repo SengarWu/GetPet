@@ -56,8 +56,6 @@ public class MyPetActivity extends BaseActivity implements View.OnClickListener 
     private void setupView() {
         listItems=getData();
         adapter = new MyPetAdapter(mContext,listItems);
-        //接口回掉
-        adapter.setOnDelete(this);
         lv_my_pet.setAdapter(adapter);
     }
 

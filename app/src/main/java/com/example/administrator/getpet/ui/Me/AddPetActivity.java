@@ -115,10 +115,6 @@ public class AddPetActivity extends BaseActivity implements View.OnClickListener
         et_pet_age = $(R.id.et_pet_age);
         et_pet_character = $(R.id.et_pet_character);
         sp_pet_category = $(R.id.sp_pet_category);
-        /*iv_pet_photo = $(R.id.iv_pet_photo);
-        iv_pet_photo.setOnClickListener(this);
-        ib_pet_photo = $(R.id.ib_pet_photo);
-        ib_pet_photo.setOnClickListener(this);*/
     }
 
     @Override

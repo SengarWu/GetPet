@@ -4,14 +4,11 @@ import java.io.Serializable;
 public class application  implements Serializable {
 
 public String id;
-public String usersId;
-public String rsId;
-public String sPetId;
 public String information;
-public int result;
-public String reason;
+public int result;        //结果
+public String reason;     //原因
 public int state;
 public sPet sPet ;
-public Station Station ;
+public Station Station ;   //救助站
 public users users ;
 }

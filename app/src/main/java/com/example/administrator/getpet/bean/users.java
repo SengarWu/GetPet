@@ -18,7 +18,7 @@ public class users  implements Serializable {
     /**
      * 用户类型0为普通用户，1为救助站用户
      */
-    public int indentify;
+    public int identify;
     public int user_reputation;     //信誉度
 
 
@@ -111,11 +111,11 @@ public class users  implements Serializable {
     }
 
     public int getIndentify() {
-        return indentify;
+        return identify;
     }
 
     public void setIndentify(int indentify) {
-        this.indentify = indentify;
+        this.identify = indentify;
     }
 
     public int getUser_reputation() {

@@ -18,47 +18,50 @@ import com.example.administrator.getpet.utils.SimpleHttpPostUtil;
 import com.example.administrator.getpet.utils.StringUtils;
 import com.example.administrator.getpet.utils.ToastUtils;
 
-public class AdminLoginActivity extends BaseActivity implements View.OnClickListener {
+public class RegisterAdminActivity extends BaseActivity implements View.OnClickListener {
 
-    private static final String TAG = "AdminLoginActivity";
+    private static final String TAG = "RegisterAdminActivity";
 
     private EditText et_phone;
     private EditText et_password;
-    private ImageButton ib_enter;
-    private TextView tv_register;
+    private EditText et_password_again;
+    private TextView tv_login;
+    private ImageButton ib_register;
 
     private String phone;
     private String password;
+    private String password_again;
 
     private ProgressDialog progress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_login);
+        setContentView(R.layout.activity_register_admin);
         initView();
-
     }
 
     private void initView() {
         et_phone = $(R.id.et_phone);
         et_password = $(R.id.et_password);
-        ib_enter = $(R.id.ib_enter);
-        ib_enter.setOnClickListener(this);
-        tv_register = $(R.id.tv_register);
-        tv_register.setOnClickListener(this);
-        progress = new ProgressDialog(AdminLoginActivity.this);
-        progress.setMessage("正在登录...");
-        progress.setCanceledOnTouchOutside(false);
+        et_password_again = $(R.id.et_password_again);
+        tv_login = $(R.id.tv_login);
+        tv_login.setOnClickListener(this);
+        ib_register = $(R.id.ib_register);
+        ib_register.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId())
         {
-            case R.id.ib_enter:
+            case R.id.tv_login:
+                startAnimActivity(AdminLoginActivity.class);
+                break;
+            case R.id.ib_register:
                 phone = et_phone.getText().toString();
                 password = et_password.getText().toString();
+                password_again = et_password_again.getText().toString();
                 if (TextUtils.isEmpty(phone))
                 {
                     ToastUtils.showToast(mContext,"手机号不能为空！");
@@ -66,7 +69,7 @@ public class AdminLoginActivity extends BaseActivity implements View.OnClickList
                 }
                 if (!StringUtils.isPhoneNumberValid(phone))
                 {
-                    ToastUtils.showToast(mContext,"手机号格式不正确！");
+                    ToastUtils.showToast(mContext,"手机号格式有误！");
                     return;
                 }
                 if (TextUtils.isEmpty(password))
@@ -74,35 +77,45 @@ public class AdminLoginActivity extends BaseActivity implements View.OnClickList
                     ToastUtils.showToast(mContext,"密码不能为空！");
                     return;
                 }
+                if (TextUtils.isEmpty(password_again))
+                {
+                    ToastUtils.showToast(mContext,"确认密码不能为空！");
+                    return;
+                }
+                if (password.equals(password_again))
+                {
+                    ToastUtils.showToast(mContext,"两次输入的密码不一致！");
+                    return;
+                }
+                progress = new ProgressDialog(RegisterAdminActivity.this);
+                progress.setMessage("正在注册...");
+                progress.setCanceledOnTouchOutside(false);
                 progress.show();
-                login();
-                break;
-            case R.id.tv_register:
-                startAnimActivity(RegisterAdminActivity.class);
+                register();
                 break;
         }
     }
 
-    private void login() {
-        SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("users","login");
-        httpReponse.addParams("phone",phone);
+    private void register() {
+        SimpleHttpPostUtil httpReponse = new SimpleHttpPostUtil("users", "register");
+        httpReponse.addParams("user",phone);
         httpReponse.addParams("password",password);
+        httpReponse.addParams("identify",1);
         httpReponse.send(new HttpCallBack() {
             @Override
             public void Success(String data) {
-                progress.dismiss();
                 Log.i(TAG, "Success: data:"+data);
+                //Json解析，反序列化user
                 users user = JSONUtil.parseObject(data,users.class);
-                editor.putString("id",user.id);
-                editor.putString("phone",user.phone);
-                editor.commit();
-                ToastUtils.showToast(mContext,"登录成功！");
-                startAnimActivity(StationActivity.class);
+                if (user.id != null)
+                {
+                    progress.dismiss();
+                    ToastUtils.showToast(mContext,"注册成功！正在跳转");
+                    RegisterAdminActivity.this.finish();
+                }
             }
-
             @Override
             public void Fail(String e) {
-                Log.i(TAG, "Fail: e:"+e);
                 progress.dismiss();
                 ToastUtils.showToast(mContext,e);
             }
