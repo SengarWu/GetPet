@@ -103,7 +103,12 @@ public class AdoptMsgActivity extends BaseActivity implements View.OnClickListen
     public void onClick(View v) {
         switch (v.getId())
         {
+            case R.id.ib_back:
+                finish();
+                break;
+            case R.id.btn_agree:
 
+                break;
         }
     }
 }
