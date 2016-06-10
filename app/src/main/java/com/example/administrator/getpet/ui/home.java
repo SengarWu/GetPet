@@ -20,6 +20,7 @@ import com.example.administrator.getpet.R;
 import com.example.administrator.getpet.base.BaseActivity;
 import com.example.administrator.getpet.bean.sPet;
 import com.example.administrator.getpet.ui.Home.SendAdopt.EntrustAdoptMainActivity;
+import com.example.administrator.getpet.ui.Login.LoginActivity;
 import com.example.administrator.getpet.ui.Me.DonateRecordeActivity;
 import com.example.administrator.getpet.ui.Me.InformActivity;
 import com.example.administrator.getpet.ui.Me.MyAttentionActivity;
@@ -269,6 +270,7 @@ public class home extends BaseActivity implements View.OnClickListener {
         editor = preferences.edit();
         editor.clear();
         editor.commit();
+        startAnimActivity(LoginActivity.class);
         finish();
     }
 
