@@ -18,6 +18,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+
     <application
         android:name=".base.CustomApplication"
         android:allowBackup="true"
@@ -29,14 +30,14 @@
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="K4avkUbXEqLRbnMfuCotsrMjGzm79oFI" />
         <!-- 胡明科 -->
-        <activity android:name=".ui.Home.SendAdopt.Application"></activity>
+        <activity android:name=".ui.Home.SendAdopt.Application" />
         <activity android:name=".ui.Home.SendAdopt.EntrustMainActivity" />
         <activity android:name=".ui.Home.SendAdopt.PublishEntrust" />
         <activity android:name=".ui.Home.SendAdopt.SelectCityActivity" />
         <activity android:name=".ui.Home.SendAdopt.SearchEntrust" />
-        <activity android:name=".ui.Home.SendAdopt.OtherEntrustDetail"></activity>
-        <activity android:name=".ui.Home.SendAdopt.MyEntrustDetail"></activity>
-        <activity android:name=".ui.Home.SendAdopt.changeApplyApplication"></activity>
+        <activity android:name=".ui.Home.SendAdopt.OtherEntrustDetail" />
+        <activity android:name=".ui.Home.SendAdopt.MyEntrustDetail" />
+        <activity android:name=".ui.Home.SendAdopt.changeApplyApplication" />
         <activity android:name=".ui.Home.SendAdopt.LookApplication" />
         <activity android:name=".ui.Home.SendAdopt.ModifyEntrust" />
         <activity android:name=".ui.Home.SendAdopt.ApplicationHistory" />
@@ -78,8 +79,8 @@
         <activity android:name=".ui.HelpStation.StationActiveActivity" />
         <activity android:name=".ui.HelpStation.StationActivity" />
         <activity android:name=".ui.HelpStation.StationMsgActivity" />
-        <activity android:name=".ui.HelpStation.RegisterAdminActivity"></activity>
-
+        <activity android:name=".ui.HelpStation.RegisterAdminActivity" />
+        <activity android:name=".ui.HelpStation.AdoptDetailActivity"></activity>
     </application>
 
 </manifest>

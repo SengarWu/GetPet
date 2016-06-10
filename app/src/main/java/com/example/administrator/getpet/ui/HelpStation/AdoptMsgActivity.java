@@ -1,9 +1,11 @@
 package com.example.administrator.getpet.ui.HelpStation;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
@@ -76,8 +78,18 @@ public class AdoptMsgActivity extends BaseActivity implements View.OnClickListen
     private void setupView() {
         listItems=getData();
         adapter = new AdoptAdapter(mContext,listItems);
-        adapter.setOnAgree(this);
         lv_adopt.setAdapter(adapter);
+        lv_adopt.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(AdoptMsgActivity.this, AdoptDetailActivity.class);
+                Bundle data = new Bundle(); //Bundle对象用于传递果种对象
+                application apply = applicationArry[position]; //点中的对象
+                data.putSerializable("application", apply);
+                intent.putExtras(data);
+                startActivity(intent);
+            }
+        });
     }
 
     private List<Map<String,Object>> getData() {
@@ -87,6 +99,7 @@ public class AdoptMsgActivity extends BaseActivity implements View.OnClickListen
             listItem.put("pet_photo", GetPictureUtils.GetPicture(applicationArry.length)[i]);
             listItem.put("pet_name",applicationArry[i].sPet.name);
             listItem.put("username",applicationArry[i].users.nickName);
+            listItem.put("state",applicationArry[i].state == 0?"未审核":"已审核");
             listItem.put("reason",applicationArry[i].reason);
             listItems.add(listItem);
         }
@@ -106,9 +119,7 @@ public class AdoptMsgActivity extends BaseActivity implements View.OnClickListen
             case R.id.ib_back:
                 finish();
                 break;
-            case R.id.btn_agree:
-
-                break;
         }
     }
+
 }
