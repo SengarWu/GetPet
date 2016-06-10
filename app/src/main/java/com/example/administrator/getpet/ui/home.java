@@ -1,6 +1,8 @@
 package com.example.administrator.getpet.ui;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -228,7 +230,23 @@ public class home extends BaseActivity implements View.OnClickListener {
                 startAnimActivity(DonateRecordeActivity.class);
                 break;
             case R.id.ll8://退出账号
-
+                AlertDialog.Builder builder = new AlertDialog.Builder(home.this);
+                builder.setMessage("确认退出吗？");
+                builder.setTitle("提示");
+                builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        exit();
+                    }
+                });
+                builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                builder.create().show();
                 break;
             case R.id.ib_xinxiqiang://信息墙
 
@@ -245,4 +263,14 @@ public class home extends BaseActivity implements View.OnClickListener {
                 break;
         }
     }
+
+    private void exit() {
+        //清除本地保存的信息，跳转到登录页面
+        editor = preferences.edit();
+        editor.clear();
+        editor.commit();
+        finish();
+    }
+
+
 }

@@ -79,6 +79,7 @@
         <activity android:name=".ui.HelpStation.StationActivity" />
         <activity android:name=".ui.HelpStation.StationMsgActivity" />
         <activity android:name=".ui.HelpStation.RegisterAdminActivity"></activity>
+
     </application>
 
 </manifest>
