@@ -287,7 +287,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="救助"
+                            android:text="宠物圈"
                             android:textColor="@color/base_color_text_white"
                             android:layout_marginTop="25dp"/>
 
