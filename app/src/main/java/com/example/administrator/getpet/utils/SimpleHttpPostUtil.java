@@ -26,7 +26,6 @@ import java.util.Set;
  * Created by caolin on 2016/3/4.
  */
 public class SimpleHttpPostUtil{
-
     Exception ee;
     HttpCallBack callBack;
     String data;

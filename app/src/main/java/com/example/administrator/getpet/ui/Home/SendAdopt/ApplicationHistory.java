@@ -116,7 +116,7 @@ public class ApplicationHistory extends BaseActivity implements View.OnClickList
         SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("applyApplication","QueryList");
         httpReponse.addWhereParams("userId","=",preferences.getString("id",""));
         //添加排序的字段
-        httpReponse.addOrderFieldParams("date");
+        httpReponse.addOrderFieldParams("applyDate");
         //是否为降序  true表示降序   false表示正序
         httpReponse.addIsDescParams(true);
         //调用QueryList方法   第一个参数是页码  第二个是每页的数目   当页码为-1时表示全查询

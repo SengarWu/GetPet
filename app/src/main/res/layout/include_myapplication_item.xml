@@ -9,48 +9,51 @@
         android:layout_height="40dp">
         <ImageView
             android:src="@mipmap/icon_title_kk"
-            android:layout_width="40dp"
-            android:layout_height="40dp" />
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
         <TextView
             android:gravity="center"
             android:id="@+id/title"
             android:text="dhaiosdhawio"
-            android:textSize="26sp"
+            android:textSize="@dimen/TextView_textSize"
             android:textAlignment="center"
             android:layout_width="wrap_content"
             android:layout_height="40dp" />
     </LinearLayout>
     <LinearLayout
+        android:orientation="horizontal"
         android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
             android:src="@mipmap/givemonkk"
-            android:layout_width="40dp"
-            android:layout_height="40dp" />
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
         <TextView
             android:id="@+id/award"
-            android:textSize="26sp"
-            android:layout_width="40dp"
-            android:layout_height="40dp" />
+            android:textSize="@dimen/TextView_textSize"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content" />
         <TextView
             android:layout_marginLeft="80dp"
             android:text="宠物类型:"
-            android:textSize="26sp"
+            android:textSize="@dimen/TextView_textSize"
             android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="40dp" />
         <ImageView
+            android:layout_marginTop="5dp"
             android:id="@+id/type"
             android:src="@mipmap/type_other"
-            android:layout_width="40dp"
-            android:layout_height="40dp" />
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
     </LinearLayout>
     <RelativeLayout
         android:layout_marginTop="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
+            android:id="@+id/result"
             android:textColor="@color/pink_KK"
             android:text="......"
             android:textSize="@dimen/TextView_textSize"

@@ -1,9 +1,10 @@
-package com.example.administrator.getpet.ui;
+package com.example.administrator.getpet.ui.Home.SendAdopt;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -22,7 +23,7 @@ public class changeApplyApplication extends BaseActivity implements View.OnClick
     private EditText detail;
     private EditText connectplace;
     private EditText connectphone;
-    private ImageView submit;
+    private Button submit;
     private ImageView back;
     private applyApplication apply;
     @Override
@@ -37,13 +38,13 @@ public class changeApplyApplication extends BaseActivity implements View.OnClick
         detail=(EditText)findViewById(R.id.details);
         connectplace=(EditText)findViewById(R.id.connect_place);
         connectphone=(EditText)findViewById(R.id.connect_phone);
-        submit=(ImageView)findViewById(R.id.submit);
+        submit=(Button)findViewById(R.id.submit);
         back=(ImageView)findViewById(R.id.back);
         back.setOnClickListener(this);
         submit.setOnClickListener(this);
         connectphone.setText(apply.getPhoneNumber());
         connectplace.setText(apply.getConnectPlace());
-        apply.setDetail(apply.getDetail());
+        detail.setText(apply.getDetail());
     }
 
     @Override
@@ -57,7 +58,7 @@ public class changeApplyApplication extends BaseActivity implements View.OnClick
                 } else if (connectphone.getText().toString() == "") {
                     Toast.makeText(mContext, "联系电话不能为空", Toast.LENGTH_LONG).show();
                 } else {
-                    SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("Users","updateColumnsByWheres");
+                    SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("applyApplication","updateColumnsByWheres");
                     httpReponse.addWhereParams("id","=",apply.getId());
                     httpReponse.addColumnParams("phoneNumber",connectphone.getText().toString());
                     httpReponse.addColumnParams("connectPlace",connectplace.getText().toString());

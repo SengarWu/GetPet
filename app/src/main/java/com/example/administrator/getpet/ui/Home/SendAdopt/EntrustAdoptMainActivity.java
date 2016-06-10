@@ -12,6 +12,7 @@ import com.example.administrator.getpet.base.BaseActivity;
 public class EntrustAdoptMainActivity extends BaseActivity implements View.OnClickListener {
     private TextView entrust;
     private TextView adopt;
+    private TextView applyhistory;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,8 +23,10 @@ public class EntrustAdoptMainActivity extends BaseActivity implements View.OnCli
     private void initView() {
         entrust=(TextView)findViewById(R.id.entrust);
         adopt=(TextView)findViewById(R.id.adopt);
+        applyhistory=(TextView)findViewById(R.id.applyhistory);
         entrust.setOnClickListener(this);
         adopt.setOnClickListener(this);
+        applyhistory.setOnClickListener(this);
     }
 
     @Override
@@ -34,6 +37,12 @@ public class EntrustAdoptMainActivity extends BaseActivity implements View.OnCli
                 startActivity(intent);
                 break;
             case R.id.adopt:
+                Intent intent2=new Intent(this,SearchEntrust.class);
+                startActivity(intent2);
+                break;
+            case R.id.applyhistory:
+                Intent intent3=new Intent(this,ApplicationHistory.class);
+                startActivity(intent3);
                 break;
         }
     }

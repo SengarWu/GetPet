@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 /*
 import com.baidu.mapapi.map.Text;*/
 import com.example.administrator.getpet.R;
@@ -34,7 +35,7 @@ public class OtherEntrustDetail extends BaseActivity implements View.OnClickList
 
     private void initView() {
         title=(TextView)findViewById(R.id.title);
-        pubTime=(TextView)findViewById(R.id.publishTime);
+        pubTime=(TextView)findViewById(R.id.Pubtime);
         back=(ImageView)findViewById(R.id.back);
         usex=(ImageView)findViewById(R.id.usersex);
         award=(TextView)findViewById(R.id.award);
@@ -71,7 +72,7 @@ public class OtherEntrustDetail extends BaseActivity implements View.OnClickList
                 type_other.setImageResource(R.mipmap.type_other);
                 break;
         }
-        details.setText(intent.getStringExtra("details"));
+        details.setText("    "+intent.getStringExtra("details"));
         pubTime.setText(intent.getStringExtra("Pubtime"));
         pet_chatacter.setText(intent.getStringExtra("pet_chatacter"));
         pet_age.setText(intent.getStringExtra("pet_age"));

@@ -62,8 +62,9 @@ public class myApplicationDetails extends BaseActivity implements View.OnClickLi
         }else if(apply.getEntrust().getUsers().getSex().equals("女")){
             sex.setImageResource(R.mipmap.girl);
         }
+        username.setText(apply.getEntrust().getUsers().getNickName());
         pet_character.setText(apply.getEntrust().getPet().getCharacter());
-        award.setText(apply.getEntrust().getAward());
+        award.setText(String.valueOf(apply.getEntrust().getAward()));
         switch (apply.getEntrust().getPet().getCategory().getName()){
             case "猫":
                 type.setImageResource(R.mipmap.cat_type);
@@ -78,8 +79,8 @@ public class myApplicationDetails extends BaseActivity implements View.OnClickLi
                 type.setImageResource(R.mipmap.type_other);
                 break;
         }
-        details.setText(apply.getEntrust().getDetail()+"\n"+"联系电话："+apply.getEntrust().getUsers().getPhone());
-        apply_message.setText(apply.getApplyMessage());
+        details.setText("      "+apply.getEntrust().getDetail()+"\n"+"联系电话："+apply.getEntrust().getUsers().getPhone());
+        apply_message.setText("      "+apply.getApplyMessage());
         connect_phone.setText(apply.getPhoneNumber());
         connect_place.setText(apply.getConnectPlace());
         if(apply.getComment().equals("好评")){
@@ -105,7 +106,7 @@ public class myApplicationDetails extends BaseActivity implements View.OnClickLi
                 break;
             case R.id.modify:
                 if(apply.getResult()!=2){
-                      Intent x=new Intent(myApplicationDetails.this,myApplicationDetails.class);
+                      Intent x=new Intent(myApplicationDetails.this,changeApplyApplication.class);
                       Bundle bundle = new Bundle();
                       bundle.putSerializable("applyApplication", apply);
                       x.putExtras(bundle);
@@ -128,10 +129,28 @@ public class myApplicationDetails extends BaseActivity implements View.OnClickLi
             public void Success(String data) {
                 Toast.makeText(myApplicationDetails.this, "撤回成功", Toast.LENGTH_LONG).show();
                 deductUser(5);
+                changeentrustTOnormal();
             }
             @Override
             public void Fail(String e) {
                 Toast.makeText(myApplicationDetails.this, "撤回失败，请检查网络", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    private void changeentrustTOnormal() {
+        SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("entrust","updateColumnsById");
+        String id=apply.getEntrust().getId();
+
+        httpReponse.addColumnParams("status","正常");
+        httpReponse.updateColumnsById(id, new HttpCallBack() {
+            @Override
+            public void Success(String data) {
+;                Toast.makeText(myApplicationDetails.this, "信息已还原", Toast.LENGTH_LONG).show();
+            }
+            @Override
+            public void Fail(String e) {
+                 Toast.makeText(myApplicationDetails.this, e.toString(), Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -167,8 +186,10 @@ public class myApplicationDetails extends BaseActivity implements View.OnClickLi
             }
             @Override
             public void Fail(String e) {
-
+                Toast.makeText(getApplicationContext(),e.toString(),Toast.LENGTH_LONG).show();
             }
         });
+        editor.putString("reputation",String.valueOf(currentRepu));
+        editor.commit();
     }
 }

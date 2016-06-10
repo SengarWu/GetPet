@@ -3,6 +3,7 @@ package com.example.administrator.getpet.ui.Home.SendAdopt;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -21,7 +22,7 @@ public class Application extends BaseActivity implements View.OnClickListener {
     private EditText detail;
     private EditText connectplace;
     private EditText connectphone;
-    private ImageView submit;
+    private Button submit;
     private ImageView back;
     private String entrustId;
     @Override
@@ -35,7 +36,7 @@ public class Application extends BaseActivity implements View.OnClickListener {
         detail=(EditText)findViewById(R.id.details);
         connectplace=(EditText)findViewById(R.id.connect_place);
         connectphone=(EditText)findViewById(R.id.connect_phone);
-        submit=(ImageView)findViewById(R.id.submit);
+        submit=(Button)findViewById(R.id.submit);
         back=(ImageView)findViewById(R.id.back);
         back.setOnClickListener(this);
         submit.setOnClickListener(this);
@@ -50,31 +51,34 @@ public class Application extends BaseActivity implements View.OnClickListener {
                 //传入表名和方法名   方法名：QueryCount
                 SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("applyApplication","QueryCount");
                 httpReponse.addWhereParams("entrustId","=",entrustId);
-                httpReponse.addWhereParams("userId","=",preferences.getString("Id",""),"and");
+                httpReponse.addWhereParams("userId","=",preferences.getString("id",""),"and");
                 //调用QueryCount方法
                 httpReponse.QueryCount(new HttpCallBack() {
                     @Override
                     public void Success(String data) {
-                        if(Integer.valueOf("data")>0){
+                        if(Integer.valueOf(data)==0){
                             //如果没有申请过则可以申请
-                            if (detail.getText().toString() == "") {
+                            if (detail.length() == 0) {
                                 Toast.makeText(mContext, "请输入申请详情", Toast.LENGTH_LONG).show();
-                            } else if (connectplace.getText().toString() == "") {
+                            } else if (connectplace.length() == 0) {
                                 Toast.makeText(mContext, "联系地址不能为空", Toast.LENGTH_LONG).show();
-                            } else if (connectphone.getText().toString() == "") {
+                            } else if (connectphone.length() == 0) {
                                 Toast.makeText(mContext, "联系电话不能为空", Toast.LENGTH_LONG).show();
                             } else {
                                 applyApplication a = new applyApplication();
                                 a.setDetail(detail.getText().toString());
                                 a.setConnectPlace(connectplace.getText().toString());
+                                a.setApplyMessage(detail.getText().toString());
                                 a.setPhoneNumber(connectphone.getText().toString());
-                                entrust e = new entrust();
-                                e.setId(entrustId);
-                                a.setEntrust(e);
+                                entrust en = new entrust();
+                                en.setId(entrustId);
+                                en.setDate(new Date());
+                                a.setEntrust(en);
                                 users currentUser = new users();
-                                currentUser.setId(preferences.getString("Id", ""));
+                                currentUser.setId(preferences.getString("id", ""));
+                                a.setUsers(currentUser);
                                 a.setResult(0);
-                                a.setComment("");
+                                a.setComment("未有评价");
                                 a.setApplyDate(new Date());
 
                                 //传入表名和方法名
@@ -88,13 +92,14 @@ public class Application extends BaseActivity implements View.OnClickListener {
 
                                     @Override
                                     public void Fail(String e) {
-                                        Toast.makeText(mContext, "申请失败（已申请过，或网络不畅）", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(mContext,e.toString(), Toast.LENGTH_LONG).show();
+                                       // Toast.makeText(mContext, "申请失败（已申请过，或网络不畅）", Toast.LENGTH_LONG).show();
                                     }
                                 });
                             }
 
                         }else{
-                            Toast.makeText(mContext, "申请失败（已申请过）", Toast.LENGTH_LONG).show();
+                            Toast.makeText(mContext, "已申请过啦", Toast.LENGTH_LONG).show();
                         }
                     }
                     @Override

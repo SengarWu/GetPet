@@ -8,8 +8,7 @@ import android.widget.TextView;
 
 import com.example.administrator.getpet.R;
 import com.example.administrator.getpet.bean.applyApplication;
-import com.example.administrator.getpet.bean.entrust;
-import com.example.administrator.getpet.ui.Home.SendAdopt.Application;
+import com.example.administrator.getpet.utils.TimeUtils;
 
 import java.util.List;
 
@@ -23,14 +22,16 @@ public class myApplicationAdapter extends BaseListAdapter<applyApplication> {
     @Override
     public View bindView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
-            convertView = mInflater.inflate(R.layout.myentrustlist_item, null);
+            convertView = mInflater.inflate(R.layout.include_myapplication_item, null);
         }
         final applyApplication contract=getList().get(position);
         TextView title=(TextView) ViewHolder.get(convertView,R.id.title);
         TextView award=(TextView) ViewHolder.get(convertView,R.id.award);
         ImageView type=(ImageView)ViewHolder.get(convertView,R.id.type);
         TextView time=(TextView)ViewHolder.get(convertView,R.id.time);
-        award.setText(contract.getEntrust().getTitle());
+        TextView result=(TextView)ViewHolder.get(convertView,R.id.result);
+        title.setText(contract.getEntrust().getTitle());
+        award.setText(String.valueOf(contract.getEntrust().getAward()));
         if(contract.getEntrust().getAward()!=0) {
             title.setText(contract.getEntrust().getTitle());
         }
@@ -52,7 +53,18 @@ public class myApplicationAdapter extends BaseListAdapter<applyApplication> {
 
         }
         if(contract.getApplyDate()!=null) {
-            time.setText(String.valueOf(contract.getApplyDate()));
+            time.setText(TimeUtils.dateToString(contract.getApplyDate(),TimeUtils.FORMAT_DATE_TIME_SECOND));
+        }
+        switch (contract.getResult()){
+            case 0:
+                result.setText("未同意");
+                break;
+            case 1:
+                result.setText("已同意");
+                break;
+            case 2:
+                result.setText("已失效");
+                break;
         }
         return convertView;
     }

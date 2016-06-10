@@ -29,10 +29,13 @@
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="K4avkUbXEqLRbnMfuCotsrMjGzm79oFI" />
-
+        <activity android:name=".ui.Home.SendAdopt.Application"></activity>
         <activity android:name=".ui.Home.SendAdopt.EntrustMainActivity" />
         <activity android:name=".ui.Home.SendAdopt.PublishEntrust" />
         <activity android:name=".ui.Home.SendAdopt.SelectCityActivity" />
+        <activity android:name=".ui.Home.SendAdopt.SearchEntrust" />
+        <activity android:name=".ui.Home.SendAdopt.OtherEntrustDetail"></activity>
+        <activity android:name=".ui.Home.SendAdopt.MyEntrustDetail"></activity>
         <activity
             android:name=".ui.home"
             android:label="@string/title_activity_home" />
@@ -67,7 +70,7 @@
         <activity android:name=".ui.Me.adapter.MyPetActivity" />
         <activity android:name=".ui.Home.SendAdopt.EntrustAdoptMainActivity" />
         <activity android:name=".ui.Home.SendAdopt.endEntrust" />
-        <activity android:name=".ui.changeApplyApplication"></activity>
+        <activity android:name=".ui.Home.SendAdopt.changeApplyApplication"></activity>
     </application>
 
 </manifest>

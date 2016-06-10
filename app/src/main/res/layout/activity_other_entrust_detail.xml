@@ -30,18 +30,19 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <LinearLayout
+            android:layout_marginLeft="2dp"
             android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <ImageView
                 android:src="@mipmap/icon_title_kk"
-                android:layout_width="40dp"
-                android:layout_height="40dp" />
+                android:layout_width="30dp"
+                android:layout_height="30dp" />
             <TextView
                 android:layout_marginTop="5dp"
                 android:id="@+id/title"
-                android:textSize="25sp"
-                android:layout_width="100dp"
+                android:textSize="@dimen/TextView_textSize"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content" />
         </LinearLayout>
         <LinearLayout
@@ -49,45 +50,46 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <LinearLayout
+                android:layout_marginTop="5dp"
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <ImageView
                     android:id="@+id/usersex"
                     android:src="@mipmap/notknow"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp" />
+                    android:layout_width="30dp"
+                    android:layout_height="30dp" />
                 <TextView
                     android:layout_marginTop="5dp"
                     android:id="@+id/username"
-                    android:textSize="25sp"
+                    android:textSize="@dimen/TextView_textSize"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content" />
             </LinearLayout>
             <LinearLayout
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="6dp"
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <ImageView
                     android:src="@mipmap/givemonkk"
-                    android:textSize="25sp"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp" />
+                    android:layout_width="30dp"
+                    android:layout_height="30dp" />
                 <TextView
                     android:id="@+id/award"
                     android:layout_marginTop="5dp"
-                    android:gravity="center"
-                    android:textSize="25sp"
+                    android:gravity="left"
+                    android:textSize="@dimen/TextView_textSize"
                     android:text=""
                     android:layout_width="100dp"
                     android:layout_height="wrap_content" />
             </LinearLayout>
             <ImageView
+                android:layout_marginTop="5dp"
                 android:id="@+id/type"
                 android:src="@mipmap/type_other"
-                android:layout_width="40dp"
-                android:layout_height="40dp" />
+                android:layout_width="30dp"
+                android:layout_height="30dp" />
         </LinearLayout>
 <ImageView
     android:layout_gravity="center"
@@ -108,14 +110,15 @@
             android:layout_height="wrap_content">
 
             <TextView
+                android:layout_marginTop="8dp"
                 android:id="@+id/Pubtime"
-                android:textSize="25sp"
+                android:textSize="@dimen/TextView_textSize"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <ImageView
                 android:src="@mipmap/ic_time"
-                android:layout_width="40dp"
-                android:layout_height="40dp" />
+                android:layout_width="30dp"
+                android:layout_height="30dp" />
         </LinearLayout>
 
         <LinearLayout
@@ -129,7 +132,7 @@
                 android:layout_height="wrap_content" />
             <TextView
                 android:id="@+id/pet_chatacter"
-                android:textSize="25sp"
+                android:textSize="@dimen/TextView_textSize"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </LinearLayout>
@@ -145,7 +148,7 @@
                 android:layout_height="wrap_content" />
             <TextView
                 android:id="@+id/pet_age"
-                android:textSize="18sp"
+                android:textSize="@dimen/TextView_textSize"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </LinearLayout>
@@ -161,13 +164,14 @@
                 android:layout_height="30dp" />
             <TextView
                 android:id="@+id/connect_phone"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:textSize="@dimen/editText_textSize"
                 android:text="12345678"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </LinearLayout>
         <ImageView
+            android:layout_marginTop="10dp"
             android:id="@+id/submit"
             android:layout_gravity="center"
             android:src="@mipmap/apply_btnkk"

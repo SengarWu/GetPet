@@ -9,9 +9,10 @@
     android:layout_width="wrap_content"
     android:layout_height="40dp">
     <ImageView
+        android:layout_marginLeft="5dp"
         android:id="@+id/sex_icon"
-        android:layout_width="40dp"
-        android:layout_height="40dp" />
+        android:layout_width="35dp"
+        android:layout_height="35dp" />
     <TextView
         android:gravity="center_vertical"
         android:id="@+id/username"
@@ -31,8 +32,8 @@
         android:layout_height="40dp">
         <ImageView
             android:src="@mipmap/icon_title_kk"
-            android:layout_width="40dp"
-            android:layout_height="40dp" />
+            android:layout_width="35dp"
+            android:layout_height="35dp" />
         <TextView
             android:gravity="center"
             android:id="@+id/title"
@@ -49,8 +50,8 @@
         android:layout_height="wrap_content">
         <ImageView
             android:src="@mipmap/givemonkk"
-            android:layout_width="40dp"
-            android:layout_height="40dp" />
+            android:layout_width="35dp"
+            android:layout_height="35dp" />
         <TextView
             android:gravity="center"
             android:id="@+id/award"
@@ -67,8 +68,8 @@
         <ImageView
             android:id="@+id/type"
             android:src="@mipmap/type_other"
-            android:layout_width="40dp"
-            android:layout_height="40dp" />
+            android:layout_width="35dp"
+            android:layout_height="35dp" />
     </LinearLayout>
      <RelativeLayout
          android:layout_marginTop="8dp"

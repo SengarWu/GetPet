@@ -92,7 +92,7 @@ public class EntrustMainActivity extends BaseActivity implements View.OnClickLis
                 item.putExtra("entrustId",items.get(position).getId());
                 item.putExtra("title",items.get(position).getTitle());
                 item.putExtra("petname",items.get(position).getPet().getName());
-                item.putExtra("award",items.get(position).getAward());
+                item.putExtra("award",String.valueOf(items.get(position).getAward()));
                 item.putExtra("content",items.get(position).getDetail());
                 item.putExtra("pubtime", TimeUtils.dateToString(items.get(position).getDate(),TimeUtils.FORMAT_DATE_TIME_SECOND));
                 item.putExtra("state",items.get(position).getStatus());

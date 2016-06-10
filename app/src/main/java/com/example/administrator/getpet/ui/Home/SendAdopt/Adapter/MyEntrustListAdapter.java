@@ -33,7 +33,14 @@ public class MyEntrustListAdapter extends BaseListAdapter<entrust> {
         TextView publishTime=(TextView) ViewHolder.get(convertView,R.id.publishTime);
         TextView state=(TextView) ViewHolder.get(convertView,R.id.state);
         //显示该消息的状态
-        state.setText(contract.getStatus());
+        switch (contract.getStatus()){
+            case "正常":
+                state.setText("等待申请");
+                break;
+            default:
+                state.setText(contract.getStatus());
+                break;
+        }
         if(contract.getTitle()!=null) {
             title.setText(contract.getTitle());
         }
@@ -42,7 +49,7 @@ public class MyEntrustListAdapter extends BaseListAdapter<entrust> {
         }
         award.setText(String.valueOf(contract.getAward()));
         if(contract.getDate()!=null) {
-            TimeUtils.dateToString(contract.getDate(),TimeUtils.FORMAT_DATE_TIME_SECOND);
+            publishTime.setText(TimeUtils.dateToString(contract.getDate(),TimeUtils.FORMAT_DATE_TIME_SECOND));
         }
 
         SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("applyApplication","QueryCount");

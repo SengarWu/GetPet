@@ -96,13 +96,12 @@ public class ModifyEntrust extends BaseActivity implements View.OnClickListener 
                 this.finish();
                 break;
             case R.id.modify:
-                SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("entrust","updateColumnsByWheres");
-                httpReponse.addWhereParams("entrustId","=",entrustId);
+                SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("entrust","updateColumnsById");
                 httpReponse.addColumnParams("title",title.getText().toString());
                 httpReponse.addColumnParams("detail",content.getText().toString());
                 httpReponse.addColumnParams("award",award.getText().toString());
                 httpReponse.addColumnParams("petId",mypetList.get(pet_list.getSelectedItemPosition()).getId());
-                httpReponse.updateColumnsByWheres( new HttpCallBack() {
+                httpReponse.updateColumnsById(entrustId, new HttpCallBack() {
                     @Override
                     public void Success(String data) {
                         Toast.makeText(getApplicationContext(),"修改成功",Toast.LENGTH_LONG).show();

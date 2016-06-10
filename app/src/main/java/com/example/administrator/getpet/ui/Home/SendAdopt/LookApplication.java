@@ -88,9 +88,6 @@ public class LookApplication extends BaseActivity implements View.OnClickListene
         listView.setOnItemClickListener(new ZrcListView.OnItemClickListener() {
             @Override
             public void onItemClick(ZrcListView parent, View view, int position, long id) {
-                //Intent item = new Intent(SearchQuestion.this, ShowQuesiondetails.class);
-
-                // startActivity(item);
             }
         });
 
@@ -166,7 +163,6 @@ public class LookApplication extends BaseActivity implements View.OnClickListene
             case R.id.back:
                 this.finish();
                 break;
-
         }
     }
 

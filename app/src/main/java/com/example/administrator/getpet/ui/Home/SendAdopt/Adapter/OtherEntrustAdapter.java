@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.example.administrator.getpet.R;
 import com.example.administrator.getpet.bean.entrust;
+import com.example.administrator.getpet.utils.TimeUtils;
 
 import java.util.List;
 
@@ -25,11 +26,13 @@ public class OtherEntrustAdapter extends BaseListAdapter<entrust> {
             convertView = mInflater.inflate(R.layout.include_otherentrust, null);
         }
         final entrust contract=getList().get(position);
+        TextView title=(TextView)ViewHolder.get(convertView,R.id.title);
         ImageView sex_icon=(ImageView)ViewHolder.get(convertView,R.id.sex_icon);
         TextView username=(TextView)ViewHolder.get(convertView,R.id.username);
         TextView award=(TextView)ViewHolder.get(convertView,R.id.award);
         ImageView pet_type=(ImageView)ViewHolder.get(convertView,R.id.type);
         TextView time=(TextView)ViewHolder.get(convertView,R.id.time);
+        TextView city=(TextView)ViewHolder.get(convertView,R.id.city);
         switch (contract.getUsers().getSex()) {
             case "男":
                 sex_icon.setImageResource(R.mipmap.boy);
@@ -41,8 +44,9 @@ public class OtherEntrustAdapter extends BaseListAdapter<entrust> {
                 sex_icon.setImageResource(R.mipmap.notknow);
                 break;
         }
+        title.setText(contract.getTitle());
         username.setText(contract.getUsers().getNickName());
-        award.setText(contract.getAward());
+        award.setText(String.valueOf(contract.getAward()));
         switch (contract.getPet().getCategory().getName()){
             case "猫":
                 pet_type.setImageResource(R.mipmap.cat_type);
@@ -57,7 +61,8 @@ public class OtherEntrustAdapter extends BaseListAdapter<entrust> {
                 pet_type.setImageResource(R.mipmap.type_other);
                 break;
         }
-        time.setText(contract.getDate().toString());
+        city.setText(contract.getCity());
+        time.setText(TimeUtils.dateToString(contract.getDate(),TimeUtils.FORMAT_DATE_TIME_SECOND));
         return convertView;
     }
 }
