@@ -1,11 +1,11 @@
 package com.example.administrator.getpet.base;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.view.View;
 
 import com.example.administrator.getpet.utils.CommonUtils;
@@ -14,7 +14,7 @@ import com.example.administrator.getpet.utils.ToastUtils;
 /**
  * Created by Administrator on 2016/3/14.
  */
-public class BaseActivity extends Activity {
+public class BaseActivity extends FragmentActivity {
     protected Context mContext;
     public SharedPreferences preferences;
     public SharedPreferences.Editor editor;

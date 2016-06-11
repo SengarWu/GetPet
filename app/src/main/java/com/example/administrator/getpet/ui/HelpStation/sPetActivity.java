@@ -57,7 +57,7 @@ public class sPetActivity extends BaseActivity implements View.OnClickListener {
     }
 
     private void initView() {
-        ib_back = $(R.id.lv_spet);
+        ib_back = $(R.id.ib_back);
         ib_back.setOnClickListener(this);
         tv_add_spet = $(R.id.tv_add_spet);
         tv_add_spet.setOnClickListener(this);

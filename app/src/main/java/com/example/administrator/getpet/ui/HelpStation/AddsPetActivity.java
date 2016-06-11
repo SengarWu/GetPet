@@ -102,6 +102,7 @@ public class AddsPetActivity extends BaseActivity implements View.OnClickListene
                     spet.address = spet_address;
                     Station station = new Station();
                     station.id = preferences.getString("id","");
+                    Log.d(TAG, "onClick: id:"+station.id);
                     spet.Station = station;
                 }
                 catch (Exception e)

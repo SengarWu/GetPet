@@ -93,6 +93,11 @@ public class AdminLoginActivity extends BaseActivity implements View.OnClickList
                 progress.dismiss();
                 Log.i(TAG, "Success: data:"+data);
                 users user = JSONUtil.parseObject(data,users.class);
+                if (user.identify == 0)
+                {
+                    ToastUtils.showToast(mContext,"您没有登录救助站权限哦！");
+                    return;
+                }
                 editor.putString("id",user.id);
                 editor.putString("phone",user.phone);
                 editor.commit();
