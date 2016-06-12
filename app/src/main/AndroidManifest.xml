@@ -82,6 +82,7 @@
         <activity android:name=".ui.HelpStation.StationMsgActivity" />
         <activity android:name=".ui.HelpStation.RegisterAdminActivity" />
         <activity android:name=".ui.HelpStation.AdoptDetailActivity"></activity>
+        <activity android:name=".ui.PetHelp.DonateActivity"/>
     </application>
 
 </manifest>

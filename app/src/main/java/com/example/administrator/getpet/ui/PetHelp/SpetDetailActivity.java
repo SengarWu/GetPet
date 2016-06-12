@@ -26,6 +26,7 @@ public class SpetDetailActivity extends BaseActivity implements View.OnClickList
     private ImageButton ib_spet_donate;
     private ImageButton ib_spet_adopt;
     private ImageButton ib_station_activity;
+    private sPet spet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +40,7 @@ public class SpetDetailActivity extends BaseActivity implements View.OnClickList
         Intent intent = getIntent();
         if (intent != null)
         {
-            sPet spet = (sPet) intent.getSerializableExtra("spet");
+            spet = (sPet) intent.getSerializableExtra("spet");
             if (spet == null)
             {
                 ToastUtils.showToast(mContext,"获取数据失败！");
@@ -83,7 +84,9 @@ public class SpetDetailActivity extends BaseActivity implements View.OnClickList
                 finish();
                 break;
             case R.id.ib_spet_donate:
-
+                Intent intent = new Intent(SpetDetailActivity.this,DonateActivity.class);
+                intent.putExtra("id",spet.id);
+                startActivity(intent);
                 break;
             case R.id.ib_spet_adopt:
 
