@@ -1,5 +1,6 @@
 package com.example.administrator.getpet.ui.PetHelp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -8,15 +9,17 @@ import android.widget.TextView;
 
 import com.example.administrator.getpet.R;
 import com.example.administrator.getpet.base.BaseActivity;
+import com.example.administrator.getpet.bean.sPet;
+import com.example.administrator.getpet.utils.GetPictureUtils;
+import com.example.administrator.getpet.utils.ToastUtils;
 
 public class SpetDetailActivity extends BaseActivity implements View.OnClickListener {
 
     private ImageButton ib_back;
-    private ImageButton ib_attention;
     private ImageView iv_spet_photo;
+    private TextView tv_spet_name;
     private TextView tv_spet_age;
     private TextView tv_spet_state;
-    private TextView tv_spet_character;
     private TextView tv_spet_money;
     private TextView tv_spet_station;
     private TextView tv_spet_address;
@@ -29,17 +32,38 @@ public class SpetDetailActivity extends BaseActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_spet_detail);
         initView();
+        loadData();
+    }
+
+    private void loadData() {
+        Intent intent = getIntent();
+        if (intent != null)
+        {
+            sPet spet = (sPet) intent.getSerializableExtra("spet");
+            if (spet == null)
+            {
+                ToastUtils.showToast(mContext,"获取数据失败！");
+                return;
+            }
+            int length = intent.getIntExtra("length",0);
+            int position = intent.getIntExtra("position",0);
+            iv_spet_photo.setImageResource(GetPictureUtils.GetPicture(length)[position]);
+            tv_spet_name.setText(spet.name);
+            tv_spet_age.setText(String.valueOf(spet.age));
+            tv_spet_state.setText(spet.state);
+            tv_spet_money.setText(String.valueOf(spet.money));
+            tv_spet_station.setText(spet.Station.name);
+            tv_spet_address.setText(spet.address);
+        }
     }
 
     private void initView() {
         ib_back = $(R.id.ib_back);
         ib_back.setOnClickListener(this);
-        ib_attention = $(R.id.ib_attention);
-        ib_attention.setOnClickListener(this);
         iv_spet_photo = $(R.id.iv_spet_photo);
+        tv_spet_name = $(R.id.tv_spet_name);
         tv_spet_age = $(R.id.tv_spet_age);
         tv_spet_state = $(R.id.tv_spet_state);
-        tv_spet_character = $(R.id.tv_spet_character);
         tv_spet_money = $(R.id.tv_spet_money);
         tv_spet_station = $(R.id.tv_spet_station);
         tv_spet_address = $(R.id.tv_spet_address);
@@ -57,9 +81,6 @@ public class SpetDetailActivity extends BaseActivity implements View.OnClickList
         {
             case R.id.ib_back:
                 finish();
-                break;
-            case R.id.ib_attention:
-
                 break;
             case R.id.ib_spet_donate:
 

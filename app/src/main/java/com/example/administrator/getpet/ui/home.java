@@ -104,6 +104,8 @@ public class home extends BaseActivity implements View.OnClickListener {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(home.this, SpetDetailActivity.class);
+                intent.putExtra("length",sPetArry.length);
+                intent.putExtra("position",position);
                 Bundle data = new Bundle(); //Bundle对象用于传递果种对象
                 sPet spet = sPetArry[position]; //点中的对象
                 data.putSerializable("spet", spet);

@@ -31,14 +31,6 @@
             android:textColor="@color/base_color_text_white"
             android:layout_centerInParent="true"/>
 
-        <ImageButton
-            android:id="@+id/ib_attention"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_alignParentRight="true"
-            android:background="@color/color_transparent_bg"
-            android:src="@mipmap/home_ic_attention"/>
-
     </RelativeLayout>
 
     <LinearLayout
@@ -137,25 +129,6 @@
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="5dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="性格:"/>
-
-                    <TextView
-                        android:id="@+id/tv_spet_character"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:text="调皮"/>
-
-                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
