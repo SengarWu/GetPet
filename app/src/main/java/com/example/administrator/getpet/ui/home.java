@@ -32,6 +32,7 @@ import com.example.administrator.getpet.ui.Me.MyPetActivity;
 import com.example.administrator.getpet.ui.Me.adapter.sPetAdapter;
 import com.example.administrator.getpet.ui.findPet.myAttention;
 import com.example.administrator.getpet.ui.findPet.myPublishes;
+import com.example.administrator.getpet.ui.findPet.petScan;
 import com.example.administrator.getpet.utils.GetPictureUtils;
 import com.example.administrator.getpet.utils.HttpCallBack;
 import com.example.administrator.getpet.utils.JSONUtil;
@@ -265,7 +266,7 @@ public class home extends BaseActivity implements View.OnClickListener {
                 startActivity(intent2);
                 break;
             case R.id.ll_xunhui://寻回
-
+                startAnimActivity(petScan.class);
                 break;
         }
     }
