@@ -35,7 +35,7 @@ public class adaptPublish extends RecyclerView.Adapter<adaptPublish.publishViewH
     private Context mContext;
 
     public adaptPublish(Context context) {
-        int c;
+
         this.mContext=context;
         this.layoutInflater =
                 (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
