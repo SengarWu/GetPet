@@ -112,7 +112,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/base_color_red"
                 android:textSize="22sp"
-                android:text="11.00"/>
+                android:text=""/>
 
         </LinearLayout>
 

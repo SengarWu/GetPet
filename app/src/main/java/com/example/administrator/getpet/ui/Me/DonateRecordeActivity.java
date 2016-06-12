@@ -15,6 +15,7 @@ import com.example.administrator.getpet.utils.GetPictureUtils;
 import com.example.administrator.getpet.utils.HttpCallBack;
 import com.example.administrator.getpet.utils.JSONUtil;
 import com.example.administrator.getpet.utils.SimpleHttpPostUtil;
+import com.example.administrator.getpet.utils.TimeUtils;
 import com.example.administrator.getpet.utils.ToastUtils;
 
 import java.util.ArrayList;
@@ -30,10 +31,10 @@ public class DonateRecordeActivity extends BaseActivity {
     private ListView lv_donate;
     private ProgressDialog progress;
     private donate[] donateArry;
-    private int[] image; //图片
+    /*private int[] image; //图片
     private String[] time = {"2016/6/7 20:00","2016/6/7 20:10","2016/6/7 20:20"};
     private String[] pet_name = {"小胖","妮妮","婷婷"};
-    private String[] money = {"10","20","30"};
+    private String[] money = {"10","20","30"};*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +50,7 @@ public class DonateRecordeActivity extends BaseActivity {
     private void loadData() {
         SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("donate","QueryList");
         String id = preferences.getString("id","");
+        Log.d(TAG, "loadData: id:"+id);
         httpReponse.addWhereParams("userId","=",id);
         httpReponse.QueryList(-1, 1, new HttpCallBack() {
             @Override
@@ -71,17 +73,18 @@ public class DonateRecordeActivity extends BaseActivity {
 
     private void setupView() {
         List<Map<String,Object>> listItems = new ArrayList<Map<String,Object>>();
-        for (int i = 0; i < time.length; i++) {
+        for (int i = 0; i < donateArry.length; i++) {
             Map<String,Object> listItem = new HashMap<String,Object>();
-            listItem.put("image", GetPictureUtils.GetPicture(time.length)[i]);
-            listItem.put("time",time[i]);
-            listItem.put("pet_name",pet_name[i]);
-            listItem.put("money",money[i]);
+            listItem.put("image", GetPictureUtils.GetPicture(donateArry.length)[i]);
+            listItem.put("time", TimeUtils.dateToString(donateArry[i].time,"yyyy-MM-dd HH:mm:ss"));
+            listItem.put("pet_name",donateArry[i].sPet.name);
+            listItem.put("money",donateArry[i].money);
+            listItem.put("message",donateArry[i].message);
             listItems.add(listItem);
         }
         SimpleAdapter adapter = new SimpleAdapter(this,listItems,R.layout.donate_record_item,
-                new String[]{"image","time","pet_name","money"},new int[]{R.id.riv_pet_photo,R.id.tv_time,
-                R.id.tv_spet_name,R.id.tv_money});
+                new String[]{"image","time","pet_name","money","message"},new int[]{R.id.riv_pet_photo,R.id.tv_time,
+                R.id.tv_spet_name,R.id.tv_money,R.id.tv_message});
         lv_donate.setAdapter(adapter);
     }
 

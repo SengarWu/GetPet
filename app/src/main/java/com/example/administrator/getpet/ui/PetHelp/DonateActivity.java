@@ -136,8 +136,10 @@ public class DonateActivity extends BaseActivity implements View.OnClickListener
         dona.time = c.getTime();
         sPet spet = new sPet();
         spet.id = id;
+        dona.sPet = spet;
         users user = new users();
         user.id = preferences.getString("id","");
+        dona.users = user;
         httpReponse.insert(dona, new HttpCallBack() {
             @Override
             public void Success(String data) {
