@@ -32,6 +32,7 @@ public class petScan extends BaseActivity {
     Button publish;
     RecyclerView recyclerView;
     adaptScan scanAdapt;
+    int c;
     //加载等待进度圈
     private ProgressDialog progressDialog;
     @Override
