@@ -66,6 +66,12 @@
         <activity android:name=".ui.Me.MyPetActivity" />
         <activity android:name=".ui.PetHelp.SpetDetailActivity" />
         <activity android:name=".ui.Home.PetCircle.SearchPost" />
+        <!-- 李祎楠 -->
+        <activity android:name=".ui.Home.PetCircle.myPostHistory" />
+        <activity android:name=".ui.Home.PetCircle.PublishPost" />
+        <activity android:name=".ui.Home.PetCircle.PostDetail" />
+        <activity android:name=".ui.Home.PetCircle.MyPostDetail" />
+        <!-- 李祎楠 -->
         <activity android:name=".ui.Login.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
