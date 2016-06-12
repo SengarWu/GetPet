@@ -88,11 +88,12 @@
         <activity android:name=".ui.HelpStation.StationMsgActivity" />
         <activity android:name=".ui.HelpStation.RegisterAdminActivity" />
         <activity android:name=".ui.HelpStation.AdoptDetailActivity" />
+        <activity android:name=".ui.PetHelp.DonateActivity" />
+        <activity android:name=".ui.HelpStation.ApplyAdoptActivity"></activity>
         <activity android:name=".ui.Home.PetCircle.PostMainActivity" />
         <activity android:name=".ui.Home.PetCircle.LookPetActivity" />
         <activity android:name=".ui.Home.PetCircle.ShowPetDetail"></activity>
-        <activity android:name=".ui.PetHelp.DonateActivity" />
-        <activity android:name=".ui.HelpStation.ApplyAdoptActivity"></activity>
+
     </application>
 
 </manifest>
