@@ -3,6 +3,7 @@ package com.example.administrator.getpet.ui.Home.SendAdopt;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.View;
 import android.widget.ImageView;
@@ -28,17 +29,18 @@ import java.util.List;
 
 
 public class SearchEntrust extends BaseActivity implements View.OnClickListener {
-    private String ty="所有类型";
+    private String tyId ="所有类型";
     public String citystr="所有城市";
-    private DrawerLayout petlayout;
-    private ImageView cat,dog,fish,other;
-    private ZrcListView listView;
+    private DrawerLayout petlayout;//用于类型筛选的侧拉框
+    private ImageView cat,dog,fish,other;//各个宠物类型的选择图标
+    private TextView alltype;//所有类型的图标
+    private ZrcListView listView;//用于显示寄养信息列表
     private Handler handler;//用于接收子线程的信息以刷新主线程
     int curPage = 1;//页码
-    private OtherEntrustAdapter adapter;
-    private ArrayList<entrust> items = new ArrayList<>();
+    private OtherEntrustAdapter adapter;//用于向列表填充数据的适配器
+    private ArrayList<entrust> items = new ArrayList<>();//用于记录已经查询到的寄养信息条数
     private TextView city;//用于显示城市
-    private List<entrust> tempolist;//用于存放返回数据的列表
+    //private List<entrust> tempolist;//用于存放返回数据的列表
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,10 +56,13 @@ public class SearchEntrust extends BaseActivity implements View.OnClickListener 
         fish=(ImageView)findViewById(R.id.fish);
         other=(ImageView)findViewById(R.id.other);
         city=(TextView)findViewById(R.id.tv_city);
+        alltype=(TextView)findViewById(R.id.alltype);
+        city.setOnClickListener(this);
         cat.setOnClickListener(this);
         dog.setOnClickListener(this);
         fish.setOnClickListener(this);
         other.setOnClickListener(this);
+        alltype.setOnClickListener(this);
         listView = (ZrcListView)findViewById(R.id.other_entrust_list);
         handler = new Handler();
         // 设置下拉刷新的样式（可选，但如果没有Header则无法下拉刷新）
@@ -135,18 +140,18 @@ public class SearchEntrust extends BaseActivity implements View.OnClickListener 
             }
         });
     }
-
+/*
     private void QueryCountEntrust() {//存疑
         //http请求
         SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("entrust","QueryListByCategoryName");
         httpReponse.addWhereParams("userId","!=",preferences.getString("id",""));
-        if(citystr!="所有城市") {
+        if(citystr.equals("所有城市")) {
             httpReponse.addWhereParams("city", "=", citystr, "and");
         }
         httpReponse.addWhereParams("index","=",String.valueOf(curPage),"and");
         httpReponse.addWhereParams("size","=","10","and");
-        if(ty!="所有类型"){
-            httpReponse.addWhereParams("categoryName","=",ty,"and");
+        if(tyId .equals("所有类型")){
+            httpReponse.addWhereParams("categoryName","=", tyId,"and");
         }
         //只查询状态为正常的寄养信息
         httpReponse.addWhereParams("status","=","正常","and");
@@ -168,31 +173,31 @@ public class SearchEntrust extends BaseActivity implements View.OnClickListener 
                 listView.stopLoadMore();
             }
         });
-    }
-
+    }*/
+/*
+加载更多
+ */
     private void Querymore(int Page) {
-        SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("entrust","QueryListByCategoryName");
+        SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("entrust","QueryList");
         httpReponse.addWhereParams("userId","!=",preferences.getString("id",""));
-        if(citystr!="所有城市") {
+        if(!citystr.equals("所有城市")) {
             httpReponse.addWhereParams("city", "=", citystr, "and");
         }
-        if(ty!="所有类型"){
-            httpReponse.addWhereParams("categoryName","=",ty,"and");
+        if(!tyId .equals("所有类型")){
+            httpReponse.addWhereParams("categoryId", "=",  tyId,"and");
         }
-        httpReponse.skip(Page);
-        httpReponse.limit(10);
         //只查询状态为正常的寄养信息
         httpReponse.addWhereParams("status","=","正常","and");
         //添加排序的字段
-        httpReponse.addOrderFieldParams("entrust.date");
+        httpReponse.addOrderFieldParams("date");
         //是否为降序  true表示降序   false表示正序
         httpReponse.addIsDescParams(true);
         //调用QueryList方法   第一个参数是页码  第二个是每页的数目   当页码为-1时表示全查询
-        httpReponse.send(new HttpCallBack() {
+        httpReponse.QueryList(Page,10,new HttpCallBack() {
             @Override
             public void Success(String data) {
-                tempolist= Arrays.asList(JSONUtil.parseArray(data,entrust.class));
-                if(tempolist.size()<10) {
+                List<entrust> tempolist= Arrays.asList(JSONUtil.parseArray(data,entrust.class));
+                if(tempolist.size()<10) {//数据如果小于10条，表示是最后一页了，停止加载更多
                     if (CommonUtils.isNotNull(tempolist)) {
                         adapter.addAll(tempolist);
                     }
@@ -200,6 +205,11 @@ public class SearchEntrust extends BaseActivity implements View.OnClickListener 
                     listView.setLoadMoreSuccess();
                     listView.stopLoadMore();
                 }else{
+                    if (CommonUtils.isNotNull(tempolist)) {
+                        adapter.addAll(tempolist);
+                    }
+                    adapter.notifyDataSetChanged();
+                    listView.setLoadMoreSuccess();
                     curPage++;
                 }
             }
@@ -213,28 +223,25 @@ public class SearchEntrust extends BaseActivity implements View.OnClickListener 
     }
 
     private void QueryEntrust() {
-        SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("entrust","QueryListByCategoryName");
+        SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("entrust","QueryList");
         httpReponse.addWhereParams("userId","!=",preferences.getString("id",""));
-        if(citystr!="所有城市") {
+        if(!citystr.equals("所有城市")) {
             httpReponse.addWhereParams("city", "=", citystr, "and");
         }
-        if(ty!="所有类型"){
-            httpReponse.addWhereParams("categoryName","=",ty,"and");
-        }
-
-        httpReponse.skip(1);
-        httpReponse.limit(10);
+        if(!tyId .equals("所有类型")){
+            httpReponse.addParams("categoryId", tyId);
+       }
         //只查询状态为正常的寄养信息
         httpReponse.addWhereParams("status","=","正常","and");
         //添加排序的字段
-        httpReponse.addOrderFieldParams("entrust.date");
+        httpReponse.addOrderFieldParams("date");
         //是否为降序  true表示降序   false表示正序
         httpReponse.addIsDescParams(true);
         //调用QueryList方法   第一个参数是页码  第二个是每页的数目   当页码为-1时表示全查询
-        httpReponse.send(new HttpCallBack() {
+        httpReponse.QueryList(1,10,new HttpCallBack() {
             @Override
             public void Success(String data) {
-                tempolist= Arrays.asList(JSONUtil.parseArray(data,entrust.class));
+                List<entrust> tempolist= Arrays.asList(JSONUtil.parseArray(data,entrust.class));
                 if (tempolist.size() != 0) {
                     if (CommonUtils.isNotNull(tempolist)) {//监测网络等是否可用
                         items.clear();
@@ -275,20 +282,37 @@ public class SearchEntrust extends BaseActivity implements View.OnClickListener 
     public void onClick(View v) {
         switch(v.getId()) {
             case R.id.cat:
-                ty="猫";
+                tyId ="1";
+                petlayout.closeDrawer(GravityCompat.START);
+                listView.setSelection(0);
                 listView.refresh();
                 break;
             case R.id.dog:
-                ty="狗";
+                tyId ="2";
+                petlayout.closeDrawer(GravityCompat.START);
+                listView.setSelection(0);
                 listView.refresh();
                 break;
             case R.id.fish:
-                ty="鱼";
+                tyId ="3";
+                petlayout.closeDrawer(GravityCompat.START);
+                listView.setSelection(0);
                 listView.refresh();
                 break;
             case R.id.other:
+                tyId ="4";
+                petlayout.closeDrawer(GravityCompat.START);
+                listView.setSelection(0);
                 listView.refresh();
-                ty="其他";
+                break;
+            case R.id.alltype:
+                tyId ="所有类型";
+                petlayout.closeDrawer(GravityCompat.START);
+                listView.setSelection(0);
+                listView.refresh();
+                break;
+            case R.id.tv_city:
+                startActivityForResult(new Intent(this, SelectCityActivity.class), 99);
                 break;
         }
     }
@@ -302,11 +326,7 @@ public class SearchEntrust extends BaseActivity implements View.OnClickListener 
                     String receive=data.getStringExtra("lngCityName");
                     city.setText(receive);
                     citystr=receive;
-/*                    if(!receive.equals("所有城市")) {
-                        citystr = data.getStringExtra("lngCityName");
-                    }else{
-                        citystr="所有城市";
-                    }*/
+                    listView.setSelection(0);
                     listView.refresh();
                     break;
                 default:

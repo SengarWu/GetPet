@@ -24,6 +24,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class PublishEntrust extends BaseActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
     private EditText title;//标题
@@ -34,8 +36,8 @@ public class PublishEntrust extends BaseActivity implements View.OnClickListener
     private ImageView sumit;//提交
     private String citystr="所有城市";//城市
     private List<pet> mypetList;//个人宠物列表
-    private int petIndex;
-    private ImageView back;
+    private int petIndex;//页码
+    private ImageView back;//返回按钮
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +46,7 @@ public class PublishEntrust extends BaseActivity implements View.OnClickListener
     }
 
     private void init() {
+        //界面控件的获取与初始化
         title=(EditText)findViewById(R.id.title);
         content=(EditText)findViewById(R.id.content);
         pet_list=(Spinner) findViewById(R.id.pet_list);
@@ -57,7 +60,9 @@ public class PublishEntrust extends BaseActivity implements View.OnClickListener
         showmypet();
         pet_list.setOnItemSelectedListener(this);
     }
-
+/*
+  显示用户的宠物信息
+*/
     private void showmypet() {
         //发送http请求
         SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("pet","QueryList");
@@ -87,7 +92,9 @@ public class PublishEntrust extends BaseActivity implements View.OnClickListener
             }
         });
     }
-
+/*
+     处理控件点击事件
+*/
     @Override
     public void onClick(View view) {
         switch(view.getId()) {
@@ -124,45 +131,62 @@ public class PublishEntrust extends BaseActivity implements View.OnClickListener
      *
      */
     public void submit() {
-        entrust n_entrust=new entrust();
-        n_entrust.setTitle(title.getText().toString());
-        n_entrust.setDetail(content.getText().toString());
-        //n_entrust.setPetId(pet_list.getSelectedItem().toString());
-        //n_entrust.setUser_id();
-        n_entrust.setAward(Integer.valueOf(award.getText().toString()));
-        //获取系统当前时间
-       /* SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
-        String datestr = sDateFormat.format(new java.util.Date());*/
-        //String now=TimeUtils.dateToString(d,TimeUtils.FORMAT_DATE);
-        n_entrust.setDate(new Date());
-        //设置状态
-        n_entrust.setStatus("正常");
-        //设置用户
-        users x=new users();
-        x.setId(preferences.getString("id",""));
-        n_entrust.setUsers(x);
-        //设置宠物
-        pet entrust_pet=mypetList.get(petIndex);
-        n_entrust.setPet(entrust_pet);
-        if(citystr!="所有城市") {
-            n_entrust.setCity(citystr);
+        //验证用户的输入
+        String regex = "^\\+?[1-9][0-9]*$";
+        if(title.getText().toString().equals("")){
+            Toast.makeText(getApplicationContext(), "标题不可为空",Toast.LENGTH_LONG).show();
+        }else if(content.getText().equals("")){
+            Toast.makeText(getApplicationContext(), "内容不可为空",Toast.LENGTH_LONG).show();
+        }else if(!match(regex,award.getText().toString())){
+            Toast.makeText(getApplicationContext(), "悬赏金额只能为正整数",Toast.LENGTH_LONG).show();
         }else {
-            n_entrust.setCity("所有城市");
-        }
-        //发送发布寄养信息的数据请求
-        SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("entrust","Insert");
-        httpReponse.insert(n_entrust, new HttpCallBack() {
-            @Override
-            public void Success(String data) {
-                Toast.makeText(getApplicationContext(), "插入成功",Toast.LENGTH_LONG).show();
+            //对象初始化
+            entrust n_entrust = new entrust();
+            n_entrust.setTitle(title.getText().toString());
+            n_entrust.setDetail(content.getText().toString());
+            n_entrust.setAward(Integer.valueOf(award.getText().toString()));
+            n_entrust.setDate(new Date());
+            //设置状态
+            n_entrust.setStatus("正常");
+            //设置用户
+            users x = new users();
+            x.setId(preferences.getString("id", ""));
+            n_entrust.setUsers(x);
+            //设置宠物
+            pet entrust_pet = mypetList.get(petIndex);
+            n_entrust.setPet(entrust_pet);
+            if (citystr != "所有城市") {
+                n_entrust.setCity(citystr);
+            } else {
+                n_entrust.setCity("所有城市");
             }
-            @Override
-            public void Fail(String e) {
-                Toast.makeText(getApplicationContext(), e.toString(),Toast.LENGTH_LONG).show();
-            }
-        });
+            //发送发布寄养信息的数据请求
+            SimpleHttpPostUtil httpReponse = new SimpleHttpPostUtil("entrust", "Insert");
+            httpReponse.insert(n_entrust, new HttpCallBack() {
+                @Override
+                public void Success(String data) {
+                    Toast.makeText(getApplicationContext(), "发布成功", Toast.LENGTH_LONG).show();
+                    PublishEntrust.this.finish();
+                }
 
+                @Override
+                public void Fail(String e) {
+                    Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_LONG).show();
+                }
+            });
+        }
     }
+    /*
+    用于正则表达式验证的方法
+     */
+    private static boolean match(String regex, String str) {
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(str);
+        return matcher.matches();
+    }
+/*
+接受返回的城市字符
+ */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         // TODO Auto-generated method stub
@@ -195,4 +219,6 @@ public class PublishEntrust extends BaseActivity implements View.OnClickListener
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
+
+
 }

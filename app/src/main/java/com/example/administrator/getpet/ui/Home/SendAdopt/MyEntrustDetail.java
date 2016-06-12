@@ -22,23 +22,23 @@ import com.example.administrator.getpet.utils.TimeUtils;
 import java.sql.Time;
 
 public class MyEntrustDetail extends BaseActivity implements View.OnClickListener {
-    private Button cancle;
-    private Button modify;
-    private Button lookapply;
-    private TextView title;
-    private TextView petname;
-    private TextView award;
-    private TextView details;
-    private TextView Pubtime;
-    private String entrustId;
-    private String state;
-    private String title2;
-    private String petId;
-    private String award2;
-    private String details2;
-    private Button giveComment;
-    private entrust Curentrust;
-    private ProgressDialog progress;
+    private Button cancle;//取消按钮
+    private Button modify;//修改按钮
+    private Button lookapply;//查看申请按钮
+    private TextView title;//标题
+    private TextView petname;//宠物名称
+    private TextView award;//悬赏金额
+    private TextView details;//详情
+    private TextView Pubtime;//发布时间
+    private String entrustId;//寄养信息的id
+    private String state;//寄养信息的状态
+    private String title2;//记录标题
+    private String petId;//记录
+    private String award2;//记录
+    private String details2;//记录
+    private Button giveComment;//给予评价按钮
+    private entrust Curentrust;//记录寄养信息类
+    private ProgressDialog progress;//进度框
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,7 +63,7 @@ public class MyEntrustDetail extends BaseActivity implements View.OnClickListene
         giveComment.setOnClickListener(this);
         final Intent intent=getIntent();
         entrustId=intent.getStringExtra("entrustId");
-        //传入表名和方法名   方法名：QuerySinglebyid
+        //更细寄养信息
         SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("entrust","QuerySinglebyid");
         //调用QuerySinglebyid方法 第一个参数是id
         httpReponse.QuerySinglebyid(entrustId, new HttpCallBack() {
@@ -86,6 +86,7 @@ public class MyEntrustDetail extends BaseActivity implements View.OnClickListene
             }
             @Override
             public void Fail(String e) {
+                //如果网络不好则显示已经查询到的信息
                 progress.dismiss();
                 Toast.makeText(getApplicationContext(),"网络忙，数据更新失败",Toast.LENGTH_LONG).show();
                 title.setText(intent.getStringExtra("title"));
@@ -112,15 +113,13 @@ public class MyEntrustDetail extends BaseActivity implements View.OnClickListene
                 if(state.equals("正常")) {
                     //检查对应的领养申请状态
                     SimpleHttpPostUtil httpReponse = new SimpleHttpPostUtil("applyApplication", "QueryListX");
-                    //调加要查看的列  可以添加多列
                     httpReponse.addViewColumnsParams("id");
                     httpReponse.addViewColumnsParams("result");
-                    //添加条件 比如：Address=xiaoxinzhuang
                     httpReponse.addWhereParams("entrustId", "=", entrustId);
-                    //调用QueryListX方法   第一个参数是页码  第二个是每页的数目   当页码为-1时表示全查询
                     httpReponse.QueryListX(-1, 2, new HttpCallBack() {
                         @Override
                         public void Success(String data) {
+
                             applyApplication[] list = JSONUtil.parseArray(data, applyApplication.class);
                             if (list.length > 0) {
                                 boolean T = false;
@@ -129,10 +128,12 @@ public class MyEntrustDetail extends BaseActivity implements View.OnClickListene
                                         T = true;
                                     }
                                 }
+                                //如果有领养申请，把他们状态设置为失效，并取消寄养信息
                                 if (T) {
                                     changeApplication();
                                     canclestraight();
                                 } else {
+                                    //如果有领养申请通过了，还要降低用户的积分
                                     changeApplication();
                                     deductUser(10);
                                     canclestraight();
@@ -151,21 +152,20 @@ public class MyEntrustDetail extends BaseActivity implements View.OnClickListene
                 }else if (state.equals("已取消")){
                     Toast.makeText(getApplicationContext(), "已经取消了", Toast.LENGTH_LONG).show();
                 }else{
-                    Toast.makeText(getApplicationContext(), "事务以及完结了", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "事务已经以及完结了", Toast.LENGTH_LONG).show();
                 }
 
                 break;
             case R.id.modify:
+                //更改寄养信息
+                //先验证寄养信息的状态
                 if(state.equals("已取消")||state.equals("已解决")){
                     Toast.makeText(getApplicationContext(),"不可修改（事务已取消,或者已同意了领养申请）",Toast.LENGTH_LONG).show();
                 }else {
                     //更新寄养新目前的状态
                     SimpleHttpPostUtil httpReponse2= new SimpleHttpPostUtil("entrust","QuerySinglebywheresX");
-                    //添加条件 比如：Name=12
                     httpReponse2.addWhereParams("id","=",entrustId);
-                    //添加要查询的列  可以添加多列
                     httpReponse2.addViewColumnsParams("status");
-                    //调用QuerySinglebywheresX方法
                     httpReponse2.QuerySinglebywheresX(new HttpCallBack() {
                         @Override
                         public void Success(String data) {
@@ -197,17 +197,20 @@ public class MyEntrustDetail extends BaseActivity implements View.OnClickListene
                 }
                 break;
             case R.id.look_apply:
+                //查看领养申请
                 Intent intent2=new Intent(this,LookApplication.class);
                 intent2.putExtra("entrustId",entrustId);
                 startActivity(intent2);
                 break;
             case R.id.giveComment:
-                if(state=="2"){
+                if(state.equals("已解决")){
                     Intent intent=new Intent(this,endEntrust.class);
                     intent.putExtra("entrustId",entrustId);
                     startActivity(intent);
-                }else{
+                }else if(state.equals("正常")){
                     Toast.makeText(getApplicationContext(),"尚未接受任何申请",Toast.LENGTH_LONG).show();
+                }else{
+                    Toast.makeText(getApplicationContext(),"该信息已取消",Toast.LENGTH_LONG).show();
                 }
                 break;
         }

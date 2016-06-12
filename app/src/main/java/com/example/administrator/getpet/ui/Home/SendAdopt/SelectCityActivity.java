@@ -164,7 +164,7 @@ public class SelectCityActivity extends BaseActivity implements View.OnClickList
         switch (view.getId()) {
             case R.id.allcity:
                 Intent intent = new Intent();
-                intent.putExtra("lngCityName", "不分城市");
+                intent.putExtra("lngCityName", "所有城市");
                 setResult(99, intent);
                 finish();
                 break;

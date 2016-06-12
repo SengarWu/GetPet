@@ -1,21 +1,17 @@
 package com.example.administrator.getpet.ui.Home.PetCircle;
 
 import android.content.Intent;
-import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.os.Handler;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.administrator.getpet.R;
-import com.example.administrator.getpet.base.BaseActivity;
-import com.example.administrator.getpet.bean.entrust;
 import com.example.administrator.getpet.bean.post;
-import com.example.administrator.getpet.bean.postReply;
-import com.example.administrator.getpet.ui.Home.PetCircle.Adapter.AnswerAdapter;
-import com.example.administrator.getpet.ui.Home.PetCircle.Adapter.mypostAdapter;
+import com.example.administrator.getpet.ui.Home.PetCircle.Adapter.OtherPostAdapter;
 import com.example.administrator.getpet.utils.CommonUtils;
 import com.example.administrator.getpet.utils.HttpCallBack;
 import com.example.administrator.getpet.utils.JSONUtil;
@@ -28,37 +24,37 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class myPostHistory extends BaseActivity implements View.OnClickListener {
-    private ImageView back;//返回按钮
-    private ZrcListView listView;//列表
-    private Handler handler;//用于接收子线程的信息以刷新主线程
+/**
+ * Created by Koreleone on 2016-06-11.
+ */
+public class OtherPostListFragment extends Fragment {
+    private View parentView;//所属视图
+    private ZrcListView listView;//数据列表
+    private Handler handler;
+    private ArrayList<post> items = new ArrayList<>();//用于记录查询过的贴
     int curPage = 1;//页码
-    private mypostAdapter adapter;//帖子适配器
-    private ArrayList<post> items = new ArrayList<>();//用于记录查询结果的
-    private TextView publishNew;//发布新帖按钮
+    private OtherPostAdapter adapter;//用于向列表填充数据的适配器
+    public String orderBy;//按照什么排序
+    public String userId;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_post_list);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        parentView = inflater.inflate(R.layout.fragment_anything_list, container, false);
         initView();
+        return parentView;
     }
 
     private void initView() {
-        back=(ImageView)findViewById(R.id.back);
-        back.setOnClickListener(this);
-        publishNew=(TextView)findViewById(R.id.publishNew);
-        publishNew.setOnClickListener(this);
-        //列表初始化
-        listView = (ZrcListView)findViewById(R.id.mypost_list);
+        listView = (ZrcListView)parentView.findViewById(R.id.zlv_anything);//ZrcListView为自定义的列表控件
         handler = new Handler();
         // 设置下拉刷新的样式（可选，但如果没有Header则无法下拉刷新）
-        SimpleHeader header = new SimpleHeader(this);
+        SimpleHeader header = new SimpleHeader(getActivity());
         header.setTextColor(0xffee71a1);
         header.setCircleColor(0xffee71a1);
         listView.setHeadable(header);
 
         // 设置加载更多的样式（可选）
-        SimpleFooter footer = new SimpleFooter(this);
+        SimpleFooter footer = new SimpleFooter(getActivity());
         footer.setCircleColor(0xffee71a1);
         listView.setFootable(footer);
 
@@ -66,7 +62,7 @@ public class myPostHistory extends BaseActivity implements View.OnClickListener 
         listView.setItemAnimForTopIn(R.anim.top_item_in);
         listView.setItemAnimForBottomIn(R.anim.bottom_item_in);
 
-        adapter = new mypostAdapter(this, items);
+        adapter = new OtherPostAdapter(getActivity(), items);
         listView.setAdapter(adapter);
 
         if (items.size() <= 0)
@@ -92,7 +88,20 @@ public class myPostHistory extends BaseActivity implements View.OnClickListener 
         listView.setOnItemClickListener(new ZrcListView.OnItemClickListener() {
             @Override
             public void onItemClick(ZrcListView parent, View view, int position, long id) {
-                Intent item = new Intent(myPostHistory.this, MyPostDetail.class);
+                SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("post","updateColumnsById");
+                httpReponse.addColumnParams("seeNum",String.valueOf(items.get(position).getSeeNum()+1));
+                httpReponse.updateColumnsById(items.get(position).getId(), new HttpCallBack() {
+                    @Override
+                    public void Success(String data) {
+
+                    }
+                    @Override
+                    public void Fail(String e) {
+
+                    }
+                });
+                items.get(position).setSeeNum(items.get(position).getSeeNum()+1);
+                Intent item = new Intent(getActivity(), PostDetail.class);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("post", items.get(position));
                 item.putExtras(bundle);
@@ -100,16 +109,15 @@ public class myPostHistory extends BaseActivity implements View.OnClickListener 
             }
         });
     }
-
     /*
     刷新
      */
     private void refresh() {
-        curPage=1;
+        curPage=0;
         handler.post(new Runnable() {
             @Override
             public void run() {
-                QueryPost();
+                QueryPost();//queryProxy为自定义的查询类
             }
         });
     }
@@ -125,14 +133,41 @@ public class myPostHistory extends BaseActivity implements View.OnClickListener 
         });
     }
 
+
     /*
-首次查询帖子列表
+查询帖子数目
  */
-    private void QueryPost(){
+    private void QueryCount() {
+        //http请求
+        SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("post","QueryCount");
+        httpReponse.addWhereParams("userId","!=",userId);
+        //调用QueryCount方法
+        httpReponse.QueryCount(new HttpCallBack() {
+            @Override
+            public void Success(String data) {
+                Integer x=Integer.valueOf(data);
+                if(x> items.size()){
+                    curPage++;
+                    Querymore(curPage);
+                }else{
+                    listView.stopLoadMore();
+                }
+            }
+            @Override
+            public void Fail(String e)
+            {
+                listView.stopLoadMore();
+            }
+        });
+    }
+    /*
+    首次查询帖子
+     */
+    private void QueryPost() {
         SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("post","QueryList");
-        httpReponse.addWhereParams("userId","=",preferences.getString("id",""));
+        httpReponse.addWhereParams("userId","!=",userId);
         //添加排序的字段
-        httpReponse.addOrderFieldParams("date");
+        httpReponse.addOrderFieldParams(orderBy);
         //是否为降序  true表示降序   false表示正序
         httpReponse.addIsDescParams(true);
         //调用QueryList方法   第一个参数是页码  第二个是每页的数目   当页码为-1时表示全查询
@@ -172,42 +207,15 @@ public class myPostHistory extends BaseActivity implements View.OnClickListener 
             }
         });
     }
-/*
-查询帖子总数判断是否继续查询
- */
-    private void QueryCount(){
-        //http请求
-        SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("post","QueryCount");
-        //添加对用户的筛选
-        httpReponse.addWhereParams("userId","=",preferences.getString("id",""));
 
-        //调用QueryCount方法
-        httpReponse.QueryCount(new HttpCallBack() {
-            @Override
-            public void Success(String data) {
-                Integer x=Integer.valueOf(data);
-                if(x> items.size()){
-                    curPage++;
-                    QueryMorePost(curPage);
-                }else{
-                    listView.stopLoadMore();
-                }
-            }
-            @Override
-            public void Fail(String e)
-            {
-                listView.stopLoadMore();
-            }
-        });
-    }
-/*
-查询更多
- */
-    private void QueryMorePost(int page){
-        SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("entrust","QueryList");
-        httpReponse.addWhereParams("userId","=",preferences.getString("id",""));
+    /*
+    加载更多帖子
+     */
+    private void Querymore(int page) {
+        SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("post","QueryList");
+        httpReponse.addWhereParams("userId","!=",userId);
         //添加排序的字段
-        httpReponse.addOrderFieldParams("date");
+        httpReponse.addOrderFieldParams(orderBy);
         //是否为降序  true表示降序   false表示正序
         httpReponse.addIsDescParams(true);
         //调用QueryList方法   第一个参数是页码  第二个是每页的数目   当页码为-1时表示全查询
@@ -224,21 +232,9 @@ public class myPostHistory extends BaseActivity implements View.OnClickListener 
             @Override
             public void Fail(String e)
             {
-                Toast.makeText(mContext, e.toString(), Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_LONG).show();
                 listView.stopLoadMore();
             }
         });
-    }
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.back:
-                this.finish();
-                break;
-            case R.id.publishNew://进入发布新帖子的界面
-                Intent intent=new Intent(myPostHistory.this,PublishPost.class);
-                startActivity(intent);
-                break;
-        }
     }
 }

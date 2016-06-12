@@ -25,12 +25,12 @@ import java.util.List;
 
 public class ApplicationHistory extends BaseActivity implements View.OnClickListener {
     private ImageView back;
-    private ZrcListView listView;
+    private ZrcListView listView;//列表控件
     private Handler handler;//用于接收子线程的信息以刷新主线程
     int curPage = 1;//页码
-    private myApplicationAdapter adapter;
-    private ArrayList<applyApplication> items = new ArrayList<>();
-    private List<applyApplication> tempolist;
+    private myApplicationAdapter adapter;//领养申请列表的适配器
+    private ArrayList<applyApplication> items = new ArrayList<>();//用于记录多条信息查询结果
+    //private List<applyApplication> tempolist;//临时列表，用于存储JSON转换，值最后要赋给items
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,7 +93,9 @@ public class ApplicationHistory extends BaseActivity implements View.OnClickList
             }
         });
     }
-
+/*
+刷新列表
+ */
     private void refresh() {
         curPage=1;
         handler.post(new Runnable() {
@@ -103,6 +105,9 @@ public class ApplicationHistory extends BaseActivity implements View.OnClickList
             }
         });
     }
+    /*
+    加载更多
+     */
     private void loadMore() {
         handler.post(new Runnable() {
             @Override
@@ -111,9 +116,12 @@ public class ApplicationHistory extends BaseActivity implements View.OnClickList
             }
         });
     }
-
+/*
+开始查询领养申请
+ */
     private void QueryApplyApplication() {
         SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("applyApplication","QueryList");
+        //只查询本用户的申请
         httpReponse.addWhereParams("userId","=",preferences.getString("id",""));
         //添加排序的字段
         httpReponse.addOrderFieldParams("applyDate");
@@ -123,11 +131,12 @@ public class ApplicationHistory extends BaseActivity implements View.OnClickList
         httpReponse.QueryList(1,10, new HttpCallBack() {
             @Override
             public void Success(String data) {
-                tempolist= Arrays.asList(JSONUtil.parseArray(data,applyApplication.class));
+                 List<applyApplication> tempolist= Arrays.asList(JSONUtil.parseArray(data,applyApplication.class));
                 if (tempolist.size() != 0) {
                     if (CommonUtils.isNotNull(tempolist)) {//监测网络等是否可用
                         items.clear();
                         adapter.addAll(tempolist);
+                        //判断数据是否已经查询完毕
                         if (tempolist.size() < 10) {
                             listView.setRefreshSuccess("加载完成"); // 通知加载完成
                             listView.stopLoadMore();
@@ -138,7 +147,7 @@ public class ApplicationHistory extends BaseActivity implements View.OnClickList
                         }
                     } else {
                         listView.setRefreshSuccess("暂无数据");
-                        listView.stopLoadMore();
+                        listView.stopLoadMore();//停止加载数据
                     }
                     adapter.notifyDataSetChanged();
                 } else {
@@ -159,6 +168,9 @@ public class ApplicationHistory extends BaseActivity implements View.OnClickList
         });
     }
 
+    /*
+    查询是否有更多的信息
+     */
     private void QueryCountApplyApplication(){
         //http请求
         SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("entrust","QueryCount");
@@ -169,6 +181,7 @@ public class ApplicationHistory extends BaseActivity implements View.OnClickList
             @Override
             public void Success(String data) {
                 Integer x=Integer.valueOf(data);
+                //如果数据总数大于已经显示的数目，则加载更多
                 if(x> items.size()){
                     curPage++;
                     Querymore(curPage);
@@ -185,7 +198,9 @@ public class ApplicationHistory extends BaseActivity implements View.OnClickList
             }
         });
     }
-
+/*
+加载更多领养申请
+ */
     private void Querymore(int page){
         SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("entrust","QueryList");
         httpReponse.addWhereParams("userId","=",preferences.getString("id",""));
@@ -197,7 +212,7 @@ public class ApplicationHistory extends BaseActivity implements View.OnClickList
         httpReponse.QueryList(page,10, new HttpCallBack() {
             @Override
             public void Success(String data) {
-                tempolist= Arrays.asList(JSONUtil.parseArray(data,applyApplication.class));
+                List<applyApplication> tempolist= Arrays.asList(JSONUtil.parseArray(data,applyApplication.class));
                 if (CommonUtils.isNotNull(tempolist)) {
                     adapter.addAll(tempolist);
                 }
@@ -214,7 +229,9 @@ public class ApplicationHistory extends BaseActivity implements View.OnClickList
             }
         });
     }
-
+/*
+控件点击事件
+ */
     @Override
     public void onClick(View v) {
         switch (v.getId()){

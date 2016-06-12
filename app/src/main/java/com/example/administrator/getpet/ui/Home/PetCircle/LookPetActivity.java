@@ -2,19 +2,16 @@ package com.example.administrator.getpet.ui.Home.PetCircle;
 
 import android.content.Intent;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.administrator.getpet.R;
 import com.example.administrator.getpet.base.BaseActivity;
-import com.example.administrator.getpet.bean.entrust;
+import com.example.administrator.getpet.bean.pet;
 import com.example.administrator.getpet.bean.post;
-import com.example.administrator.getpet.bean.postReply;
-import com.example.administrator.getpet.ui.Home.PetCircle.Adapter.AnswerAdapter;
+import com.example.administrator.getpet.ui.Home.PetCircle.Adapter.PetAdapter;
 import com.example.administrator.getpet.ui.Home.PetCircle.Adapter.mypostAdapter;
 import com.example.administrator.getpet.utils.CommonUtils;
 import com.example.administrator.getpet.utils.HttpCallBack;
@@ -28,28 +25,25 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class myPostHistory extends BaseActivity implements View.OnClickListener {
+public class LookPetActivity extends BaseActivity implements View.OnClickListener {
     private ImageView back;//返回按钮
     private ZrcListView listView;//列表
     private Handler handler;//用于接收子线程的信息以刷新主线程
     int curPage = 1;//页码
-    private mypostAdapter adapter;//帖子适配器
-    private ArrayList<post> items = new ArrayList<>();//用于记录查询结果的
-    private TextView publishNew;//发布新帖按钮
+    private PetAdapter adapter;//宠物信息适配器
+    private ArrayList<pet> items = new ArrayList<>();//用于记录查询结果的
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_post_list);
+        setContentView(R.layout.activity_look_pet);
         initView();
     }
 
     private void initView() {
         back=(ImageView)findViewById(R.id.back);
         back.setOnClickListener(this);
-        publishNew=(TextView)findViewById(R.id.publishNew);
-        publishNew.setOnClickListener(this);
         //列表初始化
-        listView = (ZrcListView)findViewById(R.id.mypost_list);
+        listView = (ZrcListView)findViewById(R.id.pet_list);
         handler = new Handler();
         // 设置下拉刷新的样式（可选，但如果没有Header则无法下拉刷新）
         SimpleHeader header = new SimpleHeader(this);
@@ -66,7 +60,7 @@ public class myPostHistory extends BaseActivity implements View.OnClickListener 
         listView.setItemAnimForTopIn(R.anim.top_item_in);
         listView.setItemAnimForBottomIn(R.anim.bottom_item_in);
 
-        adapter = new mypostAdapter(this, items);
+        adapter = new PetAdapter(this, items,preferences.getString("id",""));
         listView.setAdapter(adapter);
 
         if (items.size() <= 0)
@@ -92,27 +86,39 @@ public class myPostHistory extends BaseActivity implements View.OnClickListener 
         listView.setOnItemClickListener(new ZrcListView.OnItemClickListener() {
             @Override
             public void onItemClick(ZrcListView parent, View view, int position, long id) {
-                Intent item = new Intent(myPostHistory.this, MyPostDetail.class);
+                Intent item = new Intent(LookPetActivity.this, ShowPetDetail.class);
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("post", items.get(position));
+                bundle.putSerializable("pet", items.get(position));
                 item.putExtras(bundle);
                 startActivity(item);
             }
         });
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.back:
+                this.finish();
+                break;
+        }
+    }
+
     /*
-    刷新
-     */
+刷新
+ */
     private void refresh() {
         curPage=1;
         handler.post(new Runnable() {
             @Override
             public void run() {
-                QueryPost();
+                QueryPet();
             }
         });
     }
+
+
+
     /*
     加载更多
      */
@@ -125,21 +131,12 @@ public class myPostHistory extends BaseActivity implements View.OnClickListener 
         });
     }
 
-    /*
-首次查询帖子列表
- */
-    private void QueryPost(){
-        SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("post","QueryList");
-        httpReponse.addWhereParams("userId","=",preferences.getString("id",""));
-        //添加排序的字段
-        httpReponse.addOrderFieldParams("date");
-        //是否为降序  true表示降序   false表示正序
-        httpReponse.addIsDescParams(true);
-        //调用QueryList方法   第一个参数是页码  第二个是每页的数目   当页码为-1时表示全查询
+    private void QueryPet() {
+        SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("pet","QueryList");
         httpReponse.QueryList(1,10, new HttpCallBack() {
             @Override
             public void Success(String data) {
-                List<post> tempolist= Arrays.asList(JSONUtil.parseArray(data,post.class));
+                List<pet> tempolist= Arrays.asList(JSONUtil.parseArray(data,pet.class));
                 if (tempolist.size() != 0) {
                     if (CommonUtils.isNotNull(tempolist)) {//监测网络等是否可用
                         items.clear();
@@ -172,16 +169,9 @@ public class myPostHistory extends BaseActivity implements View.OnClickListener 
             }
         });
     }
-/*
-查询帖子总数判断是否继续查询
- */
-    private void QueryCount(){
+    private void QueryCount() {
         //http请求
-        SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("post","QueryCount");
-        //添加对用户的筛选
-        httpReponse.addWhereParams("userId","=",preferences.getString("id",""));
-
-        //调用QueryCount方法
+        SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("pet","QueryCount");
         httpReponse.QueryCount(new HttpCallBack() {
             @Override
             public void Success(String data) {
@@ -200,21 +190,16 @@ public class myPostHistory extends BaseActivity implements View.OnClickListener 
             }
         });
     }
-/*
+
+    /*
 查询更多
  */
     private void QueryMorePost(int page){
-        SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("entrust","QueryList");
-        httpReponse.addWhereParams("userId","=",preferences.getString("id",""));
-        //添加排序的字段
-        httpReponse.addOrderFieldParams("date");
-        //是否为降序  true表示降序   false表示正序
-        httpReponse.addIsDescParams(true);
-        //调用QueryList方法   第一个参数是页码  第二个是每页的数目   当页码为-1时表示全查询
+        SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("pet","QueryList");
         httpReponse.QueryList(page,10, new HttpCallBack() {
             @Override
             public void Success(String data) {
-                List<post> tempolist= Arrays.asList(JSONUtil.parseArray(data,post.class));
+                List<pet> tempolist= Arrays.asList(JSONUtil.parseArray(data,pet.class));
                 if (CommonUtils.isNotNull(tempolist)) {
                     adapter.addAll(tempolist);
                 }
@@ -228,17 +213,5 @@ public class myPostHistory extends BaseActivity implements View.OnClickListener 
                 listView.stopLoadMore();
             }
         });
-    }
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.back:
-                this.finish();
-                break;
-            case R.id.publishNew://进入发布新帖子的界面
-                Intent intent=new Intent(myPostHistory.this,PublishPost.class);
-                startActivity(intent);
-                break;
-        }
     }
 }

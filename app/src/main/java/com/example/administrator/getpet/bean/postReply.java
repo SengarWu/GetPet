@@ -11,6 +11,15 @@ public String postId;
 public String userId;
 public post post ;
 public users users ;
+public String result;
+
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
+    }
 
     public String getId() {
         return id;

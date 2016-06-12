@@ -19,6 +19,8 @@ import android.widget.LinearLayout;
 import com.example.administrator.getpet.R;
 import com.example.administrator.getpet.base.BaseActivity;
 import com.example.administrator.getpet.bean.sPet;
+import com.example.administrator.getpet.ui.Home.PetCircle.PostMainActivity;
+import com.example.administrator.getpet.ui.Home.PetCircle.myPostHistory;
 import com.example.administrator.getpet.ui.Home.SendAdopt.EntrustAdoptMainActivity;
 import com.example.administrator.getpet.ui.Login.LoginActivity;
 import com.example.administrator.getpet.ui.Me.DonateRecordeActivity;
@@ -256,8 +258,9 @@ public class home extends BaseActivity implements View.OnClickListener {
                 Intent intent=new Intent(this, EntrustAdoptMainActivity.class);
                 startActivity(intent);
                 break;
-            case R.id.ll_jiuzhu: //救助
-
+            case R.id.ll_jiuzhu: //宠物圈
+                Intent intent2 =new Intent(this, PostMainActivity.class);
+                startActivity(intent2);
                 break;
             case R.id.ll_xunhui://寻回
 

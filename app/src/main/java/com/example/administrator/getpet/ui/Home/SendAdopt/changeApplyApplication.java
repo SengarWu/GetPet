@@ -20,12 +20,12 @@ import com.example.administrator.getpet.utils.SimpleHttpPostUtil;
 import java.util.Date;
 
 public class changeApplyApplication extends BaseActivity implements View.OnClickListener {
-    private EditText detail;
-    private EditText connectplace;
-    private EditText connectphone;
-    private Button submit;
-    private ImageView back;
-    private applyApplication apply;
+    private EditText detail;//详情
+    private EditText connectplace;//联系地址
+    private EditText connectphone;//联系电话
+    private Button submit;//提交
+    private ImageView back;//返回
+    private applyApplication apply;//记录前一界面传来的信息
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +51,7 @@ public class changeApplyApplication extends BaseActivity implements View.OnClick
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.submit:
+                //验证输入信息
                 if (detail.getText().toString() == "") {
                     Toast.makeText(mContext, "请输入申请详情", Toast.LENGTH_LONG).show();
                 } else if (connectplace.getText().toString() == "") {

@@ -65,6 +65,12 @@
         <activity android:name=".ui.Me.AddPetActivity" />
         <activity android:name=".ui.Me.MyPetActivity" />
         <activity android:name=".ui.Home.PetCircle.SearchPost" />
+        <!-- 李祎楠 -->
+        <activity android:name=".ui.Home.PetCircle.myPostHistory" />
+        <activity android:name=".ui.Home.PetCircle.PublishPost" />
+        <activity android:name=".ui.Home.PetCircle.PostDetail" />
+        <activity android:name=".ui.Home.PetCircle.MyPostDetail" />
+        <!-- 李祎楠 -->
         <activity android:name=".ui.Login.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -80,7 +86,10 @@
         <activity android:name=".ui.HelpStation.StationActivity" />
         <activity android:name=".ui.HelpStation.StationMsgActivity" />
         <activity android:name=".ui.HelpStation.RegisterAdminActivity" />
-        <activity android:name=".ui.HelpStation.AdoptDetailActivity"></activity>
+        <activity android:name=".ui.HelpStation.AdoptDetailActivity" />
+        <activity android:name=".ui.Home.PetCircle.PostMainActivity" />
+        <activity android:name=".ui.Home.PetCircle.LookPetActivity" />
+        <activity android:name=".ui.Home.PetCircle.ShowPetDetail"></activity>
     </application>
 
 </manifest>

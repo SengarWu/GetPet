@@ -16,20 +16,18 @@ import com.example.administrator.getpet.utils.HttpCallBack;
 import com.example.administrator.getpet.utils.SimpleHttpPostUtil;
 
 public class myApplicationDetails extends BaseActivity implements View.OnClickListener {
-    private TextView title;
-    private ImageView sex;
-    private TextView username;
-    private TextView pet_character;
-    private TextView award;
-    private ImageView type;
-    private TextView details;
-    private TextView apply_message;
-    private TextView connect_phone;
-    private TextView connect_place;
-    private ImageView comment_result;
-    private Button remove;
-    private Button modify;
-    private applyApplication apply;
+    private TextView title;//标题
+    private ImageView sex;//性别
+    private TextView username;//用户名
+    private TextView pet_character;//宠物性格
+    private TextView award;//悬赏
+    private ImageView type;//宠物类别
+    private TextView details;//详情
+    private TextView apply_message;//申请信息集合
+    private ImageView comment_result;//评价结果
+    private Button remove;//撤回
+    private Button modify;//更改
+    private applyApplication apply;//记录前一个页面传过来的领养申请信息
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,8 +44,6 @@ public class myApplicationDetails extends BaseActivity implements View.OnClickLi
         type=(ImageView) findViewById(R.id.type);
         details=(TextView)findViewById(R.id.details);
         apply_message=(TextView)findViewById(R.id.apply_message);
-        connect_phone=(TextView)findViewById(R.id.connect_phone);
-        connect_place=(TextView)findViewById(R.id.connect_place);
         comment_result=(ImageView) findViewById(R.id.comment_result);
         remove=(Button)findViewById(R.id.remove);
         modify=(Button)findViewById(R.id.modify);
@@ -79,10 +75,8 @@ public class myApplicationDetails extends BaseActivity implements View.OnClickLi
                 type.setImageResource(R.mipmap.type_other);
                 break;
         }
-        details.setText("      "+apply.getEntrust().getDetail()+"\n"+"联系电话："+apply.getEntrust().getUsers().getPhone());
-        apply_message.setText("      "+apply.getApplyMessage());
-        connect_phone.setText(apply.getPhoneNumber());
-        connect_place.setText(apply.getConnectPlace());
+        details.setText("      "+apply.getEntrust().getDetail()+"\n"+"      联系电话："+apply.getEntrust().getUsers().getPhone());
+        apply_message.setText("      "+apply.getDetail()+"\n"+"      联系地址"+apply.getConnectPlace()+"\n"+"      联系电话"+apply.getPhoneNumber());
         if(apply.getComment().equals("好评")){
             comment_result.setImageResource(R.mipmap.haoping);
         }else if(apply.getComment().equals("好评")){
@@ -94,17 +88,22 @@ public class myApplicationDetails extends BaseActivity implements View.OnClickLi
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.remove:
+                //先判断领养申请信息的状态
                 if(apply.getResult()==2){
+                    //已经失效了则不做任何操作
                     Toast.makeText(this, "改信息已被取消", Toast.LENGTH_LONG).show();
                 }
                 if(apply.getResult()==0){
+                    //状态为正常则直接撤回
                     removeStraight();
                 }
                 if(apply.getResult()==1){
+                    //如果申请已经被接受则除了撤回还要降低用户积分
                     removeStraightAndDeduce();
                 }
                 break;
             case R.id.modify:
+                //如果信息没有被取消则可以修改
                 if(apply.getResult()!=2){
                       Intent x=new Intent(myApplicationDetails.this,changeApplyApplication.class);
                       Bundle bundle = new Bundle();
@@ -118,7 +117,9 @@ public class myApplicationDetails extends BaseActivity implements View.OnClickLi
                 break;
         }
     }
-
+/*
+撤回申请并降低用户积分
+ */
     private void removeStraightAndDeduce() {
         SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("applyApplication","updateColumnsByWheres");
         httpReponse.addWhereParams("id","=",apply.getId());
@@ -137,7 +138,9 @@ public class myApplicationDetails extends BaseActivity implements View.OnClickLi
             }
         });
     }
-
+/*
+把对应的寄养信息状态改为正常
+ */
     private void changeentrustTOnormal() {
         SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("entrust","updateColumnsById");
         String id=apply.getEntrust().getId();
@@ -154,7 +157,9 @@ public class myApplicationDetails extends BaseActivity implements View.OnClickLi
             }
         });
     }
-
+/*
+直接撤回
+ */
     private void removeStraight() {
         SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("applyApplication","updateColumnsByWheres");
         httpReponse.addWhereParams("id","=",apply.getId());
@@ -171,7 +176,9 @@ public class myApplicationDetails extends BaseActivity implements View.OnClickLi
             }
         });
     }
-
+/*
+降低用户积分
+ */
     private void deductUser(int x) {
         int currentRepu=Integer.valueOf(preferences.getString("reputation",""));
         currentRepu=currentRepu-x;
