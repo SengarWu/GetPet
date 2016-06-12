@@ -3,13 +3,13 @@ package com.example.administrator.getpet.bean;
 import java.io.Serializable;
 public class pet  implements Serializable {
 
-public String id;
-public String name;            //名字
-public int age;             //年龄
-public String photo;        //头像
-public String character;    //性格
-public users users ;
-public category category ;
+    public String id;
+    public String name;            //名字
+    public int age;             //年龄
+    public String photo;        //头像
+    public String character;    //性格
+    public users users ;
+    public category category ; //类别
 
     public String getId() {
         return id;

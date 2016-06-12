@@ -4,12 +4,10 @@
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".ui.Home.SendAdopt.SearchEntrust">
+    android:orientation="vertical">
     <RelativeLayout
         android:background="@color/KK_theme_color"
         android:layout_width="match_parent"
@@ -60,6 +58,7 @@
         android:layout_height="match_parent"/>
 </LinearLayout>
     <fragment
+        android:name="com.example.administrator.getpet.ui.Home.SendAdopt.Fragment.selectpet_fragment"
         android:id="@+id/drawer_select"
         android:layout_width="300dp"
         android:layout_height="match_parent"

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.administrator.getpet.ui.HelpStation.AdoptMsgActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/actionbar">
+
+        <ImageButton
+            android:id="@+id/ib_back"
+            android:layout_width="30dp"
+            android:layout_height="48dp"
+            android:background="@color/color_transparent_bg"
+            android:src="@mipmap/icon_back_white"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/actionBar_textSize"
+            android:text="领养信息审核"
+            android:textColor="@color/base_color_text_white"
+            android:layout_centerInParent="true"/>
+
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/lv_adopt"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </ListView>
+
+</LinearLayout>

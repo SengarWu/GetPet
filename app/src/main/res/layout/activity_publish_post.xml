@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.Home.PetCircle.PublishPost">
+    <RelativeLayout
+        android:background="@color/KK_theme_color"
+        android:layout_width="match_parent"
+        android:layout_height="48dp">
+        <ImageView
+            android:id="@+id/back"
+            android:src="@mipmap/kk_back"
+            android:layout_width="50dp"
+            android:layout_height="match_parent" />
+        <TextView
+            android:textSize="22sp"
+            android:textColor="@color/KK_white"
+            android:gravity="center"
+            android:text="发布新帖子"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
+    <EditText
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@mipmap/bone"
+        android:hint="标题"
+        android:id="@+id/title"
+        android:textSize="20sp"
+        android:textColor="@color/KK_theme_color"
+        android:gravity="center"
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="80dp" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:background="@mipmap/publish_messagebox"
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+        <ImageView
+            android:layout_gravity="center"
+            android:background="@mipmap/text_contain"
+            android:layout_width="100dp"
+            android:layout_height="50dp" />
+        <EditText
+            android:singleLine="false"
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    <TextView
+        android:layout_marginLeft="15dp"
+        android:textSize="@dimen/btn_textsize"
+        android:text="悬赏积分:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/award"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content" />
+    </LinearLayout>
+
+
+    <ImageView
+        android:layout_marginTop="20dp"
+        android:id="@+id/submit"
+        android:layout_gravity="center"
+        android:background="@mipmap/sub_k"
+        android:layout_width="170dp"
+        android:layout_height="50dp" />
+</LinearLayout>

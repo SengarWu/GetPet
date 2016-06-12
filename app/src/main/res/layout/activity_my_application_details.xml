@@ -37,6 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <LinearLayout
+            android:layout_marginLeft="5dp"
             android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
@@ -52,14 +53,14 @@
                 android:layout_width="200dp"
                 android:layout_height="wrap_content" />
             <ImageView
+                android:id="@+id/sex"
                 android:src="@mipmap/notknow"
                 android:layout_width="30dp"
                 android:layout_height="30dp" />
             <TextView
                 android:textSize="@dimen/TextView_textSize"
-                android:text="标题"
                 android:layout_gravity="center"
-                android:id="@+id/character"
+                android:id="@+id/username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </LinearLayout>
@@ -68,20 +69,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <LinearLayout
+                android:layout_marginLeft="5dp"
                 android:layout_marginTop="10dp"
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <TextView
                     android:textSize="@dimen/TextView_textSize"
-                    android:text="宠物性格"
-                    android:layout_width="80dp"
+                    android:text="宠物性格:"
+                    android:layout_width="wrap_content"
                     android:layout_height="20dp" />
                 <TextView
                     android:text="..."
                     android:textSize="@dimen/TextView_textSize"
-                    android:id="@+id/username"
-                    android:layout_width="100dp"
+                    android:id="@+id/pet_chatacter"
+                    android:layout_width="80dp"
                     android:layout_height="wrap_content" />
             </LinearLayout>
             <LinearLayout
@@ -97,12 +99,18 @@
                 <TextView
                     android:id="@+id/award"
                     android:layout_marginTop="5dp"
-                    android:gravity="center"
+                    android:gravity="left"
                     android:textSize="@dimen/TextView_textSize"
                     android:text=""
-                    android:layout_width="100dp"
+                    android:layout_width="50dp"
                     android:layout_height="wrap_content" />
             </LinearLayout>
+            <TextView
+                android:layout_marginTop="10dp"
+                android:textSize="@dimen/TextView_textSize"
+                android:text="宠物类型："
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
             <ImageView
                 android:layout_marginTop="5dp"
                 android:id="@+id/type"
@@ -116,13 +124,15 @@
             android:layout_width="100dp"
             android:layout_height="50dp" />
         <TextView
+            android:background="@drawable/multi_textview_border"
+            android:layout_marginLeft="5dp"
             android:layout_marginRight="10dp"
             android:id="@+id/details"
             android:textSize="@dimen/editText_textSize"
             android:textColor="@color/KK_white"
             android:singleLine="false"
             android:layout_width="match_parent"
-            android:layout_height="100dp" />
+            android:layout_height="80dp" />
         <TextView
             android:textSize="25sp"
             android:textColor="@color/KK_theme_color"
@@ -132,11 +142,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
          <TextView
+             android:textColor="@color/KK_white"
+             android:background="@drawable/multi_textview_border"
+             android:layout_marginLeft="5dp"
+             android:textSize="@dimen/editText_textSize"
             android:layout_marginRight="5dp"
              android:id="@+id/apply_message"
              android:layout_width="match_parent"
              android:layout_height="100dp" />
-        <LinearLayout
+        <!--<LinearLayout
             android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
@@ -145,6 +159,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp" />
             <TextView
+                android:id="@+id/connect_place"
                 android:layout_marginTop="10dp"
                 android:text=",,,"
                 android:singleLine="false"
@@ -158,6 +173,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp" />
             <TextView
+                android:id="@+id/connect_phone"
                 android:layout_marginTop="10dp"
                 android:text=",,,"
                 android:singleLine="false"
@@ -166,53 +182,34 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_height="wrap_content" />
-        </LinearLayout>
+        </LinearLayout>-->
+        <ImageView
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/comment_result"
+            android:layout_width="100dp"
+            android:layout_height="50dp" />
         <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp">
-            <TextView
-                android:textColor="@color/pink_KK"
-                android:layout_marginTop="10dp"
-                android:singleLine="false"
-                android:textSize="@dimen/TextView_textSize"
-                android:layout_width="120dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:layout_marginTop="10dp"
-                android:text="评价"
-                android:singleLine="false"
-                android:textSize="@dimen/TextView_textSize"
-                android:layout_width="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="10dp"
-                android:layout_height="wrap_content" />
-            <ImageView
-                android:id="@+id/comment_result"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-        <LinearLayout
+            android:layout_marginLeft="10dp"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <Button
+                android:id="@+id/remove"
                 android:text="撤回"
                 android:textSize="@dimen/btn_textsize"
                 android:textColor="@color/KK_white"
                 android:background="@drawable/btn_style"
                 android:layout_width="150dp"
-                android:layout_height="wrap_content" />
+                android:layout_height="50dp" />
             <Button
-                android:layout_marginLeft="50dp"
+                android:id="@+id/modify"
+                android:layout_marginLeft="30dp"
                 android:text="修改"
                 android:textSize="@dimen/btn_textsize"
                 android:textColor="@color/KK_white"
                 android:background="@drawable/btn_style"
                 android:layout_width="150dp"
-                android:layout_height="wrap_content" />
+                android:layout_height="50dp" />
         </LinearLayout>
     </LinearLayout>
 

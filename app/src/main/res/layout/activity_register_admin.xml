@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.administrator.getpet.ui.HelpStation.RegisterAdminActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="流浪窝救助站注册"
+        android:textColor="@color/base_color_text_black"
+        android:textSize="22sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"/>
+
+    <EditText
+        android:id="@+id/et_phone"
+        android:layout_width="280dp"
+        android:layout_height="50dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_marginBottom="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/et_password"
+        android:background="@drawable/edittext_style"
+        android:maxLength="11"
+        android:inputType="phone"
+        android:singleLine="true"
+        android:hint="请输入手机号"/>
+
+    <EditText
+        android:id="@+id/et_password"
+        android:layout_width="280dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="20dp"
+        android:layout_above="@+id/et_password_again"
+        android:layout_alignLeft="@+id/et_password_again"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:hint="输入密码"
+        android:background="@drawable/edittext_style"
+        android:maxLength="16"
+        android:singleLine="true"
+        android:inputType="textPassword"/>
+
+    <EditText
+        android:id="@+id/et_password_again"
+        android:layout_width="280dp"
+        android:layout_height="50dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:hint="输入确认密码"
+        android:layout_centerInParent="true"
+        android:background="@drawable/edittext_style"
+        android:maxLength="16"
+        android:singleLine="true"
+        android:inputType="textPassword"/>
+
+    <TextView
+        android:id="@+id/tv_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textColor="#4591ed"
+        android:text="返回登录"
+        android:layout_below="@+id/et_password_again"
+        android:layout_alignLeft="@+id/et_password_again"
+        android:layout_marginTop="30dp"/>
+
+    <Button
+        android:id="@+id/btn_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/et_password_again"
+        android:layout_alignRight="@+id/et_password"
+        android:layout_marginTop="20dp"
+        android:text="注册"
+        android:background="@drawable/edittext_style"/>
+
+</RelativeLayout>

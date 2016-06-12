@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/pageView"
+    tools:context="com.example.administrator.getpet.ui.Home.PetCircle.PostDetail">
+    <RelativeLayout
+        android:id="@+id/head"
+        android:background="@color/KK_theme_color"
+        android:layout_width="match_parent"
+        android:layout_height="48dp">
+        <ImageView
+            android:id="@+id/back"
+            android:src="@mipmap/kk_back"
+            android:layout_width="50dp"
+            android:layout_height="match_parent" />
+        <TextView
+            android:textSize="22sp"
+            android:textColor="@color/KK_white"
+            android:gravity="center"
+            android:text="详情"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
+
+    <LinearLayout
+       android:layout_below="@+id/head"
+        android:id="@+id/summary"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="160dp">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <com.example.administrator.getpet.view.RoundImageView
+                    android:src="@mipmap/icon_dog"
+                    android:id="@+id/user_head"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp" />
+                <TextView
+                    android:layout_marginLeft="12dp"
+                    android:text="123123"
+                    android:id="@+id/username"
+                    android:textSize="@dimen/TextView_textSize"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginRight="5dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_marginTop="2dp"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:src="@mipmap/icon_title_kk"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp" />
+                    <TextView
+                        android:layout_marginTop="5dp"
+                        android:layout_marginLeft="10dp"
+                        android:text="3213414"
+                        android:id="@+id/title"
+                        android:textSize="@dimen/TextView_textSize"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+                <TextView
+                    android:background="@drawable/multi_textview_border"
+                    android:singleLine="false"
+                    android:layout_marginLeft="5dp"
+                    android:textColor="@color/KK_white"
+                    android:id="@+id/content_summary"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp" />
+            </LinearLayout>
+        </LinearLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="20dp">
+            <LinearLayout
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textSize="@dimen/TextView_textSize"
+                    android:id="@+id/state"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_marginLeft="20dp"
+                    android:textSize="@dimen/TextView_textSize"
+                    android:id="@+id/seeNum"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_marginLeft="20dp"
+                    android:textSize="@dimen/TextView_textSize"
+                    android:id="@+id/replyNum"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="35dp">
+            <LinearLayout
+                android:layout_marginLeft="10dp"
+                android:layout_alignParentLeft="true"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:src="@mipmap/reputation"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp" />
+                <TextView
+                    android:layout_marginTop="6dp"
+                    android:id="@+id/award"
+                    android:layout_width="50dp"
+                    android:layout_height="20dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_marginTop="7dp"
+                    android:id="@+id/publishTime"
+                    android:textSize="@dimen/TextView_textSize"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <ImageView
+                    android:src="@mipmap/ic_time"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp" />
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+
+
+    <com.example.administrator.getpet.view.xlistview.ZrcListView
+        android:layout_below="@+id/summary"
+        android:layout_above="@+id/bottom"
+        android:layout_marginLeft="5dp"
+        android:id="@+id/answer_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+    <View
+        android:layout_above="@+id/bottom"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="#F0C098" />
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:id="@+id/bottom"
+        android:layout_marginLeft="5dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <EditText
+            android:id="@+id/new_reply"
+            android:layout_width="290dp"
+            android:layout_height="match_parent" />
+        <Button
+            android:text="回复"
+            android:id="@+id/comment"
+            android:textSize="@dimen/btn_size"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+</RelativeLayout>

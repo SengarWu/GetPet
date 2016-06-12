@@ -1,6 +1,8 @@
 package com.example.administrator.getpet.ui;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -17,16 +19,18 @@ import android.widget.LinearLayout;
 import com.example.administrator.getpet.R;
 import com.example.administrator.getpet.base.BaseActivity;
 import com.example.administrator.getpet.bean.sPet;
+import com.example.administrator.getpet.ui.Home.PetCircle.PostMainActivity;
+import com.example.administrator.getpet.ui.Home.PetCircle.myPostHistory;
+import com.example.administrator.getpet.ui.Home.SendAdopt.EntrustAdoptMainActivity;
+import com.example.administrator.getpet.ui.Login.LoginActivity;
 import com.example.administrator.getpet.ui.Me.DonateRecordeActivity;
 import com.example.administrator.getpet.ui.Me.InformActivity;
 import com.example.administrator.getpet.ui.Me.MyAttentionActivity;
 import com.example.administrator.getpet.ui.Me.PersonalActivity;
-import com.example.administrator.getpet.ui.Me.SpetDetailActivity;
+import com.example.administrator.getpet.ui.PetHelp.SpetDetailActivity;
+import com.example.administrator.getpet.ui.Me.MyPetActivity;
 import com.example.administrator.getpet.ui.Me.adapter.sPetAdapter;
-import com.example.administrator.getpet.ui.findPet.myAttention;
-import com.example.administrator.getpet.ui.findPet.myPublishes;
-import com.example.administrator.getpet.ui.findPet.petDetail;
-import com.example.administrator.getpet.ui.findPet.petScan;
+import com.example.administrator.getpet.utils.GetPictureUtils;
 import com.example.administrator.getpet.utils.HttpCallBack;
 import com.example.administrator.getpet.utils.JSONUtil;
 import com.example.administrator.getpet.utils.SimpleHttpPostUtil;
@@ -40,6 +44,8 @@ import java.util.List;
 import java.util.Map;
 
 public class home extends BaseActivity implements View.OnClickListener {
+
+    private static final String TAG = "home";
 
     private DragLayout dl;
     private ImageView iv_icon;
@@ -56,7 +62,8 @@ public class home extends BaseActivity implements View.OnClickListener {
     private LinearLayout ll_xunhui;
     private GridView gv_jiuzhu;
 
-    sPet[] sPetArry ; //定义接收服务器数据的数组
+    private sPet[] sPetArry ; //定义接收服务器数据的数组
+    private String[] pet_name={"嗨咻","小婷婷","小淘淘","倪美儿","旺财","瓦尼克"};
 
     private ProgressDialog progress;
 
@@ -86,7 +93,6 @@ public class home extends BaseActivity implements View.OnClickListener {
         progress.setCanceledOnTouchOutside(false);
         progress.show();
         LoadData();
-        //setupView();
     }
 
     /**
@@ -100,12 +106,13 @@ public class home extends BaseActivity implements View.OnClickListener {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(home.this, SpetDetailActivity.class);
+                intent.putExtra("length",sPetArry.length);
+                intent.putExtra("position",position);
                 Bundle data = new Bundle(); //Bundle对象用于传递果种对象
-                /*
-                Seeds seeds = SaveData(position); //种子对象，用于传递数据
-                data.putSerializable("seeds", seeds);
+                sPet spet = sPetArry[position]; //点中的对象
+                data.putSerializable("spet", spet);
                 intent.putExtras(data);
-                startActivity(intent);*/
+                startActivity(intent);
             }
         });
     }
@@ -114,33 +121,38 @@ public class home extends BaseActivity implements View.OnClickListener {
         List<Map<String, Object>> listItems=new ArrayList<Map<String,Object>>();
         for (int i = 0; i < sPetArry.length; i++) {
             Map<String,Object> listItem = new HashMap<String,Object>();
-            listItem.put("pet_photo",sPetArry[i].photo);
+            listItem.put("pet_photo", GetPictureUtils.GetPicture(sPetArry.length)[i]);
             listItem.put("pet_name",sPetArry[i].name);
             listItems.add(listItem);
         }
+        /*List<Map<String, Object>> listItems=new ArrayList<Map<String,Object>>();
+        for (int i = 0; i < pet_name.length; i++) {
+            Map<String,Object> listItem = new HashMap<String,Object>();
+            listItem.put("pet_photo", GetPictureUtils.GetPicture(pet_name.length)[i]);
+            listItem.put("pet_name",pet_name[i]);
+            listItems.add(listItem);
+        }*/
         return listItems;
     }
 
     /**
-     * 从网络宠物加载数据
+     * 从网络加载宠物数据
      */
     private void LoadData() {
-        SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("sPet","QueryListX");
-        httpReponse.addViewColumnsParams("name");
-        httpReponse.addViewColumnsParams("photo");
-        httpReponse.addIsDescParams(true);
-        httpReponse.QueryListX(1, 10, new HttpCallBack() {
+        SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("sPet","QueryList");
+        httpReponse.QueryList(-1, 3, new HttpCallBack() {
             @Override
             public void Success(String data) {
-                //Json解析，反序列化sPet
-                Log.d("caolin",data);
-//                sPetArry = JSONUtil.parseArray(data,sPet.class);
                 progress.dismiss();
+                Log.d(TAG, "Success: data:"+data);
+                sPetArry = JSONUtil.parseArray(data,sPet.class);
+                handler.sendEmptyMessage(LOADSUCCESS);
             }
 
             @Override
             public void Fail(String e) {
                 progress.dismiss();
+                Log.d(TAG, "Fail: "+e);
                 ToastUtils.showToast(mContext,e);
             }
         });
@@ -206,38 +218,64 @@ public class home extends BaseActivity implements View.OnClickListener {
                 dl.open();
                 break;
             case R.id.ll3://我的关注
-                //startAnimActivity(MyAttentionActivity.class);
-                startAnimActivity(myAttention.class);
+                startAnimActivity(MyAttentionActivity.class);
                 break;
             case R.id.ll4://我的宠物
-                //startAnimActivity(MyPetActivity.class);
+                startAnimActivity(MyPetActivity.class);
                 break;
             case R.id.ll5://个人信息
                 startAnimActivity(PersonalActivity.class);
                 break;
             case R.id.ll6://消息通知
-                //startAnimActivity(InformActivity.class);
-                startAnimActivity(myPublishes.class);
+                startAnimActivity(InformActivity.class);
                 break;
             case R.id.ll7://交易记录
                 startAnimActivity(DonateRecordeActivity.class);
                 break;
             case R.id.ll8://退出账号
-
+                AlertDialog.Builder builder = new AlertDialog.Builder(home.this);
+                builder.setMessage("确认退出吗？");
+                builder.setTitle("提示");
+                builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        exit();
+                    }
+                });
+                builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                builder.create().show();
                 break;
             case R.id.ib_xinxiqiang://信息墙
 
                 break;
             case R.id.ll_jyly:////寄养领养
-
+                Intent intent=new Intent(this, EntrustAdoptMainActivity.class);
+                startActivity(intent);
                 break;
-            case R.id.ll_jiuzhu: //救助
-
+            case R.id.ll_jiuzhu: //宠物圈
+                Intent intent2 =new Intent(this, PostMainActivity.class);
+                startActivity(intent2);
                 break;
             case R.id.ll_xunhui://寻回
-                Intent myIntent=new Intent(home.this,petScan.class);
-                startActivity(myIntent);
+
                 break;
         }
     }
+
+    private void exit() {
+        //清除本地保存的信息，跳转到登录页面
+        editor = preferences.edit();
+        editor.clear();
+        editor.commit();
+        startAnimActivity(LoginActivity.class);
+        finish();
+    }
+
+
 }

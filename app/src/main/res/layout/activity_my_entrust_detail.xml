@@ -27,11 +27,12 @@
         android:paddingTop="10dp"
         android:paddingLeft="10dp"
         android:paddingRight="5dp"
-        android:background="#efe8d799"
+        android:background="@color/KK_white"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     <LinearLayout
+        android:layout_marginLeft="10dp"
         android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
@@ -42,11 +43,12 @@
         <TextView
             android:layout_marginTop="8dp"
             android:textSize="@dimen/TextView_textSize"
-            android:id="@+id/username"
+            android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>
         <LinearLayout
+            android:layout_marginLeft="10dp"
             android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
@@ -61,11 +63,12 @@
                 android:layout_width="120dp"
                 android:layout_height="wrap_content" />
             <ImageView
+                android:layout_marginTop="5dp"
                 android:src="@mipmap/givemonkk"
                 android:layout_width="30dp"
                 android:layout_height="30dp" />
             <TextView
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="10dp"
                 android:textSize="@dimen/TextView_textSize"
                 android:id="@+id/award"
                 android:layout_width="100dp"
@@ -77,6 +80,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
+            android:background="@color/color_theme"
             android:id="@+id/details"
             android:textSize="@dimen/editText_textSize"
             android:textColor="@color/KK_white"
@@ -89,17 +93,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <TextView
+                android:layout_marginTop="5dp"
                 android:id="@+id/Pubtime"
-                android:textSize="25sp"
+                android:textSize="@dimen/TextView_textSize"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <ImageView
                 android:src="@mipmap/ic_time"
-                android:layout_width="40dp"
-                android:layout_height="40dp" />
+                android:layout_width="30dp"
+                android:layout_height="30dp" />
         </LinearLayout>
         <LinearLayout
-            android:layout_marginTop="100dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="50dp"
             android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
@@ -108,9 +114,8 @@
             android:text="撤回"
             android:textSize="@dimen/btn_textsize"
             android:textColor="@color/KK_white"
-            android:layout_marginLeft="10dp"
             android:background="@drawable/btn_style"
-            android:layout_width="100dp"
+            android:layout_width="150dp"
             android:layout_height="wrap_content" />
             <Button
                 android:id="@+id/modify"
@@ -119,16 +124,31 @@
                 android:textColor="@color/KK_white"
                 android:layout_marginLeft="20dp"
                 android:background="@drawable/btn_style"
-                android:layout_width="100dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
             <Button
                 android:id="@+id/look_apply"
                 android:text="查看申请"
                 android:textSize="@dimen/btn_textsize"
                 android:textColor="@color/KK_white"
-                android:layout_marginLeft="20dp"
                 android:background="@drawable/btn_style"
-                android:layout_width="100dp"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content" />
+            <Button
+                android:layout_marginLeft="20dp"
+                android:id="@+id/giveComment"
+                android:text="给予评价"
+                android:textSize="@dimen/btn_textsize"
+                android:textColor="@color/KK_white"
+                android:background="@drawable/btn_style"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content" />
         </LinearLayout>
     </LinearLayout>

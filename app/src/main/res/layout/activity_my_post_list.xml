@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.Home.PetCircle.myPostHistory">
+    <RelativeLayout
+        android:background="@color/KK_theme_color"
+        android:layout_width="match_parent"
+        android:layout_height="48dp">
+        <ImageView
+            android:id="@+id/back"
+            android:src="@mipmap/kk_back"
+            android:layout_width="50dp"
+            android:layout_height="match_parent" />
+        <TextView
+            android:textSize="22sp"
+            android:textColor="@color/KK_white"
+            android:gravity="center"
+            android:text="我的宠物贴"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+        <TextView
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/KK_white"
+            android:layout_alignParentRight="true"
+            android:text="发贴"
+            android:id="@+id/publishNew"
+            android:textSize="25sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <com.example.administrator.getpet.view.xlistview.ZrcListView
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:id="@+id/mypost_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.example.administrator.getpet.view.DragLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.example.administrator.getpet.view.DragLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/dl"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -71,8 +72,8 @@
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
                         android:src="@mipmap/home_ic_attention"/>
 
                     <TextView
@@ -93,8 +94,8 @@
                     android:layout_marginTop="18dp">
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
                         android:src="@mipmap/home_ic_wall"/>
 
                     <TextView
@@ -115,8 +116,8 @@
                     android:layout_marginTop="18dp">
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
                         android:src="@mipmap/home_ic_info"/>
 
                     <TextView
@@ -137,8 +138,8 @@
                     android:layout_marginTop="18dp">
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
                         android:src="@mipmap/home_ic_message"/>
 
                     <TextView
@@ -159,8 +160,8 @@
                     android:layout_marginTop="18dp">
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
                         android:src="@mipmap/home_ic_trade"/>
 
                     <TextView
@@ -182,8 +183,8 @@
                     android:layout_marginTop="18dp">
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
                         android:src="@mipmap/home_ic_exit"/>
 
                     <TextView
@@ -286,7 +287,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="救助"
+                            android:text="宠物圈"
                             android:textColor="@color/base_color_text_white"
                             android:layout_marginTop="25dp"/>
 
@@ -314,8 +315,10 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp">
+                    android:layout_marginTop="10dp"
+                    android:paddingLeft="30dp"
+                    android:paddingRight="10dp"
+                    android:paddingBottom="10dp">
 
                     <GridView
                         android:id="@+id/gv_jiuzhu"
@@ -325,7 +328,7 @@
                         android:layout_centerInParent="true"
                         android:stretchMode="columnWidth"
                         android:verticalSpacing="20dp"
-                        android:horizontalSpacing="20dp">
+                        android:horizontalSpacing="10dp">
 
                     </GridView>
 

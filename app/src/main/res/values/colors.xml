@@ -8,7 +8,7 @@
     <color name="base_color_red">#ff0d00</color>
     <color name="base_color_bg">#ffffff</color>
     <color name="base_color_text_black">#000000</color>
-    <color name="base_color_text_gray">#c4c4c4</color>
+    <color name="base_color_text_gray">#646060</color>
     <color name="base_color_text_white">#ffffff</color>
     <!-- transparent -->
     <color name="color_transparent_bg">#00000000</color>

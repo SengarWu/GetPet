@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.example.administrator.getpet.R;
 import com.example.administrator.getpet.base.BaseActivity;
 import com.example.administrator.getpet.bean.users;
+import com.example.administrator.getpet.ui.HelpStation.AdminLoginActivity;
 import com.example.administrator.getpet.ui.home;
 import com.example.administrator.getpet.utils.HttpCallBack;
 import com.example.administrator.getpet.utils.JSONUtil;
@@ -60,6 +61,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     public void onClick(View v) {
         switch (v.getId())
         {
+            case R.id.tv_station:
+                startAnimActivity(AdminLoginActivity.class);
+                break;
             case R.id.ib_login_register:
                 Intent intent = new Intent(LoginActivity.this,RegisterActivity.class);
                 startActivityForResult(intent,RESULT_OK);
@@ -110,7 +114,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         httpReponse.send(new HttpCallBack() {
             @Override
             public void Success(String data) {
-                Log.i(TAG, "Success: data:"+data);
+                //Log.i(TAG, "Success: data:"+data);
                 //Json解析，反序列化user
                 users user = JSONUtil.parseObject(data,users.class);
                 //将服务器返回的用户信息保存到本地
@@ -124,6 +128,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 editor.putString("personal",user.personal);
                 editor.putString("occupation",user.occupation);
                 editor.putString("photo",user.photo);
+                editor.putString("reputation",String.valueOf(user.getUser_reputation()));
                 if (user.indentified != null)
                 {
                     editor.putString("indentifiedId",user.indentified.id);
@@ -150,6 +155,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                     editor.putString("wechat","");
                     editor.putString("others","");
                 }
+                //提交
                 editor.commit();
                 progress.dismiss();
                 ToastUtils.showToast(mContext,"登录成功！");

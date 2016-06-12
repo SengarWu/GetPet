@@ -23,6 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent" />
         <ImageView
+            android:layout_marginRight="10dp"
             android:id="@+id/add_entrust"
             android:src="@mipmap/addmore_kk"
             android:layout_alignParentRight="true"

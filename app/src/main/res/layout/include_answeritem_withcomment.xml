@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="100dp"
+            android:layout_height="90dp">
+            <com.example.administrator.getpet.view.RoundImageView
+                android:id="@+id/user_head"
+                android:layout_marginLeft="20dp"
+                android:layout_width="70dp"
+                android:layout_height="70dp" />
+            <TextView
+                android:gravity="center"
+                android:layout_marginLeft="15dp"
+                android:text="123"
+                android:id="@+id/username"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="100dp">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp">
+                    <TextView
+                        android:id="@+id/time"
+                        android:text="123123"
+                        android:textSize="@dimen/TextView_textSize"
+                        android:layout_width="100dp"
+                        android:layout_height="30dp" />
+                    <Button
+                        android:layout_marginTop="15dp"
+                        android:id="@+id/select"
+                        android:layout_marginLeft="35dp"
+                        android:text="给予好评"
+                        android:textSize="@dimen/btn_size"
+                        android:textColor="@color/KK_white"
+                        android:background="@drawable/btn_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp" />
+                </LinearLayout>
+                <TextView
+                    android:text="123123"
+                    android:textSize="@dimen/TextView_textSize"
+                    android:id="@+id/content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_marginRight="15dp"
+                        android:textColor="@color/pink_KK"
+                        android:layout_alignParentRight="true"
+                        android:textSize="@dimen/TextView_textSize"
+                        android:id="@+id/result"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

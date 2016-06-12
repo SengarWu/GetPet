@@ -66,7 +66,17 @@ public class sPetAdapter extends BaseAdapter {
             view = (ViewHolder) convertView.getTag();
         }
         //绑定数据
-        view.iv_pet_photo.setImageResource((Integer)data.get(position).get("pet_photo"));
+       /* if (TextUtils.isEmpty((String)data.get(position).get("pet_photo")))
+        {
+            view.iv_pet_photo.setImageResource(R.mipmap.pet_default_photo);
+        }
+        else
+        {
+            ImageDownLoader.showNetImage(CustomApplication.getmInstance(),
+                    (String) data.get(position).get("pet_photo"),view.iv_pet_photo,
+                    R.mipmap.pet_default_photo);
+        }*/
+        view.iv_pet_photo.setImageResource((Integer) data.get(position).get("pet_photo"));
         view.tv_pet_name.setText((String) data.get(position).get("pet_name"));
         return convertView;
     }

@@ -110,12 +110,12 @@ public class users  implements Serializable {
         this.indentified = indentified;
     }
 
-    public int getIdentify() {
+    public int getIndentify() {
         return identify;
     }
 
-    public void setIdentify(int identify) {
-        this.identify = identify;
+    public void setIndentify(int indentify) {
+        this.identify = indentify;
     }
 
     public int getUser_reputation() {

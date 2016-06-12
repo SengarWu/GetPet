@@ -5,10 +5,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.PixelFormat;
-import android.media.Image;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Gravity;
@@ -20,23 +18,13 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-
-import com.baidu.location.BDLocation;
-import com.baidu.location.BDLocationListener;
-import com.baidu.location.LocationClient;
-import com.baidu.location.LocationClientOption;
 
 import com.example.administrator.getpet.R;
 import com.example.administrator.getpet.base.BaseActivity;
 import com.example.administrator.getpet.bean.City;
-import com.example.administrator.getpet.view.HeaderLayout;
 import com.example.administrator.getpet.view.MyLetterListView;
-
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -58,29 +46,22 @@ public class SelectCityActivity extends BaseActivity implements View.OnClickList
     private ArrayList<City> ShowCity_lists; // 需要显示的城市列表-随搜索而改变
     private ArrayList<City> city_lists;// 城市列表
     private String lngCityName = "";//存放返回的城市名
-    private LocationClient locationClient = null;
     private EditText sh;
-    private TextView lng_city;
     private ProgressDialog progress;
     private static final int SHOWDIALOG = 2;
     private static final int DISMISSDIALOG = 3;
     private Button al_city;
-    private ImageView bac;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_city);
-        bac=(ImageView)findViewById(R.id.back);
         al_city=(Button)findViewById(R.id.allcity);
         al_city.setOnClickListener(this);
         personList = (ListView) findViewById(R.id.list_view);
         allCity_lists = new ArrayList<>();
         MyLetterListView letterListView = (MyLetterListView) findViewById(R.id.MyLetterListView01);
-        LinearLayout lng_city_lay = (LinearLayout) findViewById(R.id.lng_city_lay);
         sh = (EditText) findViewById(R.id.sh);
-        lng_city = (TextView) findViewById(R.id.lng_city);
-
         letterListView.setOnTouchingLetterChangedListener(new LetterListViewListener());
         alphaIndexer = new HashMap<>();
         handler = new Handler();
@@ -95,18 +76,7 @@ public class SelectCityActivity extends BaseActivity implements View.OnClickList
                 finish();
             }
         });
-        lng_city_lay.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.putExtra("lngCityName", lngCityName);
-                setResult(99, intent);
-                finish();
-            }
-        });
-
-        initGps();
         initOverlay();
         handler2.sendEmptyMessage(SHOWDIALOG);
         Thread thread = new Thread() {
@@ -119,22 +89,6 @@ public class SelectCityActivity extends BaseActivity implements View.OnClickList
         };
         thread.start();
 
-
-        HeaderLayout actionbar = (HeaderLayout) findViewById(R.id.actionbar_city);
-/*        actionbar.setTitle("选择城市");
-        actionbar.setDisplayHomeAsUpEnabled(true);
-        actionbar.setHomeAction(new HeaderLayout.Action() {
-
-            @Override
-            public void performAction(View view) {
-                finish();
-            }
-
-            @Override
-            public int getDrawable() {
-                return R.mipmap.ic_launcher;
-            }
-        });*/
 
     }
 
@@ -289,11 +243,6 @@ public class SelectCityActivity extends BaseActivity implements View.OnClickList
             } else {
                 holder = (ViewHolder) convertView.getTag();
             }
-//				if (sh.getText().length()==0) {//搜所状态
-//					holder.name.setText(list.get(position).getName());
-//					holder.alpha.setVisibility(View.GONE);
-//				}else if(position>0){
-            //显示拼音和热门城市，一次检查本次拼音和上一个字的拼音，如果一样则不显示，如果不一样则显示
 
             holder.name.setText(ShowCity_lists.get(position).getName());
             String currentStr = getAlpha(ShowCity_lists.get(position).getPinyi());//本次拼音
@@ -377,53 +326,6 @@ public class SelectCityActivity extends BaseActivity implements View.OnClickList
         } else {
             return "#";
         }
-    }
-
-    private void initGps() {
-        try {
-            MyLocationListenner myListener = new MyLocationListenner();
-            locationClient = new LocationClient(SelectCityActivity.this);
-            locationClient.registerLocationListener(myListener);
-            LocationClientOption option = new LocationClientOption();
-            option.setOpenGps(true);
-            option.setAddrType("all");
-            option.setCoorType("bd09ll");
-            option.setScanSpan(5000);
-            locationClient.setLocOption(option);
-            locationClient.start();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public void onDestroy() {
-        // TODO Auto-generated method stub
-        super.onDestroy();
-        locationClient.stop();
-    }
-
-
-    private class MyLocationListenner implements BDLocationListener {
-        @Override
-        public void onReceiveLocation(BDLocation location) {
-
-            if (location == null)
-                return;
-            StringBuilder sb = new StringBuilder(256);
-            if (location.getLocType() == BDLocation.TypeGpsLocation) {
-//				sb.append(location.getAddrStr());
-                sb.append(location.getCity());
-            } else if (location.getLocType() == BDLocation.TypeNetWorkLocation) {
-                sb.append(location.getCity());
-            }
-            if (sb.toString().length() > 0) {
-                lngCityName = sb.toString().substring(0, sb.toString().length() -1);
-                lng_city.setText(lngCityName);
-            }
-
-        }
-
     }
 
     private ProgressDialog showProgress(Activity activity, String hintText) {
