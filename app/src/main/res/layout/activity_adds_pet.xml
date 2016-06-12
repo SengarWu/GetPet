@@ -175,7 +175,6 @@
                     android:layout_marginLeft="40dp"
                     android:background="@color/color_transparent_bg"
                     android:textSize="@dimen/editText_textSize"
-                    android:singleLine="false"
                     android:inputType="numberDecimal"
                     android:maxLength="15"/>
 
@@ -210,8 +209,6 @@
                     android:layout_marginLeft="40dp"
                     android:background="@color/color_transparent_bg"
                     android:textSize="@dimen/editText_textSize"
-                    android:singleLine="false"
-                    android:inputType="numberDecimal"
                     android:maxLength="15"/>
 
             </LinearLayout>

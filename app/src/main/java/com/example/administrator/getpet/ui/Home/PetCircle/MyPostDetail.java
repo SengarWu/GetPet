@@ -316,6 +316,7 @@ public class MyPostDetail extends BaseActivity implements View.OnClickListener {
                             pageView.requestFocus();
                             InputMethodManager imm = (InputMethodManager) getSystemService(mContext.INPUT_METHOD_SERVICE);
                             imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+                            listView.refresh();
                         }
 
                         @Override

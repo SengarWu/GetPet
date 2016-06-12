@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.example.administrator.getpet.R;
 import com.example.administrator.getpet.base.BaseActivity;
 import com.example.administrator.getpet.bean.users;
+import com.example.administrator.getpet.ui.HelpStation.AdminLoginActivity;
 import com.example.administrator.getpet.ui.home;
 import com.example.administrator.getpet.utils.HttpCallBack;
 import com.example.administrator.getpet.utils.JSONUtil;
@@ -60,6 +61,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     public void onClick(View v) {
         switch (v.getId())
         {
+            case R.id.tv_station:
+                startAnimActivity(AdminLoginActivity.class);
+                break;
             case R.id.ib_login_register:
                 Intent intent = new Intent(LoginActivity.this,RegisterActivity.class);
                 startActivityForResult(intent,RESULT_OK);

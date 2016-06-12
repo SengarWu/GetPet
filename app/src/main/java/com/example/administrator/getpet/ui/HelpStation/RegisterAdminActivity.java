@@ -5,8 +5,8 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.administrator.getpet.R;
@@ -26,7 +26,7 @@ public class RegisterAdminActivity extends BaseActivity implements View.OnClickL
     private EditText et_password;
     private EditText et_password_again;
     private TextView tv_login;
-    private ImageButton ib_register;
+    private Button btn_register;
 
     private String phone;
     private String password;
@@ -47,8 +47,8 @@ public class RegisterAdminActivity extends BaseActivity implements View.OnClickL
         et_password_again = $(R.id.et_password_again);
         tv_login = $(R.id.tv_login);
         tv_login.setOnClickListener(this);
-        ib_register = $(R.id.ib_register);
-        ib_register.setOnClickListener(this);
+        btn_register = $(R.id.btn_register);
+        btn_register.setOnClickListener(this);
     }
 
     @Override
@@ -58,7 +58,7 @@ public class RegisterAdminActivity extends BaseActivity implements View.OnClickL
             case R.id.tv_login:
                 startAnimActivity(AdminLoginActivity.class);
                 break;
-            case R.id.ib_register:
+            case R.id.btn_register:
                 phone = et_phone.getText().toString();
                 password = et_password.getText().toString();
                 password_again = et_password_again.getText().toString();
@@ -82,7 +82,7 @@ public class RegisterAdminActivity extends BaseActivity implements View.OnClickL
                     ToastUtils.showToast(mContext,"确认密码不能为空！");
                     return;
                 }
-                if (password.equals(password_again))
+                if (!password.equals(password_again))
                 {
                     ToastUtils.showToast(mContext,"两次输入的密码不一致！");
                     return;
@@ -98,7 +98,7 @@ public class RegisterAdminActivity extends BaseActivity implements View.OnClickL
 
     private void register() {
         SimpleHttpPostUtil httpReponse = new SimpleHttpPostUtil("users", "register");
-        httpReponse.addParams("user",phone);
+        httpReponse.addParams("phone",phone);
         httpReponse.addParams("password",password);
         httpReponse.addParams("identify",1);
         httpReponse.send(new HttpCallBack() {

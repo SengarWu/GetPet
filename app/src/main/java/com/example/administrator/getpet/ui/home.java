@@ -106,6 +106,8 @@ public class home extends BaseActivity implements View.OnClickListener {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(home.this, SpetDetailActivity.class);
+                intent.putExtra("length",sPetArry.length);
+                intent.putExtra("position",position);
                 Bundle data = new Bundle(); //Bundle对象用于传递果种对象
                 sPet spet = sPetArry[position]; //点中的对象
                 data.putSerializable("spet", spet);
@@ -116,20 +118,20 @@ public class home extends BaseActivity implements View.OnClickListener {
     }
 
     private List<Map<String,Object>> getData() {
-        /*List<Map<String, Object>> listItems=new ArrayList<Map<String,Object>>();
+        List<Map<String, Object>> listItems=new ArrayList<Map<String,Object>>();
         for (int i = 0; i < sPetArry.length; i++) {
             Map<String,Object> listItem = new HashMap<String,Object>();
             listItem.put("pet_photo", GetPictureUtils.GetPicture(sPetArry.length)[i]);
             listItem.put("pet_name",sPetArry[i].name);
             listItems.add(listItem);
-        }*/
-        List<Map<String, Object>> listItems=new ArrayList<Map<String,Object>>();
+        }
+        /*List<Map<String, Object>> listItems=new ArrayList<Map<String,Object>>();
         for (int i = 0; i < pet_name.length; i++) {
             Map<String,Object> listItem = new HashMap<String,Object>();
             listItem.put("pet_photo", GetPictureUtils.GetPicture(pet_name.length)[i]);
             listItem.put("pet_name",pet_name[i]);
             listItems.add(listItem);
-        }
+        }*/
         return listItems;
     }
 
@@ -137,10 +139,8 @@ public class home extends BaseActivity implements View.OnClickListener {
      * 从网络加载宠物数据
      */
     private void LoadData() {
-        SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("sPet","QueryListX");
-        httpReponse.addViewColumnsParams("name");
-        httpReponse.addViewColumnsParams("photo");
-        httpReponse.QueryListX(-1, 3, new HttpCallBack() {
+        SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("sPet","QueryList");
+        httpReponse.QueryList(-1, 3, new HttpCallBack() {
             @Override
             public void Success(String data) {
                 progress.dismiss();

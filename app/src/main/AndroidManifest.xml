@@ -64,6 +64,7 @@
         <activity android:name=".ui.Me.DonateRecordeActivity" />
         <activity android:name=".ui.Me.AddPetActivity" />
         <activity android:name=".ui.Me.MyPetActivity" />
+        <activity android:name=".ui.PetHelp.SpetDetailActivity" />
         <activity android:name=".ui.Home.PetCircle.SearchPost" />
         <!-- 李祎楠 -->
         <activity android:name=".ui.Home.PetCircle.myPostHistory" />
@@ -90,6 +91,8 @@
         <activity android:name=".ui.Home.PetCircle.PostMainActivity" />
         <activity android:name=".ui.Home.PetCircle.LookPetActivity" />
         <activity android:name=".ui.Home.PetCircle.ShowPetDetail"></activity>
+        <activity android:name=".ui.PetHelp.DonateActivity" />
+        <activity android:name=".ui.HelpStation.ApplyAdoptActivity"></activity>
     </application>
 
 </manifest>

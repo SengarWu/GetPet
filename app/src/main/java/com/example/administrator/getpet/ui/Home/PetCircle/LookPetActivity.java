@@ -86,11 +86,6 @@ public class LookPetActivity extends BaseActivity implements View.OnClickListene
         listView.setOnItemClickListener(new ZrcListView.OnItemClickListener() {
             @Override
             public void onItemClick(ZrcListView parent, View view, int position, long id) {
-                Intent item = new Intent(LookPetActivity.this, ShowPetDetail.class);
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("pet", items.get(position));
-                item.putExtras(bundle);
-                startActivity(item);
             }
         });
     }
