@@ -103,6 +103,7 @@ public class AdminLoginActivity extends BaseActivity implements View.OnClickList
                 editor.commit();
                 ToastUtils.showToast(mContext,"登录成功！");
                 startAnimActivity(StationActivity.class);
+                finish();
             }
 
             @Override

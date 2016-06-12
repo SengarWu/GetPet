@@ -2,6 +2,8 @@ package com.example.administrator.getpet.ui.HelpStation;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -38,6 +40,19 @@ public class AddsPetActivity extends BaseActivity implements View.OnClickListene
     private sPet spet;
 
     private ProgressDialog progress;
+
+    private final int SUCCESS = 1001;
+    private Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what)
+            {
+                case SUCCESS:
+                    finish();
+                    break;
+            }
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,6 +110,7 @@ public class AddsPetActivity extends BaseActivity implements View.OnClickListene
                     return;
                 }
                 try {
+                    spet = new sPet();
                     spet.name = spet_name;
                     spet.age = Integer.parseInt(spet_age);
                     spet.state = spet_state;
@@ -124,7 +140,9 @@ public class AddsPetActivity extends BaseActivity implements View.OnClickListene
                 ToastUtils.showToast(mContext,"添加成功！");
                 Log.d(TAG, "Success: data:"+data);
                 clear();
-                finish();
+                //延迟一秒再跳转
+                handler.sendEmptyMessageDelayed(SUCCESS,1000);
+                return;
             }
 
             @Override

@@ -6,7 +6,6 @@ import android.widget.RelativeLayout;
 
 import com.example.administrator.getpet.R;
 import com.example.administrator.getpet.base.BaseActivity;
-import com.example.administrator.getpet.ui.Me.AddPetActivity;
 
 public class StationActivity extends BaseActivity implements View.OnClickListener {
 
@@ -41,7 +40,7 @@ public class StationActivity extends BaseActivity implements View.OnClickListene
                 startAnimActivity(sPetActivity.class);
                 break;
             case R.id.rl_adopt:
-                startAnimActivity(AddPetActivity.class);
+                startAnimActivity(AdoptMsgActivity.class);
                 break;
             case R.id.rl_activity:
                 startAnimActivity(StationActiveActivity.class);

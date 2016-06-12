@@ -44,7 +44,7 @@
         android:layout_height="match_parent"
         android:background="@color/base_color_text_white">
 
-        <GridView
+        <ListView
             android:id="@+id/lv_spet"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -55,7 +55,7 @@
             android:horizontalSpacing="10dp">
 
 
-        </GridView>
+        </ListView>
 
     </LinearLayout>
 

@@ -64,6 +64,7 @@
         <activity android:name=".ui.Me.DonateRecordeActivity" />
         <activity android:name=".ui.Me.AddPetActivity" />
         <activity android:name=".ui.Me.MyPetActivity" />
+        <activity android:name=".ui.PetHelp.SpetDetailActivity"/>
         <activity android:name=".ui.Home.PetCircle.SearchPost" />
         <activity android:name=".ui.Login.SplashActivity">
             <intent-filter>

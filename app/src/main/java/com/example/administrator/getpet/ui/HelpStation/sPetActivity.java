@@ -4,14 +4,13 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.GridView;
 import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.administrator.getpet.R;
 import com.example.administrator.getpet.base.BaseActivity;
 import com.example.administrator.getpet.bean.sPet;
-import com.example.administrator.getpet.ui.Me.adapter.MyPetAdapter;
 import com.example.administrator.getpet.utils.GetPictureUtils;
 import com.example.administrator.getpet.utils.HttpCallBack;
 import com.example.administrator.getpet.utils.JSONUtil;
@@ -29,8 +28,8 @@ public class sPetActivity extends BaseActivity implements View.OnClickListener {
 
     private ImageButton ib_back;
     private TextView tv_add_spet;
-    private MyPetAdapter adapter;
-    private GridView gv_spet;
+    private sPetAdapter adapter;
+    private ListView lv_spet;
 
     private sPet[] spetArry;
 
@@ -61,7 +60,7 @@ public class sPetActivity extends BaseActivity implements View.OnClickListener {
         ib_back.setOnClickListener(this);
         tv_add_spet = $(R.id.tv_add_spet);
         tv_add_spet.setOnClickListener(this);
-        gv_spet = $(R.id.lv_spet);
+        lv_spet = $(R.id.lv_spet);
     }
 
     private void loadData() {
@@ -90,8 +89,8 @@ public class sPetActivity extends BaseActivity implements View.OnClickListener {
 
     private void setupView() {
         listItems=getData();
-        adapter = new MyPetAdapter(mContext,listItems);
-        gv_spet.setAdapter(adapter);
+        adapter = new sPetAdapter(mContext,listItems);
+        lv_spet.setAdapter(adapter);
     }
 
     private List<Map<String,Object>> getData() {
@@ -100,9 +99,9 @@ public class sPetActivity extends BaseActivity implements View.OnClickListener {
             Map<String,Object> listItem = new HashMap<String,Object>();
             listItem.put("pet_photo", GetPictureUtils.GetPicture(spetArry.length)[i]);
             listItem.put("pet_name",spetArry[i].name);
-            listItem.put("pet_age",spetArry[i].age);
+            listItem.put("pet_age",String.valueOf(spetArry[i].age));
             listItem.put("pet_state",spetArry[i].state);
-            listItem.put("pet_money",spetArry[i].money);
+            listItem.put("pet_money",String.valueOf(spetArry[i].money));
             listItem.put("pet_address",spetArry[i].address);
             listItems.add(listItem);
         }
