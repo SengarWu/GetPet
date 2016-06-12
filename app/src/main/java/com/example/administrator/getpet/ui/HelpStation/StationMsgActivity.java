@@ -11,6 +11,5 @@ public class StationMsgActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_station_msg);
-        int c;
     }
 }

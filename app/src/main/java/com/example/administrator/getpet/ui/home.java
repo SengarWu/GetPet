@@ -30,6 +30,8 @@ import com.example.administrator.getpet.ui.Me.PersonalActivity;
 import com.example.administrator.getpet.ui.PetHelp.SpetDetailActivity;
 import com.example.administrator.getpet.ui.Me.MyPetActivity;
 import com.example.administrator.getpet.ui.Me.adapter.sPetAdapter;
+import com.example.administrator.getpet.ui.findPet.myAttention;
+import com.example.administrator.getpet.ui.findPet.myPublishes;
 import com.example.administrator.getpet.utils.GetPictureUtils;
 import com.example.administrator.getpet.utils.HttpCallBack;
 import com.example.administrator.getpet.utils.JSONUtil;
@@ -218,7 +220,7 @@ public class home extends BaseActivity implements View.OnClickListener {
                 dl.open();
                 break;
             case R.id.ll3://我的关注
-                startAnimActivity(MyAttentionActivity.class);
+                startAnimActivity(myAttention.class);
                 break;
             case R.id.ll4://我的宠物
                 startAnimActivity(MyPetActivity.class);
@@ -227,7 +229,7 @@ public class home extends BaseActivity implements View.OnClickListener {
                 startAnimActivity(PersonalActivity.class);
                 break;
             case R.id.ll6://消息通知
-                startAnimActivity(InformActivity.class);
+                startAnimActivity(myPublishes.class);
                 break;
             case R.id.ll7://交易记录
                 startAnimActivity(DonateRecordeActivity.class);
