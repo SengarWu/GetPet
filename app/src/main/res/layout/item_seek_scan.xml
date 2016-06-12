@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@null"
+    android:clickable="false"
+
+    android:layout_height="100dp">
+    <ImageView
+        android:layout_centerVertical="true"
+        android:layout_marginRight="5dp"
+        android:id="@+id/petPhoto"
+        android:layout_alignParentLeft="true"
+        android:layout_width="100dp"
+        android:src="@mipmap/boy"
+        android:layout_height="100dp" />
+    <LinearLayout
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@+id/petPhoto"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="失时:"/>
+                <EditText
+                    android:enabled="false"
+                    android:id="@+id/loseTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2012-1-1"/>
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="失主:"/>
+                <EditText
+                    android:enabled="false"
+                    android:id="@+id/loser"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="曹林"/>
+            </LinearLayout>
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="描述:"/>
+            <EditText
+                android:enabled="false"
+                android:id="@+id/msg"
+                android:layout_width="wrap_content"
+                android:maxLines="2"
+                android:layout_height="wrap_content"
+                android:text="我的家乡叫东北，黑轮江上"/>
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
@@ -19,10 +20,13 @@ import com.example.administrator.getpet.bean.sPet;
 import com.example.administrator.getpet.ui.Me.DonateRecordeActivity;
 import com.example.administrator.getpet.ui.Me.InformActivity;
 import com.example.administrator.getpet.ui.Me.MyAttentionActivity;
-import com.example.administrator.getpet.ui.Me.MyPetActivity;
 import com.example.administrator.getpet.ui.Me.PersonalActivity;
 import com.example.administrator.getpet.ui.Me.SpetDetailActivity;
 import com.example.administrator.getpet.ui.Me.adapter.sPetAdapter;
+import com.example.administrator.getpet.ui.findPet.myAttention;
+import com.example.administrator.getpet.ui.findPet.myPublishes;
+import com.example.administrator.getpet.ui.findPet.petDetail;
+import com.example.administrator.getpet.ui.findPet.petScan;
 import com.example.administrator.getpet.utils.HttpCallBack;
 import com.example.administrator.getpet.utils.JSONUtil;
 import com.example.administrator.getpet.utils.SimpleHttpPostUtil;
@@ -77,12 +81,12 @@ public class home extends BaseActivity implements View.OnClickListener {
         setContentView(R.layout.activity_home);
         initDragLayout();
         initView();
-        progress = new ProgressDialog(mContext);
+        progress = new ProgressDialog(this);
         progress.setMessage("正在加载数据，请稍后...");
         progress.setCanceledOnTouchOutside(false);
         progress.show();
         LoadData();
-        setupView();
+        //setupView();
     }
 
     /**
@@ -125,12 +129,13 @@ public class home extends BaseActivity implements View.OnClickListener {
         httpReponse.addViewColumnsParams("name");
         httpReponse.addViewColumnsParams("photo");
         httpReponse.addIsDescParams(true);
-        httpReponse.QueryList(1, 10, new HttpCallBack() {
+        httpReponse.QueryListX(1, 10, new HttpCallBack() {
             @Override
             public void Success(String data) {
                 //Json解析，反序列化sPet
-                sPetArry = JSONUtil.parseArray(data,sPet.class);
-                handler.sendEmptyMessage(LOADSUCCESS);
+                Log.d("caolin",data);
+//                sPetArry = JSONUtil.parseArray(data,sPet.class);
+                progress.dismiss();
             }
 
             @Override
@@ -201,16 +206,18 @@ public class home extends BaseActivity implements View.OnClickListener {
                 dl.open();
                 break;
             case R.id.ll3://我的关注
-                startAnimActivity(MyAttentionActivity.class);
+                //startAnimActivity(MyAttentionActivity.class);
+                startAnimActivity(myAttention.class);
                 break;
             case R.id.ll4://我的宠物
-                startAnimActivity(MyPetActivity.class);
+                //startAnimActivity(MyPetActivity.class);
                 break;
             case R.id.ll5://个人信息
                 startAnimActivity(PersonalActivity.class);
                 break;
             case R.id.ll6://消息通知
-                startAnimActivity(InformActivity.class);
+                //startAnimActivity(InformActivity.class);
+                startAnimActivity(myPublishes.class);
                 break;
             case R.id.ll7://交易记录
                 startAnimActivity(DonateRecordeActivity.class);
@@ -228,7 +235,8 @@ public class home extends BaseActivity implements View.OnClickListener {
 
                 break;
             case R.id.ll_xunhui://寻回
-
+                Intent myIntent=new Intent(home.this,petScan.class);
+                startActivity(myIntent);
                 break;
         }
     }

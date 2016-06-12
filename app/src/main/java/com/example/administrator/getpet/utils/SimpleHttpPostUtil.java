@@ -2,6 +2,8 @@ package com.example.administrator.getpet.utils;
 
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
+import android.widget.Toast;
 
 import com.example.administrator.getpet.bean.Columns;
 import com.example.administrator.getpet.bean.Wheres;
@@ -55,9 +57,12 @@ public class SimpleHttpPostUtil{
     //处理 器
     public Handler mHandler=new Handler() {
         public void handleMessage(Message msg) {
+            Log.i("1","9");
             switch (msg.what) {
                 case 1:
+                    Log.i("1","10");
                     callBack.Success(data);
+                    Log.i("1","11");
                     break;
                 default:
                     Exception e=ee;
@@ -119,39 +124,56 @@ public class SimpleHttpPostUtil{
     public void clearParameters() {
         textParams.clear();
     }
-    // 发送数据到服务器，返回一个字节包含服务器的返回结果的数组
+
+    /**
+     * 发送网络请求
+     * @param callBack  网络请求处理调用
+     */
     public void send(HttpCallBack callBack){
         this.callBack=callBack;
+        //新建一个线程处理
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try{
+                    //初始化网络连接
                     initConnection();
                     ds = new DataOutputStream(conn.getOutputStream());
+                    //传送参数
                     writeStringParams();
+                    //获取状态码
                     if (conn.getResponseCode() != 200){
                         throw new Exception("请求url失败");
                     }else{
+                        //获取请求数据流
                         InputStream in = conn.getInputStream();
                         ByteArrayOutputStream out = new ByteArrayOutputStream();
                         byte[] buff = new byte[1024];
                         int len;
+                        //将数据流转化成数组
                         while ((len = in.read(buff)) != -1) {
                             out.write(buff, 0, len);
                         }
                         byte[] retdata=out.toByteArray();
+                        //释放输出流
                         out.close();
+                        //转化成字符串
                         String result = new String(retdata);
+                        //将json字符串解析
                         JSONObject ob=new JSONObject(result);
+                        //处理服务端处理结果
                         String str=ob.getString("code");
                         if (str==null||str.equals("")){
                             data="请求失败";
+                            //处理失败
                             mHandler.sendEmptyMessage(0);
                         }else{
                             data=ob.getString("result");
                             if(str.equals("1")){
+                                //处理成功
                                 mHandler.sendEmptyMessage(1);
                             }else{
+                                //处理失败
                                 mHandler.sendEmptyMessage(0);
                             }
                         }
@@ -217,6 +239,7 @@ public class SimpleHttpPostUtil{
         //去掉最后一个&
         buf.deleteCharAt(buf.length() - 1);
         ds.write(buf.toString().getBytes());
+        Log.e("debug",buf.toString());
     }
     //编码方式
     private String encode(Object value) throws Exception{

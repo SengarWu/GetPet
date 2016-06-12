@@ -4,7 +4,7 @@ import java.io.Serializable;
 public class pet  implements Serializable {
 
 public String id;
-public int name;            //名字
+public String name;            //名字
 public int age;             //年龄
 public String photo;        //头像
 public String character;    //性格
@@ -19,11 +19,11 @@ public category category ;
         this.id = id;
     }
 
-    public int getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(int name) {
+    public void setName(String name) {
         this.name = name;
     }
 

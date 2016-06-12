@@ -28,7 +28,6 @@
         <activity android:name=".ui.Login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -44,13 +43,30 @@
         <activity android:name=".ui.Me.EditIntroduceActivity" />
         <activity android:name=".ui.Me.InformActivity" />
         <activity android:name=".ui.Me.DonateRecordeActivity" />
-        <activity android:name=".ui.Me.MyPetActivity" />
+
         <activity android:name=".ui.Me.AddPetActivity" />
         <activity android:name=".ui.Home.SendAdopt.LookApplication" />
         <activity android:name=".ui.Home.SendAdopt.ModifyEntrust" />
         <activity android:name=".ui.Home.SendAdopt.ApplicationHistory" />
         <activity android:name=".ui.Home.SendAdopt.myApplicationDetails" />
         <activity android:name=".ui.Me.SpetDetailActivity"></activity>
+        <!--曹林-->
+        <activity android:name=".ui.findPet.publishPet"></activity>
+        <activity android:name=".ui.findPet.petDetail"></activity>
+        <activity android:name=".ui.findPet.petScan"></activity>
+        <activity android:name=".ui.findPet.petReply"></activity>
+        <activity android:name=".ui.findPet.myAttention"></activity>
+        <activity android:name=".ui.findPet.myPublishes"></activity>
+        <!--临时-->
+        <activity android:name=".ui.findPet.addStation">
+
+        </activity>
+        <activity android:name=".ui.findPet.addActives">
+
+        </activity>
+        <activity android:name=".ui.findPet.activeScan">
+
+        </activity>
     </application>
 
 </manifest>

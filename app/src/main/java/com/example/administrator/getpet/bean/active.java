@@ -8,6 +8,6 @@ public String id;
 public String information;
 public Date starttime;
 public Date endtime;
-public String stationId;
+//public String stationId;
 public Station Station ;
 }

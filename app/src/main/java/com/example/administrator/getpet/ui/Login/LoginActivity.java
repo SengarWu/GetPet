@@ -150,6 +150,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                     editor.putString("wechat","");
                     editor.putString("others","");
                 }
+                editor.commit();
                 progress.dismiss();
                 ToastUtils.showToast(mContext,"登录成功！");
                 startAnimActivity(home.class);

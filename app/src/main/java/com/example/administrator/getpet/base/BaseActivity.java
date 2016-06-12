@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.administrator.getpet.utils.CommonUtils;
 import com.example.administrator.getpet.utils.ToastUtils;
@@ -45,4 +46,9 @@ public class BaseActivity extends Activity {
     protected   <T extends View> T $(int resId) {
         return (T) super.findViewById(resId);
     }
+    public void show(String msg){
+        Toast.makeText(mContext,msg,Toast.LENGTH_LONG).show();
+    }
 }
+
+

@@ -5,8 +5,6 @@ import java.util.Date;
 public class lose  implements Serializable {
 
 public String id;
-public String petId;
-public String userId;
 public String loseAddress;
 public Date uploadTime;
 public Date loseTime;
