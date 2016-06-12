@@ -55,7 +55,7 @@ public class LookPetActivity extends BaseActivity implements View.OnClickListene
         SimpleFooter footer = new SimpleFooter(this);
         footer.setCircleColor(0xffee71a1);
         listView.setFootable(footer);
-
+        //
         // 设置列表项出现动画（可选）
         listView.setItemAnimForTopIn(R.anim.top_item_in);
         listView.setItemAnimForBottomIn(R.anim.bottom_item_in);
