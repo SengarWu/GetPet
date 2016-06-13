@@ -72,6 +72,9 @@ public class myApplicationAdapter extends BaseListAdapter<applyApplication> {
                 result.setText("已失效");
                 break;
         }
+        if(contract.getEntrust().getStatus().equals("已取消")){
+            result.setText("已失效");
+        }
         return convertView;
     }
 }

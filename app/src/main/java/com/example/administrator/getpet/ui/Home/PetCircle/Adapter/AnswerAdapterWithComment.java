@@ -24,10 +24,12 @@ import java.util.List;
  * Created by Koreleone on 2016-06-12.
  */
 public class AnswerAdapterWithComment  extends BaseListAdapter<postReply> {
-    private String state;
-    public AnswerAdapterWithComment(Context context, List<postReply> items,String s) {
+    private String state;//记录帖子状态
+    private String userId;
+    public AnswerAdapterWithComment(Context context, List<postReply> items,String s,String uid) {
         super(context, items);
         state=s;
+        userId=uid;
     }
     @Override
     public View bindView(int position, View convertView, ViewGroup parent) {
@@ -44,53 +46,69 @@ public class AnswerAdapterWithComment  extends BaseListAdapter<postReply> {
         select.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (state.equals("未结贴")) {
-                    if (contract.getResult().equals("好评回答")) {
-                        Toast.makeText(mContext, "已经给予好评啦", Toast.LENGTH_LONG).show();
+                if (!contract.getUsers().getId().equals(userId)) {
+                /*
+                判断帖子是否已经完结
+                 */
+                    if (state.equals("未结贴")) {
+                        if (contract.getResult().equals("好评回答")) {
+
+                            Toast.makeText(mContext, "已经给予好评啦", Toast.LENGTH_LONG).show();
+                        } else {
+                        /*
+                        给予好评
+                         */
+                            SimpleHttpPostUtil httpReponse = new SimpleHttpPostUtil("postReply", "updateColumnsById");
+                            httpReponse.addColumnParams("result", "好评回答");
+                            httpReponse.updateColumnsById(contract.getId(), new HttpCallBack() {
+                                @Override
+                                public void Success(String data) {
+                                    SimpleHttpPostUtil httpReponse2 = new SimpleHttpPostUtil("users", "updateColumnsById");
+                                    httpReponse2.addColumnParams("user_reputation", String.valueOf(contract.getUsers().getUser_reputation() + contract.getPost().getIntergen()));
+                                    httpReponse2.updateColumnsById(contract.getUsers().getId(), new HttpCallBack() {
+                                        @Override
+                                        public void Success(String data) {
+                                            Toast.makeText(mContext, "积分已悬赏", Toast.LENGTH_LONG).show();
+
+                                        }
+
+                                        @Override
+                                        public void Fail(String e) {
+
+                                        }
+                                    });
+                                }
+
+                                @Override
+                                public void Fail(String e) {
+                                    Toast.makeText(mContext, "网络忙，请稍后再试", Toast.LENGTH_LONG).show();
+                                }
+                            });
+                        /*
+                        结贴
+                         */
+                            SimpleHttpPostUtil httpReponse3 = new SimpleHttpPostUtil("post", "updateColumnsById");
+                            httpReponse3.addColumnParams("state", "已结帖");
+                            httpReponse3.updateColumnsById(contract.getPost().getId(), new HttpCallBack() {
+                                @Override
+                                public void Success(String data) {
+                                    Toast.makeText(mContext, "已结帖", Toast.LENGTH_LONG).show();
+                                    state = "已结贴";
+                                }
+
+                                @Override
+                                public void Fail(String e) {
+
+                                }
+                            });
+                        }
                     } else {
-                        SimpleHttpPostUtil httpReponse = new SimpleHttpPostUtil("postReply", "updateColumnsById");
-                        httpReponse.addColumnParams("result", "好评回答");
-                        httpReponse.updateColumnsById(contract.getId(), new HttpCallBack() {
-                            @Override
-                            public void Success(String data) {
-                                SimpleHttpPostUtil httpReponse2 = new SimpleHttpPostUtil("users", "updateColumnsById");
-                                httpReponse2.addColumnParams("user_reputation", String.valueOf(contract.getUsers().getUser_reputation() + contract.getPost().getIntergen()));
-                                httpReponse2.updateColumnsById(contract.getUsers().getId(), new HttpCallBack() {
-                                    @Override
-                                    public void Success(String data) {
-                                        Toast.makeText(mContext, "积分已悬赏", Toast.LENGTH_LONG).show();
-                                    }
-
-                                    @Override
-                                    public void Fail(String e) {
-
-                                    }
-                                });
-                            }
-
-                            @Override
-                            public void Fail(String e) {
-                                Toast.makeText(mContext, "网络忙，请稍后再试", Toast.LENGTH_LONG).show();
-                            }
-                        });
-
-                        SimpleHttpPostUtil httpReponse3 = new SimpleHttpPostUtil("post", "updateColumnsById");
-                        httpReponse3.addColumnParams("state", "已结帖");
-                        httpReponse3.updateColumnsById(contract.getPost().getId(), new HttpCallBack() {
-                            @Override
-                            public void Success(String data) {
-                                Toast.makeText(mContext, "已结帖", Toast.LENGTH_LONG).show();
-                            }
-
-                            @Override
-                            public void Fail(String e) {
-
-                            }
-                        });
+                        Toast.makeText(mContext, "已选过好评答案", Toast.LENGTH_LONG).show();
                     }
                 }else{
-                    Toast.makeText(mContext, "已选过好评答案", Toast.LENGTH_LONG).show();
+                    Toast.makeText(mContext, "不可给自己好评哦", Toast.LENGTH_LONG).show();
                 }
+
             }
         });
         username.setText(contract.getUsers().getNickName());

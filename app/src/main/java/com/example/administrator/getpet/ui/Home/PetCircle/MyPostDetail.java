@@ -120,7 +120,7 @@ public class MyPostDetail extends BaseActivity implements View.OnClickListener {
         listView.setItemAnimForTopIn(R.anim.top_item_in);
         listView.setItemAnimForBottomIn(R.anim.bottom_item_in);
 
-        adapter = new AnswerAdapterWithComment(this, items,Post.getState());
+        adapter = new AnswerAdapterWithComment(this, items,Post.getState(),preferences.getString("id",""));
         listView.setAdapter(adapter);
 
         if (items.size() <= 0)

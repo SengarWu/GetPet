@@ -121,25 +121,27 @@ public class MyEntrustDetail extends BaseActivity implements View.OnClickListene
                         public void Success(String data) {
 
                             applyApplication[] list = JSONUtil.parseArray(data, applyApplication.class);
+                            //判断是否有领养申请
                             if (list.length > 0) {
-                                boolean T = false;
+                                boolean T = false;//判断是否有通过的领养申请
                                 for (int i = 0; i < list.length; i++) {
                                     if (list[i].getResult() == 1) {
                                         T = true;
+                                        break;
                                     }
                                 }
                                 //如果有领养申请，把他们状态设置为失效，并取消寄养信息
                                 if (T) {
-                                    changeApplication();
-                                    canclestraight();
-                                } else {
                                     //如果有领养申请通过了，还要降低用户的积分
                                     changeApplication();
                                     deductUser(10);
                                     canclestraight();
+                                } else {
+                                    changeApplication();
+                                    canclestraight();
                                 }
                             } else {
-                                canclestraight();
+                                canclestraight();//直接撤销
                             }
                             MyEntrustDetail.this.finish();
                         }
