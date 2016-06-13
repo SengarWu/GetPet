@@ -144,7 +144,7 @@
             <Button
                 android:layout_marginLeft="20dp"
                 android:id="@+id/giveComment"
-                android:text="事务完结"
+                android:text="给予评价"
                 android:textSize="@dimen/btn_textsize"
                 android:textColor="@color/KK_white"
                 android:background="@drawable/btn_style"

@@ -30,7 +30,7 @@ public class LookApplication extends BaseActivity implements View.OnClickListene
     private ApplicationAdapter adapter;
     private ArrayList<applyApplication> items = new ArrayList<>();
     private ImageView back;//返回按钮
-    private List<applyApplication> tempolist;//用于存放返回数据的列表
+    //private List<applyApplication> tempolist;//用于存放返回数据的列表
     private String entrustId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,7 +115,7 @@ public class LookApplication extends BaseActivity implements View.OnClickListene
         httpReponse.QueryList(1,4, new HttpCallBack() {
             @Override
             public void Success(String data) {
-                tempolist= Arrays.asList(JSONUtil.parseArray(data,applyApplication.class));
+                List<applyApplication> tempolist= Arrays.asList(JSONUtil.parseArray(data,applyApplication.class));
                 if (tempolist.size() != 0) {
                     if (CommonUtils.isNotNull(tempolist)) {//监测网络等是否可用
                         items.clear();
@@ -203,7 +203,7 @@ public class LookApplication extends BaseActivity implements View.OnClickListene
         httpReponse.QueryList(page,4, new HttpCallBack() {
             @Override
             public void Success(String data) {
-                tempolist= Arrays.asList(JSONUtil.parseArray(data,applyApplication.class));
+                List<applyApplication> tempolist= Arrays.asList(JSONUtil.parseArray(data,applyApplication.class));
                 if (CommonUtils.isNotNull(tempolist)) {
                     adapter.addAll(tempolist);
                 }

@@ -52,7 +52,7 @@ public class ApplicationAdapter extends BaseListAdapter<applyApplication> {
             sexIcon.setImageResource(R.mipmap.notknow);
         }
         reputation.setText(String.valueOf(contract.getUsers().getUser_reputation()));
-        details.setText(contract.getDetail());
+        details.setText("    "+contract.getDetail());
         Subtime.setText(TimeUtils.dateToString(contract.getApplyDate(),TimeUtils.FORMAT_DATE_TIME_SECOND));
         if(contract.getResult()==0){
             state.setText("未同意该申请");

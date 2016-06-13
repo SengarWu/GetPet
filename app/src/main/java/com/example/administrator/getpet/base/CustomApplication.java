@@ -25,11 +25,6 @@ public class CustomApplication extends Application {
         mInstance = this;
         initImageLoader(mInstance);
     }
-
-    public static CustomApplication getmInstance() {
-        return mInstance;
-    }
-
     /**
      * 初始化ImageLoader
      */
@@ -49,5 +44,9 @@ public class CustomApplication extends Application {
                 .threadPriority(Thread.NORM_PRIORITY - 2)
                 .tasksProcessingOrder(QueueProcessingType.LIFO).build();
         ImageLoader.getInstance().init(config);
+    }
+
+    public static CustomApplication getmInstance() {
+        return mInstance;
     }
 }

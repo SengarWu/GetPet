@@ -145,8 +145,13 @@ public class HttpPostUtil {
             ds.writeBytes(encode(value).getBytes() + "\r\n");
         }
     }
-    //文件数据
+
+    /**
+     * http格式 网络传送图片
+     * @throws Exception 出错处理
+     */
     private void writeFileParams() throws Exception {
+        //文件的地址set集合
         Set<String> keySet = fileparams.keySet();
         for (Iterator<String> it = keySet.iterator(); it.hasNext();) {
             String name = it.next();

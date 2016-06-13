@@ -14,6 +14,7 @@ import com.example.administrator.getpet.bean.post;
 import com.example.administrator.getpet.bean.postReply;
 import com.example.administrator.getpet.ui.Home.SendAdopt.Adapter.BaseListAdapter;
 import com.example.administrator.getpet.ui.Home.SendAdopt.Adapter.ViewHolder;
+import com.example.administrator.getpet.utils.TimeUtils;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
@@ -30,14 +31,20 @@ public class mypostAdapter extends BaseListAdapter<post> {
             convertView = mInflater.inflate(R.layout.include_mypost_item, null);
         }
         final post contract=getList().get(position);
-        TextView username= ViewHolder.get(convertView,R.id.username);
+        TextView title= ViewHolder.get(convertView,R.id.title);
         TextView time=ViewHolder.get(convertView,R.id.publishTime);
-        TextView content_summary=ViewHolder.get(convertView,R.id.content_summary);
+        TextView content_summary=ViewHolder.get(convertView,R.id.mes);
         TextView award=ViewHolder.get(convertView,R.id.award);
-        username.setText(contract.getUsers().getNickName());
-        time.setText(contract.getDate().getYear()+"-"+contract.getDate().getMonth()+"-"+contract.getDate().getDay());
-        content_summary.setText(contract.getMes().substring(0,25));
-        award.setText(contract.getIntergen());
-        return null;
+        TextView state=ViewHolder.get(convertView,R.id.state);
+        TextView seeNum=ViewHolder.get(convertView,R.id.seeNum);
+        TextView replyNum=ViewHolder.get(convertView,R.id.replyNum);
+        title.setText(contract.getTitle());
+        time.setText(TimeUtils.dateToString(contract.getDate(),TimeUtils.FORMAT_DATE));
+        content_summary.setText("      "+contract.getMes());
+        state.setText(contract.getState());
+        award.setText(String.valueOf(contract.getIntergen()));
+        seeNum.setText("浏览："+String.valueOf(contract.getSeeNum()));
+        replyNum.setText("回复："+String.valueOf(contract.getNum()));
+        return convertView;
     }
 }

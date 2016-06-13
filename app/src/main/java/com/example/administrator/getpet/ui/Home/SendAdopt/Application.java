@@ -19,12 +19,15 @@ import com.example.administrator.getpet.utils.SimpleHttpPostUtil;
 import java.util.Date;
 
 public class Application extends BaseActivity implements View.OnClickListener {
-    private EditText detail;
-    private EditText connectplace;
-    private EditText connectphone;
-    private Button submit;
-    private ImageView back;
-    private String entrustId;
+    /*
+    领养申请
+    */
+    private EditText detail;//详情
+    private EditText connectplace;//联系地址
+    private EditText connectphone;//联系电话
+    private Button submit;//提交按钮
+    private ImageView back;//返回按钮
+    private String entrustId;//记录对于寄养信息的id
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +36,7 @@ public class Application extends BaseActivity implements View.OnClickListener {
     }
 
     private void initView() {
+        //获取控件
         detail=(EditText)findViewById(R.id.details);
         connectplace=(EditText)findViewById(R.id.connect_place);
         connectphone=(EditText)findViewById(R.id.connect_phone);
@@ -40,6 +44,7 @@ public class Application extends BaseActivity implements View.OnClickListener {
         back=(ImageView)findViewById(R.id.back);
         back.setOnClickListener(this);
         submit.setOnClickListener(this);
+        //接受传过来的寄养信息
         Intent intent=getIntent();
         entrustId=intent.getStringExtra("entrustId");
     }
@@ -48,16 +53,16 @@ public class Application extends BaseActivity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.submit:
-                //传入表名和方法名   方法名：QueryCount
+                //提交
+                //检查之前是否有申请过
                 SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("applyApplication","QueryCount");
                 httpReponse.addWhereParams("entrustId","=",entrustId);
                 httpReponse.addWhereParams("userId","=",preferences.getString("id",""),"and");
-                //调用QueryCount方法
                 httpReponse.QueryCount(new HttpCallBack() {
                     @Override
                     public void Success(String data) {
-                        if(Integer.valueOf(data)==0){
-                            //如果没有申请过则可以申请
+                        if(Integer.valueOf(data)==0){ //如果没有申请过则可以申请
+                           //对输入的验证
                             if (detail.length() == 0) {
                                 Toast.makeText(mContext, "请输入申请详情", Toast.LENGTH_LONG).show();
                             } else if (connectplace.length() == 0) {

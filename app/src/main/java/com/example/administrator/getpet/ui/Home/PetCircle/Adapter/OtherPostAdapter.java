@@ -12,6 +12,9 @@ import com.example.administrator.getpet.bean.entrust;
 import com.example.administrator.getpet.bean.post;
 import com.example.administrator.getpet.ui.Home.SendAdopt.Adapter.BaseListAdapter;
 import com.example.administrator.getpet.ui.Home.SendAdopt.Adapter.ViewHolder;
+import com.example.administrator.getpet.utils.HttpPostUtil;
+import com.example.administrator.getpet.utils.ImageDownLoader;
+import com.example.administrator.getpet.utils.TimeUtils;
 import com.example.administrator.getpet.view.RoundImageView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
@@ -23,7 +26,7 @@ import java.util.List;
  * Created by Koreleone on 2016-05-30.
  */
 public class OtherPostAdapter extends BaseListAdapter<post> {
-    protected ImageLoader imageLoader = ImageLoader.getInstance();
+
     public OtherPostAdapter(Context context, List<post> items) {
         super(context, items);
     }
@@ -37,35 +40,24 @@ public class OtherPostAdapter extends BaseListAdapter<post> {
         TextView username=ViewHolder.get(convertView,R.id.username);
         TextView time=ViewHolder.get(convertView,R.id.publishTime);
         TextView content_summary=ViewHolder.get(convertView,R.id.content_summary);
+        TextView state=ViewHolder.get(convertView,R.id.state);
+        TextView seeNum=ViewHolder.get(convertView,R.id.seeNum);
+        TextView replyNum=ViewHolder.get(convertView,R.id.replyNum);
         TextView award=ViewHolder.get(convertView,R.id.award);
-        if(contract.getUsers().getPhoto()!="")
-        {
-            imageLoader.displayImage(contract.getUsers().getPhoto(), user_head, new ImageLoadingListener() {
-                @Override
-                public void onLoadingStarted(String s, View view) {
-
-                }
-
-                @Override
-                public void onLoadingFailed(String s, View view, FailReason failReason) {
-
-                }
-
-                @Override
-                public void onLoadingComplete(String s, View view, Bitmap bitmap) {
-
-                }
-
-                @Override
-                public void onLoadingCancelled(String s, View view) {
-
-                }
-            });
-         }
+        TextView title=ViewHolder.get(convertView,R.id.title);
+        ImageDownLoader.showNetImage(mContext, HttpPostUtil.getImagUrl(contract.getUsers().getPhoto()),user_head,R.mipmap.home_pet_photp);
+        title.setText(contract.getTitle());
         username.setText(contract.getUsers().getNickName());
-        time.setText(contract.getDate().getYear()+"-"+contract.getDate().getMonth()+"-"+contract.getDate().getDay());
-        content_summary.setText(contract.getMes().substring(0,25));
-        award.setText(contract.getIntergen());
+        time.setText(TimeUtils.dateToString(contract.getDate(),TimeUtils.FORMAT_DATE));
+        if(contract.getMes().length()>25) {
+            content_summary.setText("    " + contract.getMes().substring(0, 22)+"...");
+        }else{
+            content_summary.setText("    " + contract.getMes());
+        }
+        state.setText("状态："+contract.getState());
+        seeNum.setText("浏览："+String.valueOf(contract.getSeeNum()));
+        replyNum.setText("回帖："+String.valueOf(contract.getNum()));
+        award.setText(String.valueOf(contract.getIntergen()));
         return convertView;
     }
 }

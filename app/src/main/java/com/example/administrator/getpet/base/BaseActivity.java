@@ -50,4 +50,9 @@ public class BaseActivity extends FragmentActivity {
     protected   <T extends View> T $(int resId) {
         return (T) super.findViewById(resId);
     }
+    public void show(String msg){
+        Toast.makeText(mContext,msg,Toast.LENGTH_LONG).show();
+    }
 }
+
+

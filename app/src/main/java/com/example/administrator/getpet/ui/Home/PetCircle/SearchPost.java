@@ -1,32 +1,24 @@
 package com.example.administrator.getpet.ui.Home.PetCircle;
 
-import android.content.Intent;
-import android.media.Image;
-import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
-
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import com.example.administrator.getpet.R;
 import com.example.administrator.getpet.base.BaseActivity;
-import com.example.administrator.getpet.bean.entrust;
-import com.example.administrator.getpet.bean.post;
-import com.example.administrator.getpet.ui.Home.PetCircle.Adapter.OtherPostAdapter;
-import com.example.administrator.getpet.view.xlistview.SimpleFooter;
-import com.example.administrator.getpet.view.xlistview.SimpleHeader;
-import com.example.administrator.getpet.view.xlistview.ZrcListView;
-
 import java.util.ArrayList;
+import java.util.List;
 
-public class SearchPost extends BaseActivity implements View.OnClickListener {
-    private ZrcListView listView;
-    int curPage = 0;//页码
-    private Handler handler;//用于接收子线程的信息以刷新主线程
-    private ArrayList<post> items = new ArrayList<>();//显示到列表上的数据集合
-    private OtherPostAdapter adapter;
+public class SearchPost extends BaseActivity implements View.OnClickListener,RadioGroup.OnCheckedChangeListener {
+    private RadioButton rb_post_seeNum, rb_activity_replyNum,rb_myComment;//用于选择排序方式的按钮组
+    private ViewPager vp_post;//用于存储小界面的框
+    List<Fragment> list = null;//用于记录有多少个小界面供切换
     private ImageView back;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,91 +27,106 @@ public class SearchPost extends BaseActivity implements View.OnClickListener {
     }
 
     private void initView() {
+        rb_post_seeNum=(RadioButton)findViewById(R.id.seeNum);
+        rb_activity_replyNum=(RadioButton)findViewById(R.id.replyNum);
+        rb_myComment=(RadioButton)findViewById(R.id.myComment);
+        vp_post=(ViewPager)findViewById(R.id.post_list);
         back=(ImageView)findViewById(R.id.back);
         back.setOnClickListener(this);
+        rb_activity_replyNum.setOnClickListener(this);
+        rb_post_seeNum.setOnClickListener(this);
+        rb_myComment.setOnClickListener(this);
+        list = new ArrayList<>();
+        OtherPostListFragment BySeeNum=new OtherPostListFragment();
+        BySeeNum.orderBy="seeNum";
+        BySeeNum.userId=preferences.getString("id","");
+        OtherPostListFragment ReplyNum=new OtherPostListFragment();
+        ReplyNum.orderBy="num";
+        ReplyNum.userId=preferences.getString("id","");
+        MyReplyPostFragment mycomment=new MyReplyPostFragment();
+        list.add(BySeeNum);
+        list.add(ReplyNum);
+        list.add(mycomment);
+        ZxzcAdapter zxzc = new ZxzcAdapter(getSupportFragmentManager(), list);
+        vp_post.setAdapter(zxzc);
 
-        //列表的初始化
-        listView = (ZrcListView)findViewById(R.id.other_entrust_list);
-        handler = new Handler();
+        //滑动切换
+        vp_post.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageSelected(int arg0) {
+                switch (arg0) {
+                    case 0:
+                        rb_post_seeNum.setChecked(true);
+                        break;
+                    case 1:
+                        rb_activity_replyNum.setChecked(true);
+                        break;
+                    case 2:
+                        rb_myComment.setChecked(true);
+                        break;
+                }
+            }
 
-        // 设置下拉刷新的样式（可选，但如果没有Header则无法下拉刷新）
-        SimpleHeader header = new SimpleHeader(this);
-        header.setTextColor(0xffee71a1);
-        header.setCircleColor(0xffee71a1);
-        listView.setHeadable(header);
+            @Override
+            public void onPageScrolled(int arg0, float arg1, int arg2) {
+            }
 
-        // 设置加载更多的样式（可选）
-        SimpleFooter footer = new SimpleFooter(this);
-        footer.setCircleColor(0xffee71a1);
-        listView.setFootable(footer);
+            @Override
+            public void onPageScrollStateChanged(int arg0) {
+            }
+        });
+        rb_post_seeNum.setChecked(true);
+    }
 
-        // 设置列表项出现动画（可选）
-        listView.setItemAnimForTopIn(R.anim.top_item_in);
-        listView.setItemAnimForBottomIn(R.anim.bottom_item_in);
+    /*
+    点击按钮切换
+     */
+    @Override
+    public void onCheckedChanged(RadioGroup radioGroup, int i) {
+        if (i == rb_post_seeNum.getId()) {
+            vp_post.setCurrentItem(0);
+        } else if (i == rb_activity_replyNum.getId()) {
+            vp_post.setCurrentItem(1);
+        }else if (i == rb_myComment.getId()) {
+            vp_post.setCurrentItem(2);
+        }
+    }
+/*
+小界面的适配器
+ */
+    class ZxzcAdapter extends FragmentStatePagerAdapter {
 
-        adapter = new OtherPostAdapter(this, items);
-        listView.setAdapter(adapter);
+        List<Fragment> list;
 
-        if (items.size() <= 0)
-        {
-            listView.refresh(); // 主动下拉刷新
+        public ZxzcAdapter(FragmentManager fm, List<Fragment> list) {
+            super(fm);
+            this.list = list;
         }
 
-        // 下拉刷新事件回调（可选）
-        listView.setOnRefreshStartListener(new ZrcListView.OnStartListener() {
-            @Override
-            public void onStart() {
-                refresh();
-            }
-        });
+        @Override
+        public android.support.v4.app.Fragment getItem(int arg0) {
+            return list.get(arg0);
+        }
 
-        // 加载更多事件回调（可选）
-        listView.setOnLoadMoreStartListener(new ZrcListView.OnStartListener() {
-            @Override
-            public void onStart() {
-                loadMore();
-            }
-        });
-        listView.setOnItemClickListener(new ZrcListView.OnItemClickListener() {
-            @Override
-            public void onItemClick(ZrcListView parent, View view, int position, long id) {
-                Intent item = new Intent(SearchPost.this, PostDetail.class);
-                item.putExtra("username","");
-                item.putExtra("publishtime","");
-                item.putExtra("content","");
-                item.putExtra("award","");
-                item.putExtra("picture1Url1","");
-                item.putExtra("picture1Url2","");
-                item.putExtra("picture1Url3","");
-                startActivity(item);
-            }
-        });
+        @Override
+        public int getCount() {
+            return list.size();
+        }
     }
-
-    private void refresh() {
-
-    }
-
-    private void loadMore() {
-    }
-
-    private void QueryPost(){
-
-    }
-
-    private void QueryCount(){
-
-    }
-
-    private void QueryMorePost(){
-
-    }
-
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.back:
+            case R.id.back://返回界面
                 this.finish();
+                break;
+            case R.id.seeNum://切换页面
+                vp_post.setCurrentItem(0);
+                break;
+            case R.id.replyNum://切换页面
+                vp_post.setCurrentItem(1);
+                break;
+            case R.id.myComment://切换页面
+                vp_post.setCurrentItem(2);
                 break;
         }
     }

@@ -83,6 +83,7 @@ public class OtherEntrustDetail extends BaseActivity implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.submit:
+                //进入申请领养界面
                 Intent intent2=new Intent(OtherEntrustDetail.this,Application.class);
                 intent2.putExtra("entrustId",entrustId);
                 startActivity(intent2);

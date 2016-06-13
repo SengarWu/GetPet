@@ -4,15 +4,24 @@ import java.io.Serializable;
 import java.util.Date;
 public class post  implements Serializable {
 
-public String id;
-public String userId;
-public String title;
-public String mes;
-public Date date;
-public int num;
-public int intergen;
-public int seeNum;
-public users users ;
+    public String id;
+    public String userId;
+    public String title;
+    public String mes;
+    public Date date;
+    public int num;
+    public int intergen;
+    public int seeNum;
+    public String state;
+    public users users ;
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
 
     public String getId() {
         return id;

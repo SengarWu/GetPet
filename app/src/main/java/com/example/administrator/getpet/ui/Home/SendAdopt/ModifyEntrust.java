@@ -29,8 +29,8 @@ public class ModifyEntrust extends BaseActivity implements View.OnClickListener 
     private EditText content;//寄养信息内容
     private Button modify;//修改提交按钮
     private List<pet> mypetList;//个人宠物列表
-    private String petId;
-    private String entrustId;
+    private String petId;//宠物信息id
+    private String entrustId;//寄养信息id
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,9 +53,11 @@ public class ModifyEntrust extends BaseActivity implements View.OnClickListener 
         content.setText(intent.getStringExtra("details"));
         petId=intent.getStringExtra("petId");
         entrustId=intent.getStringExtra("entrustId");
-        showmypet();
+        showmypet();//查询用户的宠物并显示为列表
     }
-
+    /*
+    查询当前用户录入的所有宠物
+     */
     private void showmypet() {
         //发送http请求
         SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("pet","QueryList");
@@ -88,7 +90,9 @@ public class ModifyEntrust extends BaseActivity implements View.OnClickListener 
             }
         });
     }
-
+/*
+点击事件处理
+ */
     @Override
     public void onClick(View v) {
         switch (v.getId()){
@@ -96,6 +100,7 @@ public class ModifyEntrust extends BaseActivity implements View.OnClickListener 
                 this.finish();
                 break;
             case R.id.modify:
+                //修改寄养信息
                 SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("entrust","updateColumnsById");
                 httpReponse.addColumnParams("title",title.getText().toString());
                 httpReponse.addColumnParams("detail",content.getText().toString());

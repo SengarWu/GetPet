@@ -21,10 +21,12 @@ import com.example.administrator.getpet.utils.HttpCallBack;
 import com.example.administrator.getpet.utils.JSONUtil;
 import com.example.administrator.getpet.utils.SimpleHttpPostUtil;
 
-
+/*
+给予评价
+ */
 public class endEntrust extends BaseActivity implements View.OnClickListener {
     private ImageView comment;
-    private Button giveComment;
+    private Button giveComment;//给予评价按钮
     private String entrustId;
     private ProgressDialog prograss;//加载时显示的框
     private String applyComment;//评价
@@ -49,16 +51,18 @@ public class endEntrust extends BaseActivity implements View.OnClickListener {
         prograss.setMessage("正在加载数据");
         prograss.setCanceledOnTouchOutside(false);
         prograss.show();
-        searchApplication();
+        searchApplication();//显示对应的领养申请信息
 
     }
-
+/*
+查询领养申请
+ */
     private void searchApplication() {
         //传入表名和方法名   方法名：QuerySinglebywheresX
-        SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("applyApplication","QuerySinglebywheresX");
+        SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("applyApplication","QuerySinglebywheres");
         httpReponse.addWhereParams("entrustId","=",entrustId);
         httpReponse.addWhereParams("result","=","1","and");
-        httpReponse.QuerySinglebywheresX(new HttpCallBack() {
+        httpReponse.QuerySinglebywheres(new HttpCallBack() {
             @Override
             public void Success(String data) {
                 applyApplication n= JSONUtil.parseObject(data,applyApplication.class);
@@ -72,11 +76,13 @@ public class endEntrust extends BaseActivity implements View.OnClickListener {
                     comment.setImageResource(R.mipmap.chaping);
                 }
                 showUserMessage(n.getUsers().getId());
+                prograss.dismiss();
             }
             @Override
             public void Fail(String e)
             {
                 Toast.makeText(endEntrust.this,"网络错误", Toast.LENGTH_LONG).show();
+                prograss.dismiss();
             }
         });
     }
@@ -85,9 +91,11 @@ public class endEntrust extends BaseActivity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.giveComment:
+                //判断是否已经评价过
                 if(applyComment!=""){
                     Toast.makeText(endEntrust.this,"不可重复评价", Toast.LENGTH_LONG).show();
                 }else{
+                    //弹出消息框，选择给予好评还是差评
                     LinearLayout a=new LinearLayout(this);
                     a.setOrientation(LinearLayout.VERTICAL);
                     RadioGroup rb=new RadioGroup(this);
@@ -132,6 +140,9 @@ public class endEntrust extends BaseActivity implements View.OnClickListener {
 
     }
 
+/*
+给予评价函数
+ */
     public void giveComment(final String com){
         SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("applyApplication","updateColumnsByWheres");
         httpReponse.addWhereParams("id","=",applyId);
@@ -141,9 +152,9 @@ public class endEntrust extends BaseActivity implements View.OnClickListener {
             public void Success(String data){
                 Toast.makeText(endEntrust.this,"评价成功", Toast.LENGTH_LONG).show();
                 if(com.equals("好评")){
-                    changeUserReputation(10);
+                    changeUserReputation(10);//增加用户的信誉度
                 }else{
-                    changeUserReputation(-10);
+                    changeUserReputation(-10);//降低用户的信誉度
                 }
             }
             @Override
@@ -153,6 +164,7 @@ public class endEntrust extends BaseActivity implements View.OnClickListener {
         });
     }
 
+//更改用户信誉的函数
     private void changeUserReputation(int i){
         SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("Users","updateColumnsByWheres");
         httpReponse.addWhereParams("id","=",preferences.getString("id",""));
@@ -167,5 +179,6 @@ public class endEntrust extends BaseActivity implements View.OnClickListener {
 
             }
         });
+
     }
 }

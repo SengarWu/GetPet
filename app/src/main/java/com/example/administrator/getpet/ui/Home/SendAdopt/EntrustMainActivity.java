@@ -23,7 +23,9 @@ import com.example.administrator.getpet.view.xlistview.ZrcListView;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
+/*
+寄养信息主页
+ */
 public class EntrustMainActivity extends BaseActivity implements View.OnClickListener {
     private ImageView addnewEntrust;//添加新寄养信息图标
     private ImageView back;//返回图标
@@ -32,7 +34,7 @@ public class EntrustMainActivity extends BaseActivity implements View.OnClickLis
     private Handler handler;//用于接收子线程的信息以刷新主线程
     private MyEntrustListAdapter adapter;//寄养信息列表的适配器，用于向列表填充数据
     int curPage=1;//当前的页码
-    private List<entrust> tempolist;//用于存放返回数据的列表
+   // private List<entrust> tempolist;//用于存放返回数据的列表
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +90,7 @@ public class EntrustMainActivity extends BaseActivity implements View.OnClickLis
         listView.setOnItemClickListener(new ZrcListView.OnItemClickListener() {
             @Override
             public void onItemClick(ZrcListView parent, View view, int position, long id) {
+                //把一些数据传递给详情页面
                 Intent item = new Intent(EntrustMainActivity.this, MyEntrustDetail.class);
                 item.putExtra("entrustId",items.get(position).getId());
                 item.putExtra("title",items.get(position).getTitle());
@@ -101,11 +104,14 @@ public class EntrustMainActivity extends BaseActivity implements View.OnClickLis
             }
         });
     }
-
+/*
+控件的点击事件处理
+ */
     @Override
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.add_entrust:
+                //添加新的寄养信息
                 Intent item=new Intent(this, PublishEntrust.class);
                 startActivity(item);
                 break;
@@ -114,7 +120,9 @@ public class EntrustMainActivity extends BaseActivity implements View.OnClickLis
                 break;
         }
     }
-
+/*
+刷新
+ */
     private void refresh() {
         curPage=1;
         handler.post(new Runnable() {
@@ -124,6 +132,9 @@ public class EntrustMainActivity extends BaseActivity implements View.OnClickLis
             }
         });
     }
+    /*
+    加载更多
+     */
     private void loadMore() {
         handler.post(new Runnable() {
             @Override
@@ -132,7 +143,9 @@ public class EntrustMainActivity extends BaseActivity implements View.OnClickLis
             }
         });
     }
-
+/*
+查询发布过的寄养信息数目
+ */
     private void QueryCountsh() {
         //http请求
         SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("entrust","QueryCount");
@@ -158,7 +171,9 @@ public class EntrustMainActivity extends BaseActivity implements View.OnClickLis
             }
         });
     }
-
+/*
+首次查询发布过的寄养新
+ */
     private void QueryEntrust() {
         SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("entrust","QueryList");
         httpReponse.addWhereParams("userId","=",preferences.getString("id",""));
@@ -170,7 +185,7 @@ public class EntrustMainActivity extends BaseActivity implements View.OnClickLis
         httpReponse.QueryList(1,10, new HttpCallBack() {
             @Override
             public void Success(String data) {
-                tempolist= Arrays.asList(JSONUtil.parseArray(data,entrust.class));
+                List<entrust> tempolist= Arrays.asList(JSONUtil.parseArray(data,entrust.class));
                 if (tempolist.size() != 0) {
                     if (CommonUtils.isNotNull(tempolist)) {//监测网络等是否可用
                         items.clear();
@@ -203,6 +218,10 @@ public class EntrustMainActivity extends BaseActivity implements View.OnClickLis
             }
         });
     }
+
+    /*
+    加载更多寄养信息
+     */
     private void Querymore(int page) {
         SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("entrust","QueryList");
         httpReponse.addWhereParams("userId","=",preferences.getString("id",""));
@@ -214,7 +233,7 @@ public class EntrustMainActivity extends BaseActivity implements View.OnClickLis
         httpReponse.QueryList(page,10, new HttpCallBack() {
             @Override
             public void Success(String data) {
-                tempolist= Arrays.asList(JSONUtil.parseArray(data,entrust.class));
+                List<entrust> tempolist= Arrays.asList(JSONUtil.parseArray(data,entrust.class));
                 if (CommonUtils.isNotNull(tempolist)) {
                     adapter.addAll(tempolist);
                 }
