@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:id="@+id/pageView"
-    tools:context="com.example.administrator.getpet.ui.Home.PetCircle.PostDetail">
+    tools:context="com.example.administrator.getpet.ui.Home.PetCircle.PostDetail2">
     <RelativeLayout
         android:id="@+id/head"
         android:background="@color/KK_theme_color"
@@ -29,7 +29,7 @@
     </RelativeLayout>
 
     <LinearLayout
-       android:layout_below="@+id/head"
+        android:layout_below="@+id/head"
         android:id="@+id/summary"
         android:orientation="vertical"
         android:layout_width="match_parent"

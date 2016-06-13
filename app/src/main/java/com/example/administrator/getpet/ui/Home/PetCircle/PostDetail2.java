@@ -1,9 +1,7 @@
 package com.example.administrator.getpet.ui.Home.PetCircle;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -16,7 +14,6 @@ import android.widget.Toast;
 
 import com.example.administrator.getpet.R;
 import com.example.administrator.getpet.base.BaseActivity;
-import com.example.administrator.getpet.bean.applyApplication;
 import com.example.administrator.getpet.bean.post;
 import com.example.administrator.getpet.bean.postReply;
 import com.example.administrator.getpet.bean.users;
@@ -33,16 +30,14 @@ import com.example.administrator.getpet.view.RoundImageView;
 import com.example.administrator.getpet.view.xlistview.SimpleFooter;
 import com.example.administrator.getpet.view.xlistview.SimpleHeader;
 import com.example.administrator.getpet.view.xlistview.ZrcListView;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.assist.FailReason;
-import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-public class PostDetail extends BaseActivity implements View.OnClickListener {
+public class PostDetail2 extends BaseActivity implements View.OnClickListener {
+
     private ImageView back;//返回按钮
     private RoundImageView user_head;//记录用户的头像
     private TextView username;//用户名
@@ -59,22 +54,22 @@ public class PostDetail extends BaseActivity implements View.OnClickListener {
     private ArrayList<postReply> items = new ArrayList<>();//用于记录搜索到的回复
     private ZrcListView listView;//列表
     private Handler handler;//用于刷新列表
-    private postReply PostRepy;//记录传过来的帖子记录
+    private post Post;//记录传过来的帖子记录
     private int curPage=1;//分页查询回复页码
     private RelativeLayout pageView;//当前页码布局
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_post_detail);
+        setContentView(R.layout.activity_post_detail2);
         initView();
     }
 
     private void initView() {
         /*
-        获取传过来的数据
+        获取传过来的帖子记录
          */
         Intent intent=getIntent();
-        PostRepy=(postReply)intent.getSerializableExtra("post");
+        Post =(post)intent.getSerializableExtra("post");
         /*
         控件的获取
          */
@@ -97,15 +92,15 @@ public class PostDetail extends BaseActivity implements View.OnClickListener {
         /*
         将帖子的相关数据显示到页面中
          */
-        ImageDownLoader.showNetImage(mContext, HttpPostUtil.getImagUrl(PostRepy.getPost().getUsers().getPhoto()),user_head,R.mipmap.home_pet_photp);
-        username.setText(PostRepy.getPost().getUsers().getNickName());
-        title.setText(PostRepy.getPost().getTitle());
-        content_summary.setText("    "+PostRepy.getPost().getMes());
-        state.setText(PostRepy.getPost().getState());
-        award.setText(String.valueOf(PostRepy.getPost().getIntergen()));
-        seeNum.setText("浏览:"+String.valueOf(PostRepy.getPost().getSeeNum()));
-        replyNum.setText("回复:"+String.valueOf(PostRepy.getPost().getNum()));
-        time.setText(TimeUtils.dateToString(PostRepy.getPost().getDate(),TimeUtils.FORMAT_DATE));
+        ImageDownLoader.showNetImage(mContext, HttpPostUtil.getImagUrl(Post.getUsers().getPhoto()),user_head,R.mipmap.home_pet_photp);
+        username.setText(Post.getUsers().getNickName());
+        title.setText(Post.getTitle());
+        content_summary.setText("    "+ Post.getMes());
+        state.setText(Post.getState());
+        award.setText(String.valueOf(Post.getIntergen()));
+        seeNum.setText("浏览:"+String.valueOf(Post.getSeeNum()));
+        replyNum.setText("回复:"+String.valueOf(Post.getNum()));
+        time.setText(TimeUtils.dateToString(Post.getDate(),TimeUtils.FORMAT_DATE));
         //列表的初始化
         listView = (ZrcListView)findViewById(R.id.answer_list);
         handler = new Handler();
@@ -188,7 +183,7 @@ public class PostDetail extends BaseActivity implements View.OnClickListener {
     private void QueryAnswer() {
         SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("postReply","QueryList");
         //查询本帖的相关评论
-        httpReponse.addWhereParams("postId","=",PostRepy.getPost().getId());
+        httpReponse.addWhereParams("postId","=", Post.getId());
         httpReponse.QueryList(1,10, new HttpCallBack() {
             @Override
             public void Success(String data) {
@@ -235,7 +230,7 @@ public class PostDetail extends BaseActivity implements View.OnClickListener {
         //http请求
         SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("postReply","QueryCount");
         //查询本帖的相关评论
-        httpReponse.addWhereParams("postId","=",PostRepy.getPost().getId());
+        httpReponse.addWhereParams("postId","=", Post.getId());
         //调用QueryCount方法
         httpReponse.QueryCount(new HttpCallBack() {
             @Override
@@ -263,7 +258,7 @@ public class PostDetail extends BaseActivity implements View.OnClickListener {
     private void QueryMore(int page){
         SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("postReply","QueryList");
         //查询本帖的相关评论
-        httpReponse.addWhereParams("postId","=",PostRepy.getPost().getId());
+        httpReponse.addWhereParams("postId","=", Post.getId());
         httpReponse.QueryList(page,10, new HttpCallBack() {
             @Override
             public void Success(String data) {
@@ -304,7 +299,7 @@ public class PostDetail extends BaseActivity implements View.OnClickListener {
                     /*
                     设置回哪张贴
                      */
-                    reply.setPost(PostRepy.getPost());
+                    reply.setPost(Post);
                     /*
                     设置回复人
                     */
@@ -326,8 +321,8 @@ public class PostDetail extends BaseActivity implements View.OnClickListener {
                             回帖数加1
                              */
                             SimpleHttpPostUtil httpReponse2= new SimpleHttpPostUtil("post","updateColumnsById");
-                            httpReponse2.addColumnParams("num",String.valueOf(PostRepy.getPost().getNum()+1));
-                            httpReponse2.updateColumnsById(PostRepy.getPost().getId(), new HttpCallBack() {
+                            httpReponse2.addColumnParams("num",String.valueOf(Post.getNum()+1));
+                            httpReponse2.updateColumnsById(Post.getId(), new HttpCallBack() {
                                 @Override
                                 public void Success(String data) {
 

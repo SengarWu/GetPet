@@ -93,6 +93,9 @@ public class MyReplyPostFragment extends Fragment{
         listView.setOnItemClickListener(new ZrcListView.OnItemClickListener() {
             @Override
             public void onItemClick(ZrcListView parent, View view, int position, long id) {
+                /*
+                浏览次数加1
+                 */
                 SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("post","updateColumnsById");
                 httpReponse.addColumnParams("seeNum",String.valueOf(items.get(position).getPost().getSeeNum()+1));
                 httpReponse.updateColumnsById(items.get(position).getId(), new HttpCallBack() {
@@ -106,9 +109,9 @@ public class MyReplyPostFragment extends Fragment{
                     }
                 });
                 items.get(position).getPost().setSeeNum(items.get(position).getPost().getSeeNum()+1);
-                Intent item = new Intent(getActivity(), PostDetail.class);
+                Intent item = new Intent(getActivity(), PostDetail2.class);
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("post", items.get(position));
+                bundle.putSerializable("post", items.get(position).getPost());
                 item.putExtras(bundle);
                 startActivity(item);
             }
