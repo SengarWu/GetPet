@@ -22,25 +22,25 @@ public class EditIntroduceActivity extends BaseActivity implements View.OnClickL
 
     private static final String TAG = "EditIntroduceActivity";
 
-    private ImageButton ib_back;
-    private TextView tv_finish;
-    private EditText et_nickname;
-    private RadioButton rb_man;
-    private RadioButton rb_woman;
-    private EditText et_age;
-    private EditText et_address;
-    private EditText et_phone;
-    private EditText et_occupation;
-    private EditText et_personal;
-
-    private String userId;
-    private String nickname;
-    private String age;
-    private String address;
-    private String phone;
-    private String occupation;
-    private String personal;
-    private String sex;
+    private ImageButton ib_back;//返回按钮
+    private TextView tv_finish;//完成
+    private EditText et_nickname;//
+    private RadioButton rb_man;//
+    private RadioButton rb_woman;//
+    private EditText et_age;//
+    private EditText et_address;//
+    private EditText et_phone;//
+    private EditText et_occupation;//
+    private EditText et_personal;//
+//
+    private String userId;//id
+    private String nickname;//昵称
+    private String age;//年龄
+    private String address;//地址
+    private String phone;//手机号
+    private String occupation;//职业
+    private String personal;//
+    private String sex;//性别
 
     private ProgressDialog progress;
 

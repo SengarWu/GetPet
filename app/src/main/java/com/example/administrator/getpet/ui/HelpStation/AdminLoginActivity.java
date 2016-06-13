@@ -22,15 +22,15 @@ public class AdminLoginActivity extends BaseActivity implements View.OnClickList
 
     private static final String TAG = "AdminLoginActivity";
 
-    private EditText et_phone;
-    private EditText et_password;
-    private ImageButton ib_enter;
-    private TextView tv_register;
+    private EditText et_phone;//手机号
+    private EditText et_password;//密码
+    private ImageButton ib_enter;//进入按钮
+    private TextView tv_register;//注册
 
-    private String phone;
-    private String password;
-
-    private ProgressDialog progress;
+    private String phone;//手机号
+    private String password;//密码
+//
+    private ProgressDialog progress;//进度条
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -27,13 +27,13 @@ public class MyPetActivity extends BaseActivity implements View.OnClickListener 
 
     private static final String TAG = "MyPetActivity";
 
-    private ImageButton ib_back;
-    private TextView tv_add_pet;
-    private ListView lv_my_pet;
-    private MyPetAdapter adapter;
-    private pet[] petArry;
-    private List<Map<String, Object>> listItems;
-
+    private ImageButton ib_back;//返回按钮
+    private TextView tv_add_pet;//添加
+    private ListView lv_my_pet;//列表
+    private MyPetAdapter adapter;//数据适配器
+    private pet[] petArry;//宠物数组
+    private List<Map<String, Object>> listItems;//数据源
+//
     private ProgressDialog progress;
 
     @Override

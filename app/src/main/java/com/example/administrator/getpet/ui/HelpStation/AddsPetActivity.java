@@ -23,14 +23,14 @@ public class AddsPetActivity extends BaseActivity implements View.OnClickListene
 
     private static final String TAG = "AddsPetActivity";
 
-    private ImageButton ib_back;
-    private TextView tv_finish;
-    private EditText et_spet_name;
-    private EditText et_spet_age;
-    private EditText et_spet_state;
-    private EditText et_spet_money;
-    private EditText et_spet_address;
-
+    private ImageButton ib_back;//返回按钮
+    private TextView tv_finish;//完成
+    private EditText et_spet_name;//宠物名字
+    private EditText et_spet_age;//宠物年龄
+    private EditText et_spet_state;//宠物状态
+    private EditText et_spet_money;//宠物需要
+    private EditText et_spet_address;//宠物地址
+//
     private String spet_name;
     private String spet_age;
     private String spet_state;

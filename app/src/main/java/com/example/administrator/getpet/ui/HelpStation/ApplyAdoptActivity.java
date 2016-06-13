@@ -26,13 +26,13 @@ public class ApplyAdoptActivity extends BaseActivity implements View.OnClickList
 
     private static final String TAG = "ApplyAdoptActivity";
 
-    private ImageButton ib_back;
-    private TextView tv_finish;
-    private EditText et_reason;
+    private ImageButton ib_back;//返回按钮
+    private TextView tv_finish;//完成
+    private EditText et_reason;//原因
     ProgressDialog progress;
 
-    private String spet_id;
-    private String station_id;
+    private String spet_id;//宠物id
+    private String station_id;//救助站Id
 
     private final int SUCCESS = 1001;
     private Handler handler = new Handler()
@@ -97,6 +97,9 @@ public class ApplyAdoptActivity extends BaseActivity implements View.OnClickList
         }
     }
 
+    /**
+     * 申请领养网络请求
+     */
     private void adoptRequest() {
         //传入表名和方法名
         SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("application","Insert");

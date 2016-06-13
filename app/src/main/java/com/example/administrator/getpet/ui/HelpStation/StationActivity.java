@@ -9,10 +9,10 @@ import com.example.administrator.getpet.base.BaseActivity;
 
 public class StationActivity extends BaseActivity implements View.OnClickListener {
 
-    private RelativeLayout rl_spet;
-    private RelativeLayout rl_adopt;
-    private RelativeLayout rl_activity;
-    private RelativeLayout rl_station_msg;
+    private RelativeLayout rl_spet;//救助站宠物
+    private RelativeLayout rl_adopt;//领养申请
+    private RelativeLayout rl_activity;//周边活动
+    private RelativeLayout rl_station_msg;//救助站信息
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

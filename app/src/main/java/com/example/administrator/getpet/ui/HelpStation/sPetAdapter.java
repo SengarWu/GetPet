@@ -18,7 +18,7 @@ import java.util.Map;
  */
 public class sPetAdapter extends BaseAdapter {
 
-    private List<Map<String, Object>> data;
+    private List<Map<String, Object>> data;//数据源
     private LayoutInflater layoutInflater;
     private Context context;
 

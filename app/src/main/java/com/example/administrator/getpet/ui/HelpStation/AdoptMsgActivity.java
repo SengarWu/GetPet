@@ -27,12 +27,12 @@ public class AdoptMsgActivity extends BaseActivity implements View.OnClickListen
 
     private static final String TAG = "AdoptMsgActivity";
 
-    private ImageButton ib_back;
-    private ListView lv_adopt;
+    private ImageButton ib_back;//返回按钮
+    private ListView lv_adopt;//列表
 
-    private AdoptAdapter adapter;
+    private AdoptAdapter adapter;//列表适配器
 
-    private application[] applicationArry;
+    private application[] applicationArry;//数据数组
 
     private List<Map<String, Object>> listItems;
 
