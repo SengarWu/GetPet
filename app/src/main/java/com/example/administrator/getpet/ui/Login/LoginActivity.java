@@ -150,7 +150,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                     editor.putString("origin","");
                     editor.putString("company","");
                     editor.putString("post","");
-                    editor.putFloat("income",0);
+                    editor.putFloat("income",0.0f);
                     editor.putString("qq","");
                     editor.putString("wechat","");
                     editor.putString("others","");

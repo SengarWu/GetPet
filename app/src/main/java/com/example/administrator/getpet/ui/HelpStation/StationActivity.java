@@ -36,17 +36,17 @@ public class StationActivity extends BaseActivity implements View.OnClickListene
     public void onClick(View v) {
         switch (v.getId())
         {
-            case R.id.rl_spet:
+            case R.id.rl_spet://救助站宠物
                 startAnimActivity(sPetActivity.class);
                 break;
-            case R.id.rl_adopt:
+            case R.id.rl_adopt://宠物领养申请
                 startAnimActivity(AdoptMsgActivity.class);
                 break;
-            case R.id.rl_activity:
-                startAnimActivity(StationActiveActivity.class);
+            case R.id.rl_activity://活动
+                startAnimActivity(activeScan.class);
                 break;
-            case R.id.rl_station_msg:
-                startAnimActivity(StationMsgActivity.class);
+            case R.id.rl_station_msg://救助站信息
+                startAnimActivity(addStation.class);
                 break;
         }
     }

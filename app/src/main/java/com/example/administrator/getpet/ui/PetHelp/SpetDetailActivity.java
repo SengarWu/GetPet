@@ -1,7 +1,5 @@
 package com.example.administrator.getpet.ui.PetHelp;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,10 +9,9 @@ import android.widget.TextView;
 
 import com.example.administrator.getpet.R;
 import com.example.administrator.getpet.base.BaseActivity;
-import com.example.administrator.getpet.bean.application;
 import com.example.administrator.getpet.bean.sPet;
+import com.example.administrator.getpet.ui.HelpStation.ApplyAdoptActivity;
 import com.example.administrator.getpet.utils.GetPictureUtils;
-import com.example.administrator.getpet.utils.SimpleHttpPostUtil;
 import com.example.administrator.getpet.utils.ToastUtils;
 
 public class SpetDetailActivity extends BaseActivity implements View.OnClickListener {
@@ -93,35 +90,15 @@ public class SpetDetailActivity extends BaseActivity implements View.OnClickList
                 startActivity(intent);
                 break;
             case R.id.ib_spet_adopt://领养
-                AlertDialog.Builder builder = new AlertDialog.Builder(SpetDetailActivity.this);
-                builder.setMessage("您确认领养该宠物"+spet.name+"吗？");
-                builder.setTitle("提示");
-                builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                        adoptRequest();
-                    }
-                });
-                builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-                builder.create().show();
+                Intent intent1 = new Intent(SpetDetailActivity.this, ApplyAdoptActivity.class);
+                intent1.putExtra("spet_id",spet.id);
+                intent1.putExtra("station_id",spet.Station.id);
+                startActivity(intent1);
                 break;
             case R.id.ib_station_activity://萌圈
-                Intent intent1 = new Intent();
+
 
                 break;
         }
-    }
-
-    private void adoptRequest() {
-        //传入表名和方法名
-        SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("application","Insert");
-        application apply = new application();
-
     }
 }

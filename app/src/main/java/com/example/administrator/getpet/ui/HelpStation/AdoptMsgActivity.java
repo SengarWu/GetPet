@@ -87,6 +87,8 @@ public class AdoptMsgActivity extends BaseActivity implements View.OnClickListen
                 application apply = applicationArry[position]; //点中的对象
                 data.putSerializable("application", apply);
                 intent.putExtras(data);
+                intent.putExtra("length",applicationArry.length);
+                intent.putExtra("position",position);
                 startActivity(intent);
             }
         });

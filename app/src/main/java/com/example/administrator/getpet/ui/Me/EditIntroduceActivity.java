@@ -2,6 +2,8 @@ package com.example.administrator.getpet.ui.Me;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -31,7 +33,38 @@ public class EditIntroduceActivity extends BaseActivity implements View.OnClickL
     private EditText et_occupation;
     private EditText et_personal;
 
+    private String userId;
+    private String nickname;
+    private String age;
+    private String address;
+    private String phone;
+    private String occupation;
+    private String personal;
+    private String sex;
+
     private ProgressDialog progress;
+
+    private final int SUCCESS = 1001;
+    private Handler handler = new Handler()
+    {
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what)
+            {
+                case SUCCESS:
+                    editor.putString("nickName",nickname);
+                    editor.putString("sex",sex);
+                    editor.putInt("age",Integer.valueOf(age));
+                    editor.putString("address",address);
+                    editor.putString("phone",phone);
+                    editor.putString("personal",personal);
+                    editor.putString("occupation",occupation);
+                    editor.commit();
+                    finish();
+                    break;
+            }
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +76,7 @@ public class EditIntroduceActivity extends BaseActivity implements View.OnClickL
 
     private void loadData() {
         et_nickname.setText(preferences.getString("nickName",""));
-        et_age.setText(preferences.getInt("age",0));
+        et_age.setText(String.valueOf(preferences.getInt("age",0)));
         et_address.setText(preferences.getString("address",""));
         et_phone.setText(preferences.getString("phone",""));
         et_personal.setText(preferences.getString("personal",""));
@@ -85,7 +118,7 @@ public class EditIntroduceActivity extends BaseActivity implements View.OnClickL
                 finish();
                 break;
             case R.id.tv_finish:
-                progress = new ProgressDialog(mContext);
+                progress = new ProgressDialog(this);
                 progress.setMessage("请等待...");
                 progress.show();
                 submit();
@@ -94,14 +127,14 @@ public class EditIntroduceActivity extends BaseActivity implements View.OnClickL
     }
 
     private void submit() {
-        String userId = preferences.getString("id","");
-        String nickname = et_nickname.getText().toString();
-        String age = et_age.getText().toString();
-        String address = et_address.getText().toString();
-        String phone = et_phone.getText().toString();
-        String occupation = et_occupation.getText().toString();
-        String personal = et_personal.getText().toString();
-        String sex = "男";
+        userId = preferences.getString("id","");
+        nickname = et_nickname.getText().toString();
+        age = et_age.getText().toString();
+        address = et_address.getText().toString();
+        phone = et_phone.getText().toString();
+        occupation = et_occupation.getText().toString();
+        personal = et_personal.getText().toString();
+        sex = "男";
         if (rb_man.isChecked())
         {
             sex = "男";
@@ -125,7 +158,8 @@ public class EditIntroduceActivity extends BaseActivity implements View.OnClickL
                 progress.dismiss();
                 Log.d(TAG, "Success: data:"+data);
                 ToastUtils.showToast(mContext,"修改成功!");
-                finish();
+                handler.sendEmptyMessageDelayed(SUCCESS,1000);
+                return;
             }
 
             @Override

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@null"
+    android:layout_height="80dp">
+    <ImageView
+        android:layout_centerVertical="true"
+        android:id="@+id/photo"
+        android:layout_alignParentLeft="true"
+        android:layout_marginRight="5dp"
+        android:layout_width="80dp"
+        android:src="@mipmap/boy"
+        android:layout_height="80dp" />
+    <RelativeLayout
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:layout_toRightOf="@+id/photo"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_alignParentTop="true"
+            android:enabled="false"
+            android:id="@+id/msg"
+            android:layout_width="wrap_content"
+            android:maxLines="2"
+            android:textSize="18sp"
+            android:layout_height="wrap_content"
+            android:text="我的家乡叫东北，黑轮江上"/>
+        <LinearLayout
+            android:layout_alignParentBottom="true"
+            android:gravity="left"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="发表时间:"/>
+                <TextView
+                    android:enabled="false"
+                    android:id="@+id/time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2012-1-1"/>
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="发布者:"/>
+                <TextView
+                    android:id="@+id/publish"
+                    android:enabled="false"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="曹林"/>
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

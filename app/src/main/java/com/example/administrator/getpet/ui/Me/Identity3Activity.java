@@ -41,6 +41,7 @@ public class Identity3Activity extends BaseActivity implements View.OnClickListe
     private String wechat;
     private String others;
 
+
     private ProgressDialog progress;
 
     private static final String EXIT_APP_ACTION = "exitActivity";
@@ -155,6 +156,18 @@ public class Identity3Activity extends BaseActivity implements View.OnClickListe
             public void Success(String data) {
                 progress.dismiss();
                 ToastUtils.showToast(mContext,"认证成功！");
+                updateUser(data);
+                editor.putString("indentifiedId",data);
+                editor.putString("name",name);
+                editor.putString("marStatus",marStatus);
+                editor.putString("origin",origin);
+                editor.putString("company",company);
+                editor.putString("post",post);
+                editor.putFloat("income",income);
+                editor.putString("qq",qq);
+                editor.putString("wechat",wechat);
+                editor.putString("others",others);
+                editor.commit();
                 clear();
                 handler.sendEmptyMessageDelayed(SUCCESS,1000);
                 Log.d(TAG, "Success: data:"+data);
@@ -165,6 +178,22 @@ public class Identity3Activity extends BaseActivity implements View.OnClickListe
                 progress.dismiss();
                 ToastUtils.showToast(mContext,"认证失败!"+e);
                 Log.d(TAG, "Success: e:"+e);
+            }
+        });
+    }
+
+    private void updateUser(String data) {
+        SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("users","updateColumnsById");
+        httpReponse.addColumnParams("indentifiedId",data);
+        httpReponse.updateColumnsById(preferences.getString("id", ""), new HttpCallBack() {
+            @Override
+            public void Success(String data) {
+                Log.d(TAG, "Success: data:"+data);
+            }
+
+            @Override
+            public void Fail(String e) {
+                Log.d(TAG, "Fail: e:"+e);
             }
         });
     }

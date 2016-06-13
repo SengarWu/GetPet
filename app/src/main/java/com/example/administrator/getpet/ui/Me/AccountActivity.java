@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
@@ -22,6 +23,8 @@ import java.io.OutputStream;
 import java.net.URL;
 
 public class AccountActivity extends BaseActivity implements View.OnClickListener {
+
+    private static final String TAG = "AccountActivity";
 
     private ImageButton ib_back;
     private RoundImageView riv_photo;
@@ -64,6 +67,8 @@ public class AccountActivity extends BaseActivity implements View.OnClickListene
         String nickname = preferences.getString("nickName","");
         String phone = preferences.getString("phone","");
         String indentifiedId = preferences.getString("indentifiedId","");
+        Log.d(TAG, "loadData: photo:"+photo+",nickName:"+nickname+",phone:"+phone
+                +",indentifiedId:"+indentifiedId);
         if (!TextUtils.isEmpty(photo))
         {
             String s_url = HttpPostUtil.getImagUrl(photo);
@@ -78,7 +83,7 @@ public class AccountActivity extends BaseActivity implements View.OnClickListene
             tv_phone.setText(phone);
         }
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        if (!TextUtils.isEmpty(indentifiedId))
+        if (TextUtils.isEmpty(indentifiedId))
         {
             //未验证
             transaction.replace(R.id.frame_layout,noIdentityFragment);

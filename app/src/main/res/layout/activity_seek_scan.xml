@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/actionbar">
+        <ImageButton
+            android:id="@+id/back"
+            android:layout_width="30dp"
+            android:layout_height="48dp"
+            android:background="@color/color_transparent_bg"
+            android:scaleType="center"
+            android:src="@mipmap/icon_back_white"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="浏览"
+            android:layout_centerInParent="true"
+            android:textSize="@dimen/actionBar_textSize"
+            android:textColor="@color/base_color_text_white"/>
+        <Button
+            android:id="@+id/publish"
+            android:background="@null"
+            android:textSize="@dimen/actionBar_textSize"
+            android:textColor="@color/base_color_text_white"
+            android:text="发布"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"/>
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/scanList"
+        android:layout_marginBottom="10dp"
+        android:background="@mipmap/seek_scan_bg"/>
+    <!--<ListView-->
+        <!--android:id="@+id/list"-->
+        <!--android:layout_marginBottom="10dp"-->
+        <!--android:background="@null"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent">-->
+    <!--</ListView>-->
+
+</LinearLayout>

@@ -7,6 +7,7 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.administrator.getpet.utils.CommonUtils;
 import com.example.administrator.getpet.utils.ToastUtils;
@@ -40,6 +41,10 @@ public class BaseActivity extends FragmentActivity {
 
     public void startAnimActivity(Class<?> cla) {
         this.startActivity(new Intent(this, cla));
+    }
+
+    public void show(String msg){
+        Toast.makeText(mContext,msg,Toast.LENGTH_LONG).show();
     }
 
     protected   <T extends View> T $(int resId) {

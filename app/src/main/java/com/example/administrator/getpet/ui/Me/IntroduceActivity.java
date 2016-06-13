@@ -25,13 +25,18 @@ public class IntroduceActivity extends BaseActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_introduce);
         initView();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         loadData();
     }
 
     private void loadData() {
         tv_nickname.setText(preferences.getString("nickName",""));
         tv_sex.setText(preferences.getString("sex",""));
-        tv_age.setText(preferences.getInt("age",0));
+        tv_age.setText(String.valueOf(preferences.getInt("age",0)));
         tv_address.setText(preferences.getString("address",""));
         tv_phone.setText(preferences.getString("phone",""));
         tv_personal.setText(preferences.getString("personal",""));

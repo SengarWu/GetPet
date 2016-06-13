@@ -2,6 +2,7 @@ package com.example.administrator.getpet.ui.Me;
 
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,8 @@ import com.example.administrator.getpet.R;
 import com.example.administrator.getpet.base.BaseFragment;
 
 public class IdentityFragment extends BaseFragment {
+
+    private static final String TAG = "IdentityFragment";
 
     private TextView tv_name;
     private TextView tv_sex;
@@ -48,11 +51,14 @@ public class IdentityFragment extends BaseFragment {
             String address = preferences.getString("address","");
             String company = preferences.getString("company","");
             String post = preferences.getString("post","");
-            String income = preferences.getString("sex","");
-            String phone = preferences.getString("income","");
+            Float income = preferences.getFloat("income",0.0f);
+            String phone = preferences.getString("phone","");
             String qq = preferences.getString("qq","");
             String wechat = preferences.getString("wechat","");
             String others = preferences.getString("others","");
+            Log.d(TAG, "setupView: name:"+name+",sex:"+sex+",age:"+age+",marStatus:"+marStatus
+                    +",address:"+address+",company:"+company+",post:"+post+",income:"+income
+            +",phone:"+phone+",qq:"+qq+",wechat:"+wechat+",others:"+others);
             tv_name.setText(name);
             tv_sex.setText(sex);
             tv_age.setText(String.valueOf(age));
@@ -60,7 +66,7 @@ public class IdentityFragment extends BaseFragment {
             tv_address.setText(address);
             tv_company.setText(company);
             tv_post.setText(post);
-            tv_income.setText(income);
+            tv_income.setText(String.valueOf(income));
             tv_phone.setText(phone);
             tv_qq.setText(qq);
             tv_wechat.setText(wechat);

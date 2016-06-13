@@ -23,6 +23,7 @@ public class CustomApplication extends Application {
     public void onCreate() {
         super.onCreate();
         mInstance = this;
+        initImageLoader(mInstance);
     }
 
     public static CustomApplication getmInstance() {

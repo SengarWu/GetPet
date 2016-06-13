@@ -26,6 +26,7 @@ import java.util.Set;
  * Created by caolin on 2016/3/4.
  */
 public class SimpleHttpPostUtil{
+
     Exception ee;
     HttpCallBack callBack;
     String data;
@@ -36,28 +37,50 @@ public class SimpleHttpPostUtil{
     List<String> viewColumns = new ArrayList<String>();
     List<Wheres> wheres = new ArrayList<Wheres>();
     DataOutputStream ds;
-    //构造函数
+
+
+    /**
+     * 构造函数
+     * @param className 控制器
+     * @param method 方法
+     */
     public SimpleHttpPostUtil(String className,String method){
         try{
             this.url=new URL(staticConfig.baseUrl+className+"/"+method);
         }catch(Exception e){
         }
     }
+
+    /**
+     * 构造函数
+     * @param postFix  http后缀
+     */
     public SimpleHttpPostUtil(String postFix){
         try{
             this.url=new URL(staticConfig.baseUrl+postFix);
         }catch(Exception e){
         }
     }
+
+    /**
+     * 构造函数
+     * @param url http地址
+     */
     public SimpleHttpPostUtil(URL url){
           this.url=url;
     }
-    //处理 器
+
+    /**
+     * 处理器
+     */
     public Handler mHandler=new Handler() {
         public void handleMessage(Message msg) {
+            Log.i("1","9");
             switch (msg.what) {
                 case 1:
+                    Log.i("1","10");
                     callBack.Success(data);
+                    Log.i("1","11");
                     break;
                 default:
                     Exception e=ee;
@@ -66,11 +89,21 @@ public class SimpleHttpPostUtil{
             }
         }
     };
-    //增加一个普通字符串数据到form表单数据中
+
+    /**
+     * 增加一个普通字符串数据到form表单数据中
+     * @param name key
+     * @param value  value
+     */
     public void addParams(String name,Object value) {
         textParams.put(name, String.valueOf(value));
     }
-    //增加一个where条件到form表单数据中
+    /**
+     * 增加一个where条件到form表单数据中
+     * @param key  key
+     * @param operation 操作
+     * @param value  value
+     */
     public void addWhereParams(String key,String operation,String value) {
         Wheres wh=new Wheres();
         wh.key=key;
@@ -79,7 +112,14 @@ public class SimpleHttpPostUtil{
         wh.relation="";
         wheres.add(wh);
     }
-    //增加一个where条件到form表单数据中
+
+    /**
+     * 增加一个where条件到form表单数据中
+     * @param key  key
+     * @param operation 操作
+     * @param value  value
+     * @param relation 关系
+     */
     public void addWhereParams(String key,String operation,String value,String relation) {
         Wheres wh=new Wheres();
         wh.key=key;
@@ -88,14 +128,23 @@ public class SimpleHttpPostUtil{
         wh.relation=relation;
         wheres.add(wh);
     }
-    //增加一个columns值到form表单数据中
+
+    /**
+     * 增加一个columns值到form表单数据中
+     * @param key key
+     * @param value value
+     */
     public void addColumnParams(String key,String value) {
         Columns cl=new Columns();
         cl.key=key;
         cl.value=value;
         columns.add(cl);
     }
-    //增加一个column值到form表单数据中
+
+    /**
+     * 增加一个column值到form表单数据中
+     * @param value  值
+     */
     public void addViewColumnsParams(String value) {
         viewColumns.add(value);
     }
@@ -119,39 +168,56 @@ public class SimpleHttpPostUtil{
     public void clearParameters() {
         textParams.clear();
     }
-    // 发送数据到服务器，返回一个字节包含服务器的返回结果的数组
+
+    /**
+     * 发送网络请求
+     * @param callBack  网络请求处理调用
+     */
     public void send(HttpCallBack callBack){
         this.callBack=callBack;
+        //新建一个线程处理
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try{
+                    //初始化网络连接
                     initConnection();
                     ds = new DataOutputStream(conn.getOutputStream());
+                    //传送参数
                     writeStringParams();
+                    //获取状态码
                     if (conn.getResponseCode() != 200){
                         throw new Exception("请求url失败");
                     }else{
+                        //获取请求数据流
                         InputStream in = conn.getInputStream();
                         ByteArrayOutputStream out = new ByteArrayOutputStream();
                         byte[] buff = new byte[1024];
                         int len;
+                        //将数据流转化成数组
                         while ((len = in.read(buff)) != -1) {
                             out.write(buff, 0, len);
                         }
                         byte[] retdata=out.toByteArray();
+                        //释放输出流
                         out.close();
+                        //转化成字符串
                         String result = new String(retdata);
+                        //将json字符串解析
                         JSONObject ob=new JSONObject(result);
+                        //处理服务端处理结果
                         String str=ob.getString("code");
                         if (str==null||str.equals("")){
                             data="请求失败";
+                            //处理失败
                             mHandler.sendEmptyMessage(0);
                         }else{
                             data=ob.getString("result");
                             if(str.equals("1")){
+                                //处理成功
                                 mHandler.sendEmptyMessage(1);
                             }else{
+                                //处理失败
                                 mHandler.sendEmptyMessage(0);
                             }
                         }
@@ -237,13 +303,33 @@ public class SimpleHttpPostUtil{
         addParams(staticConfig.id, id);
         send(httpCall);
     }
-
+    public void QueryList(int index, int size, String wheres, String orderField,HttpCallBack httpCall){
+        skip(index);
+        limit(size);
+        addOrderFieldParams(orderField);
+        send(httpCall);
+    }
+    public void QueryList(int index, int size, String wheres,HttpCallBack httpCall){
+        skip(index);
+        limit(size);
+        send(httpCall);
+    }
     public void QueryList(int index, int size,HttpCallBack httpCall){
         skip(index);
         limit(size);
         send(httpCall);
     }
-
+    public void QueryListX(int index, int size, String wheres, String orderField,HttpCallBack httpCall){
+        skip(index);
+        limit(size);
+        addOrderFieldParams(orderField);
+        send(httpCall);
+    }
+    public void QueryListX(int index, int size, String wheres,HttpCallBack httpCall){
+        skip(index);
+        limit(size);
+        send(httpCall);
+    }
     public void QueryListX(int index, int size,HttpCallBack httpCall){
         skip(index);
         limit(size);

@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.example.administrator.getpet.R;
 import com.example.administrator.getpet.base.BaseActivity;
 import com.example.administrator.getpet.bean.application;
+import com.example.administrator.getpet.utils.GetPictureUtils;
 import com.example.administrator.getpet.utils.HttpCallBack;
 import com.example.administrator.getpet.utils.SimpleHttpPostUtil;
 import com.example.administrator.getpet.utils.ToastUtils;
@@ -32,6 +33,9 @@ public class AdoptDetailActivity extends BaseActivity implements View.OnClickLis
     private application apply;
 
     private ProgressDialog progress;
+
+    private int length;
+    private int position;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,10 +58,13 @@ public class AdoptDetailActivity extends BaseActivity implements View.OnClickLis
             ToastUtils.showToast(mContext,"数据加载错误！");
             return;
         }
+        length = intent.getIntExtra("length",0);
+        position = intent.getIntExtra("position",0);
         setupView();
     }
 
     private void setupView() {
+        iv_spet_photo.setImageResource(GetPictureUtils.GetPicture(length)[position]);
         tv_spet_name.setText(apply.sPet.name);
         tv_apply_username.setText(apply.users.nickName);
         if (apply.state == 0)
@@ -110,6 +117,7 @@ public class AdoptDetailActivity extends BaseActivity implements View.OnClickLis
                                 Log.d(TAG, "Success: data:"+data);
                                 ToastUtils.showToast(mContext,"操作成功！");
                                 tv_apply_state.setText("已审核");
+                                btn_agree.setVisibility(View.INVISIBLE);
                             }
 
                             @Override

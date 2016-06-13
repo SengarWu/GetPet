@@ -22,7 +22,7 @@
     <application
         android:name=".base.CustomApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/logo"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
@@ -45,6 +45,7 @@
         <activity android:name=".ui.Home.SendAdopt.EntrustAdoptMainActivity" />
         <activity android:name=".ui.Home.SendAdopt.endEntrust" />
         <!-- 胡明科 -->
+        <!-- 吴承佳 -->
         <activity
             android:name=".ui.home"
             android:label="@string/title_activity_home" />
@@ -73,6 +74,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!-- 吴承佳 -->
+
+        <!-- 白政霖 -->
         <activity android:name=".ui.HelpStation.AddsPetActivity" />
         <activity android:name=".ui.HelpStation.AdminLoginActivity" />
         <activity android:name=".ui.HelpStation.AdoptMsgActivity" />
@@ -84,6 +88,18 @@
         <activity android:name=".ui.HelpStation.AdoptDetailActivity" />
         <activity android:name=".ui.PetHelp.DonateActivity" />
         <activity android:name=".ui.HelpStation.ApplyAdoptActivity"></activity>
+        <!-- 白政霖 曹林 -->
+        <activity android:name=".ui.HelpStation.addStation"></activity>
+        <activity android:name=".ui.HelpStation.addActives"></activity>
+        <activity android:name=".ui.HelpStation.activeScan"></activity>
+        <!--曹林-->
+        <activity android:name=".ui.findPet.publishPet"></activity>
+        <activity android:name=".ui.findPet.petDetail"></activity>
+        <activity android:name=".ui.findPet.petScan"></activity>
+        <activity android:name=".ui.findPet.petReply"></activity>
+        <activity android:name=".ui.findPet.myAttention"></activity>
+        <activity android:name=".ui.findPet.myPublishes"></activity>
+
     </application>
 
 </manifest>
