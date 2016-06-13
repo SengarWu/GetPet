@@ -48,6 +48,9 @@ public class Identity1Activity extends BaseActivity implements View.OnClickListe
         }
     }
 
+    /**
+     * 注册退出页面的广播
+     */
     private void registerExitReceiver() {
         IntentFilter exitFilter = new IntentFilter();
         exitFilter.addAction(EXIT_APP_ACTION);
@@ -60,6 +63,9 @@ public class Identity1Activity extends BaseActivity implements View.OnClickListe
         unRegisterExitReceiver();
     }
 
+    /**
+     * 取消注册
+     */
     private void unRegisterExitReceiver() {
         unregisterReceiver(exitReceiver);
     }

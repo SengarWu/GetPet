@@ -117,6 +117,10 @@ public class home extends BaseActivity implements View.OnClickListener {
         });
     }
 
+    /**
+     * 宠物列表数据源
+     * @return
+     */
     private List<Map<String,Object>> getData() {
         List<Map<String, Object>> listItems=new ArrayList<Map<String,Object>>();
         for (int i = 0; i < sPetArry.length; i++) {
@@ -159,6 +163,9 @@ public class home extends BaseActivity implements View.OnClickListener {
 
     }
 
+    /**
+     *加载侧拉布局
+     */
     private void initDragLayout() {
         dl = (DragLayout) findViewById(R.id.dl);
         dl.setDragListener(new DragLayout.DragListener() {
@@ -179,6 +186,9 @@ public class home extends BaseActivity implements View.OnClickListener {
         });
     }
 
+    /**
+     * 界面初始化方法
+     */
     private void initView() {
         iv_icon = (ImageView) findViewById(R.id.iv_icon);
         iv_icon.setOnClickListener(this);

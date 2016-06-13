@@ -74,6 +74,9 @@ public class EditIntroduceActivity extends BaseActivity implements View.OnClickL
         loadData();
     }
 
+    /**
+     * 加载本地数据
+     */
     private void loadData() {
         et_nickname.setText(preferences.getString("nickName",""));
         et_age.setText(String.valueOf(preferences.getInt("age",0)));
@@ -95,6 +98,9 @@ public class EditIntroduceActivity extends BaseActivity implements View.OnClickL
         }
     }
 
+    /**
+     *
+     */
     private void initView() {
         ib_back = (ImageButton) findViewById(R.id.ib_back);
         ib_back.setOnClickListener(this);
@@ -126,6 +132,9 @@ public class EditIntroduceActivity extends BaseActivity implements View.OnClickL
         }
     }
 
+    /**
+     *提交数据到服务器
+     */
     private void submit() {
         userId = preferences.getString("id","");
         nickname = et_nickname.getText().toString();

@@ -59,6 +59,9 @@ public class MyPetActivity extends BaseActivity implements View.OnClickListener 
         lv_my_pet.setAdapter(adapter);
     }
 
+    /**
+     * 服务器数据获取
+     */
     private void loadData() {
         SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("pet","QueryList");
         String id = preferences.getString("id","");
@@ -84,6 +87,10 @@ public class MyPetActivity extends BaseActivity implements View.OnClickListener 
         });
     }
 
+    /**
+     * 获取数据源
+     * @return
+     */
     private List<Map<String,Object>> getData() {
 
         List<Map<String, Object>> listItems=new ArrayList<Map<String,Object>>();

@@ -8,6 +8,11 @@ import com.example.administrator.getpet.R;
 public class GetPictureUtils {
     private static int[] image;
 
+    /**
+     * 获取本地图片数据
+     * @param count 图片数组长度
+     * @return
+     */
     public static int[] GetPicture(int count)
     {
         image = new int[count];
