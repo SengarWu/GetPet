@@ -4,15 +4,17 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.administrator.getpet.R;
 import com.example.administrator.getpet.base.BaseActivity;
 
 public class EntrustAdoptMainActivity extends BaseActivity implements View.OnClickListener {
-    private TextView entrust;
-    private TextView adopt;
-    private TextView applyhistory;
+    private TextView entrust;//跳转到寄养界面
+    private TextView adopt;//跳转到领养界面
+    private TextView applyhistory;//跳转到申请历史界面
+    private ImageView back;//返回图标
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,9 +26,12 @@ public class EntrustAdoptMainActivity extends BaseActivity implements View.OnCli
         entrust=(TextView)findViewById(R.id.entrust);
         adopt=(TextView)findViewById(R.id.adopt);
         applyhistory=(TextView)findViewById(R.id.applyhistory);
+        back=(ImageView)findViewById(R.id.back);
+        back.setOnClickListener(this);
         entrust.setOnClickListener(this);
         adopt.setOnClickListener(this);
         applyhistory.setOnClickListener(this);
+
     }
 
     @Override
@@ -43,6 +48,9 @@ public class EntrustAdoptMainActivity extends BaseActivity implements View.OnCli
             case R.id.applyhistory:
                 Intent intent3=new Intent(this,ApplicationHistory.class);
                 startActivity(intent3);
+                break;
+            case R.id.back:
+                this.finish();
                 break;
         }
     }

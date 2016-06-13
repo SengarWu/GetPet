@@ -31,9 +31,6 @@ import java.util.List;
 public class SearchEntrust extends BaseActivity implements View.OnClickListener {
     private String tyId ="所有类型";
     public String citystr="所有城市";
-    private DrawerLayout petlayout;//用于类型筛选的侧拉框
-    private ImageView cat,dog,fish,other;//各个宠物类型的选择图标
-    private TextView alltype;//所有类型的图标
     private ZrcListView listView;//用于显示寄养信息列表
     private Handler handler;//用于接收子线程的信息以刷新主线程
     int curPage = 1;//页码
@@ -41,6 +38,7 @@ public class SearchEntrust extends BaseActivity implements View.OnClickListener 
     private ArrayList<entrust> items = new ArrayList<>();//用于记录已经查询到的寄养信息条数
     private TextView city;//用于显示城市
     //private List<entrust> tempolist;//用于存放返回数据的列表
+    private ImageView back;//返回图标
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,20 +48,11 @@ public class SearchEntrust extends BaseActivity implements View.OnClickListener 
     }
 
     private void initView() {
-        petlayout=(DrawerLayout)findViewById(R.id.drawer_layout);
-        cat=(ImageView)findViewById(R.id.cat);
-        dog=(ImageView)findViewById(R.id.dog);
-        fish=(ImageView)findViewById(R.id.fish);
-        other=(ImageView)findViewById(R.id.other);
         city=(TextView)findViewById(R.id.tv_city);
-        alltype=(TextView)findViewById(R.id.alltype);
         city.setOnClickListener(this);
-        cat.setOnClickListener(this);
-        dog.setOnClickListener(this);
-        fish.setOnClickListener(this);
-        other.setOnClickListener(this);
-        alltype.setOnClickListener(this);
         listView = (ZrcListView)findViewById(R.id.other_entrust_list);
+        back=(ImageView)findViewById(R.id.back);
+        back.setOnClickListener(this);
         handler = new Handler();
         // 设置下拉刷新的样式（可选，但如果没有Header则无法下拉刷新）
         SimpleHeader header = new SimpleHeader(this);
@@ -281,38 +270,11 @@ public class SearchEntrust extends BaseActivity implements View.OnClickListener 
     @Override
     public void onClick(View v) {
         switch(v.getId()) {
-            case R.id.cat:
-                tyId ="1";
-                petlayout.closeDrawer(GravityCompat.START);
-                listView.setSelection(0);
-                listView.refresh();
-                break;
-            case R.id.dog:
-                tyId ="2";
-                petlayout.closeDrawer(GravityCompat.START);
-                listView.setSelection(0);
-                listView.refresh();
-                break;
-            case R.id.fish:
-                tyId ="3";
-                petlayout.closeDrawer(GravityCompat.START);
-                listView.setSelection(0);
-                listView.refresh();
-                break;
-            case R.id.other:
-                tyId ="4";
-                petlayout.closeDrawer(GravityCompat.START);
-                listView.setSelection(0);
-                listView.refresh();
-                break;
-            case R.id.alltype:
-                tyId ="所有类型";
-                petlayout.closeDrawer(GravityCompat.START);
-                listView.setSelection(0);
-                listView.refresh();
-                break;
             case R.id.tv_city:
                 startActivityForResult(new Intent(this, SelectCityActivity.class), 99);
+                break;
+            case R.id.back:
+                this.finish();
                 break;
         }
     }

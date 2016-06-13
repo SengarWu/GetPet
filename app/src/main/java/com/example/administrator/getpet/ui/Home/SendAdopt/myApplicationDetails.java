@@ -28,6 +28,7 @@ public class myApplicationDetails extends BaseActivity implements View.OnClickLi
     private Button remove;//撤回
     private Button modify;//更改
     private applyApplication apply;//记录前一个页面传过来的领养申请信息
+    private ImageView back;//返回图标
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +48,8 @@ public class myApplicationDetails extends BaseActivity implements View.OnClickLi
         comment_result=(ImageView) findViewById(R.id.comment_result);
         remove=(Button)findViewById(R.id.remove);
         modify=(Button)findViewById(R.id.modify);
+        back=(ImageView)findViewById(R.id.back);
+        back.setOnClickListener(this);
         remove.setOnClickListener(this);
         modify.setOnClickListener(this);
         //显示数据详情
@@ -66,7 +69,7 @@ public class myApplicationDetails extends BaseActivity implements View.OnClickLi
                 type.setImageResource(R.mipmap.cat_type);
                 break;
             case "狗":
-                type.setImageResource(R.mipmap.dog);
+                type.setImageResource(R.mipmap.type_dog);
                 break;
             case "鱼":
                 type.setImageResource(R.mipmap.type_fish);
@@ -76,10 +79,10 @@ public class myApplicationDetails extends BaseActivity implements View.OnClickLi
                 break;
         }
         details.setText("      "+apply.getEntrust().getDetail()+"\n"+"      联系电话："+apply.getEntrust().getUsers().getPhone());
-        apply_message.setText("      "+apply.getDetail()+"\n"+"      联系地址"+apply.getConnectPlace()+"\n"+"      联系电话"+apply.getPhoneNumber());
+        apply_message.setText("      "+apply.getDetail()+"\n"+"      联系地址:"+apply.getConnectPlace()+"\n"+"      联系电话:"+apply.getPhoneNumber());
         if(apply.getComment().equals("好评")){
             comment_result.setImageResource(R.mipmap.haoping);
-        }else if(apply.getComment().equals("好评")){
+        }else if(apply.getComment().equals("差评")){
             comment_result.setImageResource(R.mipmap.chaping);
         }
     }
@@ -114,6 +117,9 @@ public class myApplicationDetails extends BaseActivity implements View.OnClickLi
                 }else{
                     Toast.makeText(this, "改信息已被取消", Toast.LENGTH_LONG).show();
                 }
+                break;
+            case R.id.back:
+                this.finish();
                 break;
         }
     }

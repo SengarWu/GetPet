@@ -12,7 +12,6 @@ import com.example.administrator.getpet.base.BaseActivity;
 import com.example.administrator.getpet.bean.pet;
 import com.example.administrator.getpet.bean.post;
 import com.example.administrator.getpet.ui.Home.PetCircle.Adapter.PetAdapter;
-import com.example.administrator.getpet.ui.Home.PetCircle.Adapter.mypostAdapter;
 import com.example.administrator.getpet.utils.CommonUtils;
 import com.example.administrator.getpet.utils.HttpCallBack;
 import com.example.administrator.getpet.utils.JSONUtil;

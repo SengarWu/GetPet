@@ -46,6 +46,7 @@ public class EntrustMainActivity extends BaseActivity implements View.OnClickLis
     private void init() {
         addnewEntrust=(ImageView)findViewById(R.id.add_entrust);
         back=(ImageView)findViewById(R.id.back);
+        back.setOnClickListener(this);
         addnewEntrust.setOnClickListener(this);
         back.setOnClickListener(this);
         listView = (ZrcListView)findViewById(R.id.my_entrust_list);

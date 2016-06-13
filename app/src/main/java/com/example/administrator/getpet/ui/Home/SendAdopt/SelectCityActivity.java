@@ -18,6 +18,7 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -51,11 +52,13 @@ public class SelectCityActivity extends BaseActivity implements View.OnClickList
     private static final int SHOWDIALOG = 2;
     private static final int DISMISSDIALOG = 3;
     private Button al_city;
-
+    private ImageView back;//返回图标
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_city);
+        back=(ImageView)findViewById(R.id.back);
+        back.setOnClickListener(this);
         al_city=(Button)findViewById(R.id.allcity);
         al_city.setOnClickListener(this);
         personList = (ListView) findViewById(R.id.list_view);

@@ -63,7 +63,7 @@ public class OtherEntrustDetail extends BaseActivity implements View.OnClickList
                 type_other.setImageResource(R.mipmap.cat_type);
                 break;
             case "狗":
-                type_other.setImageResource(R.mipmap.dog);
+                type_other.setImageResource(R.mipmap.type_dog);
                 break;
             case "鱼":
                 type_other.setImageResource(R.mipmap.type_fish);

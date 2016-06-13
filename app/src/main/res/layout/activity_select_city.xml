@@ -12,6 +12,13 @@
             android:src="@mipmap/kk_back"
             android:layout_width="50dp"
             android:layout_height="50dp" />
+        <TextView
+            android:layout_centerInParent="true"
+            android:textColor="@color/KK_white"
+            android:textSize="@dimen/TextView_textSize"
+            android:text="请选择城市"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
     </RelativeLayout>
 
     <RelativeLayout
