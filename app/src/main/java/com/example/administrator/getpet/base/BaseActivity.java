@@ -20,6 +20,7 @@ public class BaseActivity extends FragmentActivity {
     public SharedPreferences preferences;
     public SharedPreferences.Editor editor;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
