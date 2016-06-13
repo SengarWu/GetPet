@@ -108,6 +108,8 @@
         <activity android:name=".ui.Home.PetCircle.PostDetail"></activity>
         <activity android:name=".ui.Home.PetCircle.PublishPost"></activity>
         <activity android:name=".ui.Home.PetCircle.ShowPetDetail"></activity>
+        <activity android:name=".ui.Home.PetCircle.myPostHistory"/>
+
         <!--李祎楠-->
     </application>
 
