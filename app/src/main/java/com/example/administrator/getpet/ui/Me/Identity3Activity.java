@@ -75,6 +75,9 @@ public class Identity3Activity extends BaseActivity implements View.OnClickListe
         initView();
     }
 
+    /**
+     * 加载本地数据
+     */
     private void loadData() {
         Intent intent = getIntent();
         if (intent != null)
@@ -127,6 +130,9 @@ public class Identity3Activity extends BaseActivity implements View.OnClickListe
         }
     }
 
+    /**
+     * 提交数据到服务器
+     */
     private void submit() {
         String userId = preferences.getString("id","");
         if (TextUtils.isEmpty(userId))
@@ -182,6 +188,10 @@ public class Identity3Activity extends BaseActivity implements View.OnClickListe
         });
     }
 
+    /**
+     * 更新服务器用户信息
+     * @param data
+     */
     private void updateUser(String data) {
         SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("users","updateColumnsById");
         httpReponse.addColumnParams("indentifiedId",data);

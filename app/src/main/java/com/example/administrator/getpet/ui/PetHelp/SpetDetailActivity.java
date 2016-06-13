@@ -2,6 +2,7 @@ package com.example.administrator.getpet.ui.PetHelp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -12,9 +13,13 @@ import com.example.administrator.getpet.base.BaseActivity;
 import com.example.administrator.getpet.bean.sPet;
 import com.example.administrator.getpet.ui.HelpStation.ApplyAdoptActivity;
 import com.example.administrator.getpet.utils.GetPictureUtils;
+import com.example.administrator.getpet.utils.HttpCallBack;
+import com.example.administrator.getpet.utils.SimpleHttpPostUtil;
 import com.example.administrator.getpet.utils.ToastUtils;
 
 public class SpetDetailActivity extends BaseActivity implements View.OnClickListener {
+
+    private static final String TAG = "SpetDetailActivity";
 
     private ImageButton ib_back;
     private ImageView iv_spet_photo;
@@ -28,6 +33,8 @@ public class SpetDetailActivity extends BaseActivity implements View.OnClickList
     private ImageButton ib_spet_adopt;
     private ImageButton ib_station_activity;
     private sPet spet;
+
+    private int state;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +97,22 @@ public class SpetDetailActivity extends BaseActivity implements View.OnClickList
                 startActivity(intent);
                 break;
             case R.id.ib_spet_adopt://领养
+                SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("application","QuerySinglebywheres");
+                httpReponse.addWhereParams("spetId","=",spet.id);
+                httpReponse.addViewColumnsParams("state");
+                httpReponse.QuerySinglebywheres(new HttpCallBack() {
+                    @Override
+                    public void Success(String data) {
+                        Log.d(TAG, "Success: data:"+data);
+                        show(data);
+
+                    }
+
+                    @Override
+                    public void Fail(String e) {
+                        show(e);
+                    }
+                });
                 Intent intent1 = new Intent(SpetDetailActivity.this, ApplyAdoptActivity.class);
                 intent1.putExtra("spet_id",spet.id);
                 intent1.putExtra("station_id",spet.Station.id);

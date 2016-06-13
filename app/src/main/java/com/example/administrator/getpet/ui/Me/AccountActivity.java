@@ -26,11 +26,11 @@ public class AccountActivity extends BaseActivity implements View.OnClickListene
 
     private static final String TAG = "AccountActivity";
 
-    private ImageButton ib_back;
-    private RoundImageView riv_photo;
-    private TextView tv_nickname;
-    private TextView tv_phone;
-    private FrameLayout frame_layout;
+    private ImageButton ib_back;//
+    private RoundImageView riv_photo;//
+    private TextView tv_nickname;//
+    private TextView tv_phone;//
+    private FrameLayout frame_layout;//
 
     IdentityFragment identityFragment = new IdentityFragment();
     NoIdentityFragment noIdentityFragment = new NoIdentityFragment();
@@ -99,6 +99,10 @@ public class AccountActivity extends BaseActivity implements View.OnClickListene
         }
     }
 
+    /**
+     * 通过URL获取网络图片
+     * @param surl
+     */
     private void getImage(final String surl) {
         new Thread()
         {

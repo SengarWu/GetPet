@@ -42,6 +42,9 @@ public class InformActivity extends BaseActivity {
         loadData();
     }
 
+    /**
+     * 加载网络数据
+     */
     private void loadData() {
         //
         SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("reply","QueryList");

@@ -94,6 +94,11 @@ public class AddsPetActivity extends BaseActivity implements View.OnClickListene
                     ToastUtils.showToast(mContext,"名字不能为空");
                     return;
                 }
+                if (spet_name.contains(" "))
+                {
+                    ToastUtils.showToast(mContext,"名字带空格");
+                    return;
+                }
                 if (TextUtils.isEmpty(spet_age))
                 {
                     ToastUtils.showToast(mContext,"年龄不能为空");

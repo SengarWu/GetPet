@@ -47,6 +47,9 @@ public class DonateRecordeActivity extends BaseActivity {
         loadData();
     }
 
+    /**
+     * 加载数据
+     */
     private void loadData() {
         SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("donate","QueryList");
         String id = preferences.getString("id","");
@@ -71,6 +74,9 @@ public class DonateRecordeActivity extends BaseActivity {
         });
     }
 
+    /**
+     * 界面初始化
+     */
     private void setupView() {
         List<Map<String,Object>> listItems = new ArrayList<Map<String,Object>>();
         for (int i = 0; i < donateArry.length; i++) {

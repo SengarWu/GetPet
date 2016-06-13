@@ -70,6 +70,9 @@ public class AddPetActivity extends BaseActivity implements View.OnClickListener
         loadData();
     }
 
+    /**
+     * 界面初始化类
+     */
     private void setupData() {
         Log.d(TAG, "setupData: cateArry.length:"+cateArry.length);
         cateNameArry = new String[cateArry.length];
@@ -84,6 +87,9 @@ public class AddPetActivity extends BaseActivity implements View.OnClickListener
         sp_pet_category.setAdapter(adapter);
     }
 
+    /**
+     * 加载网络数据
+     */
     private void loadData() {
         //加载宠物类型
         SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("category","QueryListX");
@@ -106,6 +112,9 @@ public class AddPetActivity extends BaseActivity implements View.OnClickListener
         });
     }
 
+    /**
+     * 控件初始化
+     */
     private void initView() {
         ib_back = $(R.id.ib_back);
         ib_back.setOnClickListener(this);
@@ -178,6 +187,11 @@ public class AddPetActivity extends BaseActivity implements View.OnClickListener
         }
     }
 
+    /**
+     * 添加宠物类别
+     * @param s
+     * @return
+     */
     private String getCategoryId(String s) {
         int j=0;
         for (int i = 0; i < cateNameArry.length; i++) {
@@ -193,6 +207,10 @@ public class AddPetActivity extends BaseActivity implements View.OnClickListener
         return cateIdArry[j];
     }
 
+    /**
+     * 提交数据到服务器
+     * @param pet
+     */
     private void submit(pet pet) {
         SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("pet","Insert");
         httpReponse.insert(pet,new HttpCallBack() {

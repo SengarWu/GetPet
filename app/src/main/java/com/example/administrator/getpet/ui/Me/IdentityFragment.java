@@ -40,6 +40,9 @@ public class IdentityFragment extends BaseFragment {
         return parentView;
     }
 
+    /**
+     * 初始化本地数据
+     */
     private void setupView() {
         String indentifiedId = preferences.getString("indentifiedId","");
         if (!TextUtils.isEmpty(indentifiedId))

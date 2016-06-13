@@ -12,6 +12,11 @@ public class ToastUtils {
     private static long oneTime=0;
     private static long twoTime=0;
 
+    /**
+     * 带时间限制的弹窗
+     * @param context
+     * @param s
+     */
     public static void showToast(Context context, String s){
         if(toast==null){
             toast =Toast.makeText(context, s, Toast.LENGTH_SHORT);

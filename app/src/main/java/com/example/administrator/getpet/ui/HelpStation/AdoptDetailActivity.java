@@ -29,7 +29,7 @@ public class AdoptDetailActivity extends BaseActivity implements View.OnClickLis
     private TextView tv_apply_state;
     private TextView tv_apply_reason;
     private Button btn_agree;
-
+    private Button btn_disagree;
     private application apply;
 
     private ProgressDialog progress;
@@ -71,11 +71,19 @@ public class AdoptDetailActivity extends BaseActivity implements View.OnClickLis
         {
             tv_apply_state.setText("未审核");
             btn_agree.setVisibility(View.VISIBLE);
+            btn_disagree.setVisibility(View.VISIBLE);
         }
-        else
+        else if (apply.state == 1)
         {
             tv_apply_state.setText("已审核");
             btn_agree.setVisibility(View.INVISIBLE);
+            btn_disagree.setVisibility(View.INVISIBLE);
+        }
+        else
+        {
+            tv_apply_state.setText("审核未通过");
+            btn_agree.setVisibility(View.INVISIBLE);
+            btn_disagree.setVisibility(View.INVISIBLE);
         }
         tv_apply_reason.setText(apply.reason);
     }
@@ -90,6 +98,8 @@ public class AdoptDetailActivity extends BaseActivity implements View.OnClickLis
         tv_apply_reason = $(R.id.tv_apply_reason);
         btn_agree = $(R.id.btn_agree);
         btn_agree.setOnClickListener(this);
+        btn_disagree = $(R.id.btn_disagree);
+        btn_disagree.setOnClickListener(this);
     }
 
     @Override
@@ -118,6 +128,7 @@ public class AdoptDetailActivity extends BaseActivity implements View.OnClickLis
                                 ToastUtils.showToast(mContext,"操作成功！");
                                 tv_apply_state.setText("已审核");
                                 btn_agree.setVisibility(View.INVISIBLE);
+                                btn_disagree.setVisibility(View.INVISIBLE);
                             }
 
                             @Override
@@ -129,7 +140,38 @@ public class AdoptDetailActivity extends BaseActivity implements View.OnClickLis
                         });
                     }
                 }
+                break;
+            case R.id.btn_disagree:
+                progress = new ProgressDialog(this);
+                progress.setMessage("请稍后...");
+                progress.setCanceledOnTouchOutside(true);
+                progress.show();
+                if (apply != null)
+                {
+                    if (apply.state == 0)
+                    {
+                        SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("application","updateColumnsById");
+                        httpReponse.addColumnParams("state","2");
+                        httpReponse.updateColumnsById(apply.id, new HttpCallBack() {
+                            @Override
+                            public void Success(String data) {
+                                progress.dismiss();
+                                Log.d(TAG, "Success: data:"+data);
+                                ToastUtils.showToast(mContext,"操作成功！");
+                                tv_apply_state.setText("审核未通过");
+                                btn_agree.setVisibility(View.INVISIBLE);
+                                btn_disagree.setVisibility(View.INVISIBLE);
+                            }
 
+                            @Override
+                            public void Fail(String e) {
+                                progress.dismiss();
+                                Log.d(TAG, "Fail: e:"+e);
+                                ToastUtils.showToast(mContext,e);
+                            }
+                        });
+                    }
+                }
                 break;
         }
     }

@@ -10,15 +10,15 @@ import com.example.administrator.getpet.base.BaseActivity;
 
 public class IntroduceActivity extends BaseActivity implements View.OnClickListener {
 
-    private ImageButton ib_back;
-    private TextView tv_edit;
-    private TextView tv_nickname;
-    private TextView tv_sex;
-    private TextView tv_age;
-    private TextView tv_address;
-    private TextView tv_phone;
-    private TextView tv_personal;
-    private TextView tv_occupation;
+    private ImageButton ib_back;//返回按钮
+    private TextView tv_edit;//
+    private TextView tv_nickname;//
+    private TextView tv_sex;//
+    private TextView tv_age;//
+    private TextView tv_address;//
+    private TextView tv_phone;//
+    private TextView tv_personal;//
+    private TextView tv_occupation;//
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
