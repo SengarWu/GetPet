@@ -89,6 +89,10 @@ public class PersonalActivity extends BaseActivity implements View.OnClickListen
 
     }
 
+    /**
+     * 通过URL获取网络图谱按
+     * @param surl
+     */
     private void getImage(final String surl) {
         new Thread()
         {

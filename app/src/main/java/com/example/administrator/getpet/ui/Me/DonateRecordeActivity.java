@@ -27,10 +27,10 @@ public class DonateRecordeActivity extends BaseActivity {
 
     private static final String TAG = "DonateRecordeActivity";
 
-    private ImageButton ib_back;
-    private ListView lv_donate;
+    private ImageButton ib_back;//返回按钮
+    private ListView lv_donate;//列表
     private ProgressDialog progress;
-    private donate[] donateArry;
+    private donate[] donateArry;//数据数组
     /*private int[] image; //图片
     private String[] time = {"2016/6/7 20:00","2016/6/7 20:10","2016/6/7 20:20"};
     private String[] pet_name = {"小胖","妮妮","婷婷"};

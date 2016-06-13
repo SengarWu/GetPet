@@ -11,7 +11,7 @@ import com.example.administrator.getpet.base.BaseActivity;
 public class IntroduceActivity extends BaseActivity implements View.OnClickListener {
 
     private ImageButton ib_back;//返回按钮
-    private TextView tv_edit;//
+    private TextView tv_edit;//编辑
     private TextView tv_nickname;//
     private TextView tv_sex;//
     private TextView tv_age;//
@@ -33,6 +33,9 @@ public class IntroduceActivity extends BaseActivity implements View.OnClickListe
         loadData();
     }
 
+    /**
+     * 加载本地数据
+     */
     private void loadData() {
         tv_nickname.setText(preferences.getString("nickName",""));
         tv_sex.setText(preferences.getString("sex",""));

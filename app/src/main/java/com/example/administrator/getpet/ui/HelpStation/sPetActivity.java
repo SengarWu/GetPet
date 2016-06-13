@@ -26,15 +26,15 @@ public class sPetActivity extends BaseActivity implements View.OnClickListener {
 
     private static final String TAG = "sPetActivity";
 
-    private ImageButton ib_back;
-    private TextView tv_add_spet;
-    private sPetAdapter adapter;
-    private ListView lv_spet;
+    private ImageButton ib_back;//返回按钮
+    private TextView tv_add_spet;//添加
+    private sPetAdapter adapter;//列表数据适配器
+    private ListView lv_spet;//列表
+//
+    private sPet[] spetArry;//数据数组
 
-    private sPet[] spetArry;
 
-
-    private List<Map<String, Object>> listItems;
+    private List<Map<String, Object>> listItems;//接收数据源
 
     ProgressDialog progress;
 
@@ -63,6 +63,9 @@ public class sPetActivity extends BaseActivity implements View.OnClickListener {
         lv_spet = $(R.id.lv_spet);
     }
 
+    /***
+     * 加载数据
+     */
     private void loadData() {
         SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("sPet","QueryList");
         String id = preferences.getString("id","");
@@ -93,6 +96,10 @@ public class sPetActivity extends BaseActivity implements View.OnClickListener {
         lv_spet.setAdapter(adapter);
     }
 
+    /**
+     * 数据源
+     * @return
+     */
     private List<Map<String,Object>> getData() {
         List<Map<String, Object>> listItems=new ArrayList<Map<String,Object>>();
         for (int i = 0; i < spetArry.length; i++) {

@@ -22,15 +22,15 @@ public class RegisterAdminActivity extends BaseActivity implements View.OnClickL
 
     private static final String TAG = "RegisterAdminActivity";
 
-    private EditText et_phone;
-    private EditText et_password;
-    private EditText et_password_again;
-    private TextView tv_login;
-    private Button btn_register;
-
-    private String phone;
-    private String password;
-    private String password_again;
+    private EditText et_phone;//手机号
+    private EditText et_password;//密码
+    private EditText et_password_again;//重复密码
+    private TextView tv_login;//登录
+    private Button btn_register;//注册
+//
+    private String phone;//手机号
+    private String password;//密码
+    private String password_again;//重复密码
 
     private ProgressDialog progress;
 
@@ -96,6 +96,9 @@ public class RegisterAdminActivity extends BaseActivity implements View.OnClickL
         }
     }
 
+    /**
+     * 注册网络请求
+     */
     private void register() {
         SimpleHttpPostUtil httpReponse = new SimpleHttpPostUtil("users", "register");
         httpReponse.addParams("phone",phone);

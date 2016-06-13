@@ -22,20 +22,20 @@ public class AdoptDetailActivity extends BaseActivity implements View.OnClickLis
 
     private static final String TAG = "AdoptDetailActivity";
 
-    private ImageButton ib_back;
-    private ImageView iv_spet_photo;
-    private TextView tv_spet_name;
-    private TextView tv_apply_username;
-    private TextView tv_apply_state;
-    private TextView tv_apply_reason;
-    private Button btn_agree;
-    private Button btn_disagree;
-    private application apply;
-
-    private ProgressDialog progress;
-
-    private int length;
-    private int position;
+    private ImageButton ib_back;//返回按钮
+    private ImageView iv_spet_photo;//宠物图片
+    private TextView tv_spet_name;//宠物名字
+    private TextView tv_apply_username;//申请用户
+    private TextView tv_apply_state;//申请状态
+    private TextView tv_apply_reason;//申请原因
+    private Button btn_agree;//
+    private Button btn_disagree;//
+    private application apply;//
+//
+    private ProgressDialog progress;//
+//
+    private int length;//数据集长度
+    private int position;//当前点击项
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -9,7 +9,6 @@ import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -26,11 +25,10 @@ public class AccountActivity extends BaseActivity implements View.OnClickListene
 
     private static final String TAG = "AccountActivity";
 
-    private ImageButton ib_back;//
-    private RoundImageView riv_photo;//
-    private TextView tv_nickname;//
-    private TextView tv_phone;//
-    private FrameLayout frame_layout;//
+    private ImageButton ib_back;//返回按钮
+    private RoundImageView riv_photo;//用户头像
+    private TextView tv_nickname;//昵称
+    private TextView tv_phone;//手机号
 
     IdentityFragment identityFragment = new IdentityFragment();
     NoIdentityFragment noIdentityFragment = new NoIdentityFragment();
@@ -148,7 +146,6 @@ public class AccountActivity extends BaseActivity implements View.OnClickListene
         riv_photo = (RoundImageView) findViewById(R.id.riv_photo);
         tv_nickname = (TextView) findViewById(R.id.tv_nickname);
         tv_phone = (TextView) findViewById(R.id.tv_phone);
-        frame_layout = (FrameLayout) findViewById(R.id.frame_layout);
     }
 
     @Override

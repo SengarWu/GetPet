@@ -30,16 +30,16 @@ public class Identity3Activity extends BaseActivity implements View.OnClickListe
     private EditText et_others;
     private ImageButton ib_submit;
 
-    private String name;
-    private String marStatus;
-    private String origin;
-    private String company;
-    private String post;
-
-    private float income;
-    private String qq;
-    private String wechat;
-    private String others;
+    private String name;//名字
+    private String marStatus;//婚姻状况
+    private String origin;//籍贯
+    private String company;//单位
+    private String post;//职务
+//
+    private float income;//收入
+    private String qq;//qq
+    private String wechat;//微信
+    private String others;//其他
 
 
     private ProgressDialog progress;
