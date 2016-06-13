@@ -39,7 +39,7 @@ public class MyReplyPostFragment extends Fragment{
     int curPage = 1;//页码
     private MyReplyPostAdapter adapter;//用于向列表填充数据的适配器
     public String orderBy;//按照什么排序
-    public String userId;
+    public String userId;//用户id
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
