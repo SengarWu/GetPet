@@ -135,7 +135,7 @@ public class AddPetActivity extends BaseActivity implements View.OnClickListener
                 break;
             case R.id.tv_save:
                 String pet_name = et_pet_name.getText().toString();
-                int pet_age = Integer.parseInt(et_pet_age.getText().toString());
+                String pet_age =et_pet_age.getText().toString();
                 String pet_character = et_pet_character.getText().toString();
                 String pet_category_Id = getCategoryId(sp_pet_category.getSelectedItem().toString());
                 String userId = preferences.getString("id","");
@@ -149,7 +149,13 @@ public class AddPetActivity extends BaseActivity implements View.OnClickListener
                     ToastUtils.showToast(mContext,"宠物名不能为空呢！");
                     return;
                 }
-                if (pet_age < 1 || pet_age > 99)
+                if (TextUtils.isEmpty(pet_age))
+                {
+                    ToastUtils.showToast(mContext,"年龄不能为空！");
+                    return;
+                }
+                int age = Integer.parseInt(pet_age);
+                if (age < 1 || age > 99)
                 {
                     ToastUtils.showToast(mContext,"年龄范围为1-99哦！");
                     return;
@@ -160,7 +166,7 @@ public class AddPetActivity extends BaseActivity implements View.OnClickListener
                 }
                 pet pet = new pet();
                 pet.name = pet_name;
-                pet.age = pet_age;
+                pet.age = age;
                 pet.character = pet_character;
                 //图片
                 //pet.photo =
