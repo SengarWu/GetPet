@@ -152,7 +152,7 @@ public class MyEntrustDetail extends BaseActivity implements View.OnClickListene
                 }else if (state.equals("已取消")){
                     Toast.makeText(getApplicationContext(), "已经取消了", Toast.LENGTH_LONG).show();
                 }else{
-                    Toast.makeText(getApplicationContext(), "事务已经以及完结了", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "事务已经完结了", Toast.LENGTH_LONG).show();
                 }
 
                 break;
@@ -202,13 +202,39 @@ public class MyEntrustDetail extends BaseActivity implements View.OnClickListene
                 intent2.putExtra("entrustId",entrustId);
                 startActivity(intent2);
                 break;
-            case R.id.giveComment:
+            case R.id.giveComment://给予评价
                 if(state.equals("已解决")){
                     Intent intent=new Intent(this,endEntrust.class);
                     intent.putExtra("entrustId",entrustId);
                     startActivity(intent);
                 }else if(state.equals("正常")){
-                    Toast.makeText(getApplicationContext(),"尚未接受任何申请",Toast.LENGTH_LONG).show();
+                    /*
+                    再次确认是否接受过领养申请
+                     */
+                    SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("applyApplication","QueryCount");
+                    httpReponse.addWhereParams("entrustId","=",entrustId);//该寄养信息的id
+                    httpReponse.addWhereParams("result","=","1","and");//状态为已接受
+
+                    //调用QueryCount方法，查看是否有这样的申请记录
+                    httpReponse.QueryCount(new HttpCallBack() {
+                        @Override
+                        public void Success(String data) {
+                           int a=Integer.valueOf(data);
+                            if(a>0){
+                                Intent intent2=new Intent(MyEntrustDetail.this,endEntrust.class);
+                                intent2.putExtra("entrustId",entrustId);
+                                startActivity(intent2);
+                            }else{
+                                Toast.makeText(getApplicationContext(),"尚未接受任何申请",Toast.LENGTH_LONG).show();
+                            }
+                        }
+                        @Override
+                        public void Fail(String e)
+                        {
+                            Toast.makeText(getApplicationContext(),"网络繁忙",Toast.LENGTH_LONG).show();
+                        }
+                    });
+
                 }else{
                     Toast.makeText(getApplicationContext(),"该信息已取消",Toast.LENGTH_LONG).show();
                 }
