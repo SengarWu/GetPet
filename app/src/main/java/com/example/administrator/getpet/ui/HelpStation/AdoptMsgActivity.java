@@ -47,6 +47,10 @@ public class AdoptMsgActivity extends BaseActivity implements View.OnClickListen
         progress.setMessage("加载中...");
         progress.setCanceledOnTouchOutside(false);
         progress.show();
+        if (listItems != null)
+        {
+            listItems.clear();
+        }
         loadData();
     }
 
@@ -72,7 +76,6 @@ public class AdoptMsgActivity extends BaseActivity implements View.OnClickListen
                 ToastUtils.showToast(mContext,e);
             }
         });
-
     }
 
     private void setupView() {
@@ -101,7 +104,18 @@ public class AdoptMsgActivity extends BaseActivity implements View.OnClickListen
             listItem.put("pet_photo", GetPictureUtils.GetPicture(applicationArry.length)[i]);
             listItem.put("pet_name",applicationArry[i].sPet.name);
             listItem.put("username",applicationArry[i].users.nickName);
-            listItem.put("state",applicationArry[i].state == 0?"未审核":"已审核");
+            if (applicationArry[i].state == 0)
+            {
+                listItem.put("state","未审核");
+            }
+            else if (applicationArry[i].state == 1)
+            {
+                listItem.put("state","已审核");
+            }
+            else
+            {
+                listItem.put("state","审核未通过");
+            }
             listItem.put("reason",applicationArry[i].reason);
             listItems.add(listItem);
         }

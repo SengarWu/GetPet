@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
@@ -105,6 +106,16 @@ public class DonateActivity extends BaseActivity implements View.OnClickListener
                 finish();
                 break;
             case R.id.btn_donate:
+                if (TextUtils.isEmpty(et_donate_money.getText().toString()))
+                {
+                    ToastUtils.showToast(mContext,"金额不能为空");
+                    return;
+                }
+                if (et_donate_money.getText().toString().equals("0"))
+                {
+                    ToastUtils.showToast(mContext,"金额不能为0");
+                    return;
+                }
                 AlertDialog.Builder builder = new AlertDialog.Builder(DonateActivity.this);
                 builder.setMessage("您确认为该宠物捐赠"+tv_donate_money.getText().toString()+"元吗？");
                 builder.setTitle("提示");
