@@ -112,6 +112,7 @@ public class ModifyEntrust extends BaseActivity implements View.OnClickListener 
                     @Override
                     public void Success(String data) {
                         Toast.makeText(getApplicationContext(),"修改成功",Toast.LENGTH_LONG).show();
+                        ModifyEntrust.this.finish();
                     }
                     @Override
                     public void Fail(String e) {

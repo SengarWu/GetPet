@@ -104,7 +104,7 @@
         <activity android:name=".ui.Home.PetCircle.PostMainActivity"></activity>
         <activity android:name=".ui.Home.PetCircle.LookPetActivity"></activity>
         <activity android:name=".ui.Home.PetCircle.MyPostDetail"></activity>
-        <activity android:name=".ui.Home.PetCircle.myPostHistory"></activity>
+        <activity android:name="ui.Home.PetCircle.myPostHistory"></activity>
         <activity android:name=".ui.Home.PetCircle.PostDetail"></activity>
         <activity android:name=".ui.Home.PetCircle.PublishPost"></activity>
         <activity android:name=".ui.Home.PetCircle.ShowPetDetail"></activity>

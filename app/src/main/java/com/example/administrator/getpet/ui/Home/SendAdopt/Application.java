@@ -68,7 +68,7 @@ public class Application extends BaseActivity implements View.OnClickListener {
                                 Toast.makeText(mContext, "请输入申请详情", Toast.LENGTH_LONG).show();
                             } else if (connectplace.length() == 0) {
                                 Toast.makeText(mContext, "联系地址不能为空", Toast.LENGTH_LONG).show();
-                            } else if (StringUtils.isPhoneNumberValid(connectphone.getText().toString())) {
+                            } else if (!StringUtils.isPhoneNumberValid(connectphone.getText().toString())) {
                                 Toast.makeText(mContext, "联系电话格式不正确", Toast.LENGTH_LONG).show();
                             } else {
                                 /*

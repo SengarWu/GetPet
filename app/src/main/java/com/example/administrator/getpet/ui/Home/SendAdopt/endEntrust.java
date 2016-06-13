@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.example.administrator.getpet.R;
 import com.example.administrator.getpet.base.BaseActivity;
 import com.example.administrator.getpet.bean.applyApplication;
+import com.example.administrator.getpet.ui.Me.IntroduceActivity;
 import com.example.administrator.getpet.utils.HttpCallBack;
 import com.example.administrator.getpet.utils.HttpPostUtil;
 import com.example.administrator.getpet.utils.ImageDownLoader;
@@ -103,6 +104,7 @@ public class endEntrust extends BaseActivity implements View.OnClickListener {
                 }
                 showUserMessage(n);//显示用户信息
                 prograss.dismiss();
+
             }
             @Override
             public void Fail(String e)
@@ -148,6 +150,7 @@ public class endEntrust extends BaseActivity implements View.OnClickListener {
                                 if (good.isChecked()) {
                                     newComment = "好评";
                                     applyComment = "好评";
+
                                 } else {
                                     newComment = "差评";
                                     applyComment = "差评";
@@ -208,7 +211,7 @@ public class endEntrust extends BaseActivity implements View.OnClickListener {
     }
 
 //更改用户信誉的函数
-    private void changeUserReputation(int i){
+    private void changeUserReputation(final int i){
         SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("users","updateColumnsByWheres");
         httpReponse.addWhereParams("id","=",applyUserId);
         httpReponse.addColumnParams("user_reputation",String.valueOf(applyUserReputation+i));
@@ -216,6 +219,7 @@ public class endEntrust extends BaseActivity implements View.OnClickListener {
             @Override
             public void Success(String data) {
                 Toast.makeText(getApplicationContext(),"已更改该用户信誉度",Toast.LENGTH_LONG).show();
+                reputation.setText(String.valueOf(Integer.valueOf(reputation.getText().toString())+i));
             }
             @Override
             public void Fail(String e) {
