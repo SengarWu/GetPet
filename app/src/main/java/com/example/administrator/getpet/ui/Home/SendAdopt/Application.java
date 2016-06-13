@@ -15,6 +15,7 @@ import com.example.administrator.getpet.bean.entrust;
 import com.example.administrator.getpet.bean.users;
 import com.example.administrator.getpet.utils.HttpCallBack;
 import com.example.administrator.getpet.utils.SimpleHttpPostUtil;
+import com.example.administrator.getpet.utils.StringUtils;
 
 import java.util.Date;
 
@@ -32,7 +33,7 @@ public class Application extends BaseActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_application);
-        initView();
+        initView();//界面初始化
     }
 
     private void initView() {
@@ -67,9 +68,12 @@ public class Application extends BaseActivity implements View.OnClickListener {
                                 Toast.makeText(mContext, "请输入申请详情", Toast.LENGTH_LONG).show();
                             } else if (connectplace.length() == 0) {
                                 Toast.makeText(mContext, "联系地址不能为空", Toast.LENGTH_LONG).show();
-                            } else if (connectphone.length() == 0) {
-                                Toast.makeText(mContext, "联系电话不能为空", Toast.LENGTH_LONG).show();
+                            } else if (StringUtils.isPhoneNumberValid(connectphone.getText().toString())) {
+                                Toast.makeText(mContext, "联系电话格式不正确", Toast.LENGTH_LONG).show();
                             } else {
+                                /*
+                                开始录入信息
+                                 */
                                 applyApplication a = new applyApplication();
                                 a.setDetail(detail.getText().toString());
                                 a.setConnectPlace(connectplace.getText().toString());
@@ -115,7 +119,7 @@ public class Application extends BaseActivity implements View.OnClickListener {
                 });
 
                 break;
-            case R.id.back:
+            case R.id.back://返回
                 this.finish();
                 break;
         }

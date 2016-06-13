@@ -19,7 +19,7 @@ public class EntrustAdoptMainActivity extends BaseActivity implements View.OnCli
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_entrust_adopt_main);
-        initView();
+        initView();//界面初始化
     }
 
     private void initView() {
@@ -37,19 +37,19 @@ public class EntrustAdoptMainActivity extends BaseActivity implements View.OnCli
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.entrust:
+            case R.id.entrust://寄养
                 Intent intent =new Intent(this,EntrustMainActivity.class);
                 startActivity(intent);
                 break;
-            case R.id.adopt:
+            case R.id.adopt://领养
                 Intent intent2=new Intent(this,SearchEntrust.class);
                 startActivity(intent2);
                 break;
-            case R.id.applyhistory:
+            case R.id.applyhistory://领养申请历史
                 Intent intent3=new Intent(this,ApplicationHistory.class);
                 startActivity(intent3);
                 break;
-            case R.id.back:
+            case R.id.back://返回
                 this.finish();
                 break;
         }

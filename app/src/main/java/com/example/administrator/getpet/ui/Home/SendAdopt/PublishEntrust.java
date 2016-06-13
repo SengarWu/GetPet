@@ -118,10 +118,10 @@ public class PublishEntrust extends BaseActivity implements View.OnClickListener
                     Toast.makeText(getApplicationContext(),"请填写完整内容",Toast.LENGTH_LONG);
                 }
                 break;
-            case R.id.city:
+            case R.id.city://进入城市筛选界面
                 startActivityForResult(new Intent(this, SelectCityActivity.class), 99);
                 break;
-            case R.id.back:
+            case R.id.back://返回
                 this.finish();
                 break;
         }

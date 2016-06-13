@@ -24,7 +24,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class ApplicationHistory extends BaseActivity implements View.OnClickListener {
-    private ImageView back;
+    private ImageView back;//返回按钮
     private ZrcListView listView;//列表控件
     private Handler handler;//用于接收子线程的信息以刷新主线程
     int curPage = 1;//页码
@@ -89,6 +89,8 @@ public class ApplicationHistory extends BaseActivity implements View.OnClickList
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("applyApplication", items.get(position));
                 item.putExtras(bundle);
+                item.putExtra("length",items.size());
+                item.putExtra("position",position);
                 startActivity(item);
             }
         });
@@ -123,7 +125,7 @@ public class ApplicationHistory extends BaseActivity implements View.OnClickList
         SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("applyApplication","QueryList");
         //只查询本用户的申请
         httpReponse.addWhereParams("userId","=",preferences.getString("id",""));
-        //添加排序的字段
+        //按照申请日期排序
         httpReponse.addOrderFieldParams("applyDate");
         //是否为降序  true表示降序   false表示正序
         httpReponse.addIsDescParams(true);
@@ -204,7 +206,7 @@ public class ApplicationHistory extends BaseActivity implements View.OnClickList
     private void Querymore(int page){
         SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("entrust","QueryList");
         httpReponse.addWhereParams("userId","=",preferences.getString("id",""));
-        //添加排序的字段
+        //按照申请日期排序
         httpReponse.addOrderFieldParams("date");
         //是否为降序  true表示降序   false表示正序
         httpReponse.addIsDescParams(true);
@@ -235,7 +237,7 @@ public class ApplicationHistory extends BaseActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.back:
+            case R.id.back://返回
                 this.finish();
                 break;
         }

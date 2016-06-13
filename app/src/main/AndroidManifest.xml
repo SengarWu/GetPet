@@ -45,6 +45,7 @@
         <activity android:name=".ui.Home.SendAdopt.EntrustAdoptMainActivity" />
         <activity android:name=".ui.Home.SendAdopt.endEntrust" />
         <!-- 胡明科 -->
+
         <!-- 吴承佳 -->
         <activity
             android:name=".ui.home"
@@ -99,7 +100,15 @@
         <activity android:name=".ui.findPet.petReply"></activity>
         <activity android:name=".ui.findPet.myAttention"></activity>
         <activity android:name=".ui.findPet.myPublishes"></activity>
-
+        <!--李祎楠-->
+        <activity android:name=".ui.Home.PetCircle.PostMainActivity"></activity>
+        <activity android:name=".ui.Home.PetCircle.LookPetActivity"></activity>
+        <activity android:name=".ui.Home.PetCircle.MyPostDetail"></activity>
+        <activity android:name=".ui.Home.PetCircle.myPostHistory"></activity>
+        <activity android:name=".ui.Home.PetCircle.PostDetail"></activity>
+        <activity android:name=".ui.Home.PetCircle.PublishPost"></activity>
+        <activity android:name=".ui.Home.PetCircle.ShowPetDetail"></activity>
+        <!--李祎楠-->
     </application>
 
 </manifest>

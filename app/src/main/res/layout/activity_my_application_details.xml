@@ -37,86 +37,107 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <LinearLayout
-            android:layout_marginLeft="5dp"
             android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
-            <ImageView
-                android:src="@mipmap/icon_title_kk"
-                android:layout_width="30dp"
-                android:layout_height="30dp" />
-            <TextView
-                android:textSize="@dimen/TextView_textSize"
-                android:text="标题"
-                android:layout_gravity="center"
-                android:id="@+id/title"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content" />
-            <ImageView
-                android:id="@+id/sex"
-                android:src="@mipmap/notknow"
-                android:layout_width="30dp"
-                android:layout_height="30dp" />
-            <TextView
-                android:textSize="@dimen/TextView_textSize"
-                android:layout_gravity="center"
-                android:id="@+id/username"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
             <LinearLayout
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal"
-                android:layout_width="wrap_content"
+                android:orientation="vertical"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content">
-                <TextView
-                    android:textSize="@dimen/TextView_textSize"
-                    android:text="宠物性格:"
-                    android:layout_width="wrap_content"
-                    android:layout_height="20dp" />
-                <TextView
-                    android:text="..."
-                    android:textSize="@dimen/TextView_textSize"
-                    android:id="@+id/pet_chatacter"
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content" />
+                    <LinearLayout
+                        android:layout_marginLeft="5dp"
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:src="@mipmap/icon_title_kk"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp" />
+                        <TextView
+                            android:textSize="@dimen/TextView_textSize"
+                            android:text="标题"
+                            android:layout_gravity="center"
+                            android:id="@+id/title"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:id="@+id/sex"
+                            android:src="@mipmap/notknow"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp" />
+                        <TextView
+                            android:textSize="@dimen/TextView_textSize"
+                            android:layout_gravity="center"
+                            android:id="@+id/username"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content" />
+                        <ImageView
+                            android:src="@mipmap/givemonkk"
+                            android:textSize="25sp"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp" />
+                        <TextView
+                            android:id="@+id/award"
+                            android:layout_marginTop="5dp"
+                            android:gravity="left"
+                            android:textSize="@dimen/TextView_textSize"
+                            android:text=""
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="10dp"
+                            android:orientation="horizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:textSize="@dimen/TextView_textSize"
+                                android:text="性格:"
+                                android:layout_width="wrap_content"
+                                android:layout_height="20dp" />
+                            <TextView
+                                android:text="..."
+                                android:textSize="@dimen/TextView_textSize"
+                                android:id="@+id/pet_chatacter"
+                                android:layout_width="80dp"
+                                android:layout_height="wrap_content" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_marginTop="5dp"
+                            android:orientation="horizontal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                        </LinearLayout>
+                        <TextView
+                            android:layout_marginTop="10dp"
+                            android:textSize="@dimen/TextView_textSize"
+                            android:text="宠物类型："
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <ImageView
+                            android:layout_marginTop="5dp"
+                            android:id="@+id/type"
+                            android:src="@mipmap/type_other"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp" />
+                    </LinearLayout>
             </LinearLayout>
-            <LinearLayout
-                android:layout_marginTop="5dp"
-                android:orientation="horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-                <ImageView
-                    android:src="@mipmap/givemonkk"
-                    android:textSize="25sp"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp" />
-                <TextView
-                    android:id="@+id/award"
-                    android:layout_marginTop="5dp"
-                    android:gravity="left"
-                    android:textSize="@dimen/TextView_textSize"
-                    android:text=""
-                    android:layout_width="50dp"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
-            <TextView
-                android:layout_marginTop="10dp"
-                android:textSize="@dimen/TextView_textSize"
-                android:text="宠物类型："
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
             <ImageView
-                android:layout_marginTop="5dp"
-                android:id="@+id/type"
-                android:src="@mipmap/type_other"
-                android:layout_width="30dp"
-                android:layout_height="30dp" />
+                android:id="@+id/petImage"
+                android:layout_width="100dp"
+                android:layout_height="90dp" />
         </LinearLayout>
         <ImageView
             android:layout_gravity="center"

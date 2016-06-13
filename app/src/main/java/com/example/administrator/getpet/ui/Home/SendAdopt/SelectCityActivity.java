@@ -36,7 +36,7 @@ import java.util.HashMap;
 import java.util.regex.Pattern;
 
 public class SelectCityActivity extends BaseActivity implements View.OnClickListener {
-    private ListAdapter adapter;
+    private ListAdapter adapter;//填充城市列表适配器
     private ListView personList;
     private TextView overlay; // 对话框首字母textview
     private HashMap<String, Integer> alphaIndexer;// 存放存在的汉语拼音首字母和与之对应的列表位置
@@ -51,7 +51,7 @@ public class SelectCityActivity extends BaseActivity implements View.OnClickList
     private ProgressDialog progress;
     private static final int SHOWDIALOG = 2;
     private static final int DISMISSDIALOG = 3;
-    private Button al_city;
+    private Button al_city;//所有城市选项
     private ImageView back;//返回图标
     @Override
     public void onCreate(Bundle savedInstanceState) {

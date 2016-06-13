@@ -25,6 +25,9 @@ public class MyEntrustListAdapter extends BaseListAdapter<entrust> {
         if (convertView == null) {
             convertView = mInflater.inflate(R.layout.myentrustlist_item, null);
         }
+         /*
+        获取列表中的寄养纪录并显示
+         */
         final entrust contract=getList().get(position);
         TextView title=(TextView) ViewHolder.get(convertView,R.id.title);
         TextView pet=(TextView) ViewHolder.get(convertView,R.id.pet);

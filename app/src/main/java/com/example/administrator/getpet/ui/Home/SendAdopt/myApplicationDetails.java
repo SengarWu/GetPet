@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.example.administrator.getpet.R;
 import com.example.administrator.getpet.base.BaseActivity;
 import com.example.administrator.getpet.bean.applyApplication;
+import com.example.administrator.getpet.utils.GetPictureUtils;
 import com.example.administrator.getpet.utils.HttpCallBack;
 import com.example.administrator.getpet.utils.SimpleHttpPostUtil;
 
@@ -29,6 +30,7 @@ public class myApplicationDetails extends BaseActivity implements View.OnClickLi
     private Button modify;//更改
     private applyApplication apply;//记录前一个页面传过来的领养申请信息
     private ImageView back;//返回图标
+    private ImageView petImage;//宠物图片
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,11 +51,21 @@ public class myApplicationDetails extends BaseActivity implements View.OnClickLi
         remove=(Button)findViewById(R.id.remove);
         modify=(Button)findViewById(R.id.modify);
         back=(ImageView)findViewById(R.id.back);
+        petImage=(ImageView) findViewById(R.id.petImage);
         back.setOnClickListener(this);
         remove.setOnClickListener(this);
         modify.setOnClickListener(this);
         //显示数据详情
         Intent intent = this.getIntent();
+        /*
+        显示宠物图片
+         */
+        int len=intent.getIntExtra("length",0);
+        int position=intent.getIntExtra("position",0);
+        petImage.setImageResource(GetPictureUtils.GetPicture(len)[position]);
+        /*
+        获取传过来的数据显示信息
+         */
         apply=(applyApplication)intent.getSerializableExtra("applyApplication");
         title.setText(apply.getEntrust().getTitle());
         if(apply.getEntrust().getUsers().getSex().equals("男")){

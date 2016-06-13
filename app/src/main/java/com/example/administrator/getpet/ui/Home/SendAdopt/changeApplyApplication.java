@@ -32,6 +32,9 @@ public class changeApplyApplication extends BaseActivity implements View.OnClick
         setContentView(R.layout.activity_change_apply_application);
         initView();
     }
+    /*
+    界面的初始化
+     */
     private void initView() {
         Intent intent = this.getIntent();
         apply=(applyApplication)intent.getSerializableExtra("applyApplication");
@@ -59,6 +62,9 @@ public class changeApplyApplication extends BaseActivity implements View.OnClick
                 } else if (connectphone.getText().toString() == "") {
                     Toast.makeText(mContext, "联系电话不能为空", Toast.LENGTH_LONG).show();
                 } else {
+                    /*
+                    发送修改申请信息的数据请求
+                     */
                     SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("applyApplication","updateColumnsByWheres");
                     httpReponse.addWhereParams("id","=",apply.getId());
                     httpReponse.addColumnParams("phoneNumber",connectphone.getText().toString());

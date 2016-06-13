@@ -25,6 +25,9 @@ public class OtherEntrustAdapter extends BaseListAdapter<entrust> {
         if (convertView == null) {
             convertView = mInflater.inflate(R.layout.include_otherentrust, null);
         }
+        /*
+        获取列表中的寄养纪录并显示
+         */
         final entrust contract=getList().get(position);
         TextView title=(TextView)ViewHolder.get(convertView,R.id.title);
         ImageView sex_icon=(ImageView)ViewHolder.get(convertView,R.id.sex_icon);

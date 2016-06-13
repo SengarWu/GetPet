@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.baidu.mapapi.map.Text;*/
 import com.example.administrator.getpet.R;
 import com.example.administrator.getpet.base.BaseActivity;
+import com.example.administrator.getpet.utils.GetPictureUtils;
 
 public class OtherEntrustDetail extends BaseActivity implements View.OnClickListener {
     private ImageView usex;//用户性别
@@ -26,13 +27,17 @@ public class OtherEntrustDetail extends BaseActivity implements View.OnClickList
     private TextView title;//标题
     private TextView pubTime;//发布时间
     private String entrustId;//寄养信息的Id
+    private ImageView petImage;//宠物图片
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_other_entrust_detail);
         initView();
     }
-
+/*
+界面初始化
+ */
     private void initView() {
         title=(TextView)findViewById(R.id.title);
         pubTime=(TextView)findViewById(R.id.Pubtime);
@@ -46,9 +51,14 @@ public class OtherEntrustDetail extends BaseActivity implements View.OnClickList
         pet_age=(TextView)findViewById(R.id.pet_age);
         connect_phone=(TextView)findViewById(R.id.connect_phone);
         submit=(ImageView) findViewById(R.id.submit);
+        petImage=(ImageView) findViewById(R.id.petImage);
+
         submit.setOnClickListener(this);
         back.setOnClickListener(this);
         Intent intent=getIntent();
+        int len=intent.getIntExtra("length",0);
+        int position=intent.getIntExtra("position",0);
+        petImage.setImageResource(GetPictureUtils.GetPicture(len)[position]);
         entrustId=intent.getStringExtra("entrustId");
         if(intent.getStringExtra("sex").equals("男")){
             usex.setImageResource(R.mipmap.boy);
@@ -88,7 +98,7 @@ public class OtherEntrustDetail extends BaseActivity implements View.OnClickList
                 intent2.putExtra("entrustId",entrustId);
                 startActivity(intent2);
                 break;
-            case R.id.back:
+            case R.id.back://返回
                 this.finish();
                 break;
         }

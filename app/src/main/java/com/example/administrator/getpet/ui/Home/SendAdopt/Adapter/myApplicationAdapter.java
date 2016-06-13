@@ -24,6 +24,9 @@ public class myApplicationAdapter extends BaseListAdapter<applyApplication> {
         if (convertView == null) {
             convertView = mInflater.inflate(R.layout.include_myapplication_item, null);
         }
+        /*
+        获取列表中的申请纪录并显示
+         */
         final applyApplication contract=getList().get(position);
         TextView title=(TextView) ViewHolder.get(convertView,R.id.title);
         TextView award=(TextView) ViewHolder.get(convertView,R.id.award);
@@ -55,6 +58,9 @@ public class myApplicationAdapter extends BaseListAdapter<applyApplication> {
         if(contract.getApplyDate()!=null) {
             time.setText(TimeUtils.dateToString(contract.getApplyDate(),TimeUtils.FORMAT_DATE_TIME_SECOND));
         }
+        /*
+        显示申请结果
+         */
         switch (contract.getResult()){
             case 0:
                 result.setText("未同意");

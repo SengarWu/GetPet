@@ -37,7 +37,9 @@ public class ModifyEntrust extends BaseActivity implements View.OnClickListener 
         setContentView(R.layout.activity_modify_entrust);
         initView();
     }
-
+/*
+界面控件获取以及初始化
+ */
     private void initView() {
         back=(ImageView)findViewById(R.id.back);
         award=(EditText)findViewById(R.id.award);
@@ -96,7 +98,7 @@ public class ModifyEntrust extends BaseActivity implements View.OnClickListener 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.back:
+            case R.id.back://返回
                 this.finish();
                 break;
             case R.id.modify:

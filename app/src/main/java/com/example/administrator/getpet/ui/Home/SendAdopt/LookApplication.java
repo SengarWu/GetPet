@@ -31,14 +31,16 @@ public class LookApplication extends BaseActivity implements View.OnClickListene
     private ArrayList<applyApplication> items = new ArrayList<>();
     private ImageView back;//返回按钮
     //private List<applyApplication> tempolist;//用于存放返回数据的列表
-    private String entrustId;
+    private String entrustId;//记录寄养信息id
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_look_application);
         initView();
     }
-
+/*
+寄养信息id
+ */
     private void initView() {
         back=(ImageView)findViewById(R.id.back);
         back.setOnClickListener(this);
@@ -104,12 +106,14 @@ public class LookApplication extends BaseActivity implements View.OnClickListene
         });
     }
 
+    /*
+    查询对应寄养信息的领养申请
+     */
     private void QueryApplyApplication() {
         SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("applyApplication","QueryList");
-        httpReponse.addWhereParams("entrustId","=",entrustId);
-        //添加排序的字段
+        httpReponse.addWhereParams("entrustId","=",entrustId);//添加对寄养信息的约束
+        //按照申请日期排序
         httpReponse.addOrderFieldParams("applyDate");
-        //是否为降序  true表示降序   false表示正序
         httpReponse.addIsDescParams(true);
         //调用QueryList方法   第一个参数是页码  第二个是每页的数目   当页码为-1时表示全查询
         httpReponse.QueryList(1,4, new HttpCallBack() {

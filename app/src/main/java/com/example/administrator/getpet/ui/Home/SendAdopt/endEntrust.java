@@ -83,22 +83,25 @@ public class endEntrust extends BaseActivity implements View.OnClickListener {
     private void searchApplication() {
         //传入表名和方法名   方法名：QuerySinglebywheresX
         SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("applyApplication","QuerySinglebywheres");
-        httpReponse.addWhereParams("entrustId","=",entrustId);
-        httpReponse.addWhereParams("result","=","1","and");
+        httpReponse.addWhereParams("entrustId","=",entrustId);//添加寄养信息id条件约束
+        httpReponse.addWhereParams("result","=","1","and");//查询已同意的申请
         httpReponse.QuerySinglebywheres(new HttpCallBack() {
             @Override
             public void Success(String data) {
+                /*
+                查询成功显示对应的领养申请信息
+                 */
                 applyApplication n= JSONUtil.parseObject(data,applyApplication.class);
                 applyComment=n.getComment();
                 applyUserId=n.getUsers().getId();
                 applyUserReputation=n.getUsers().getUser_reputation();
-                applyId=n.getId();
+                applyId=n.getId();//记录下申请用户的id
                 if(n.getComment().equals("好评")){
                     comment.setImageResource(R.mipmap.haoping);
                 }else if(n.getComment().equals("差评")){
                     comment.setImageResource(R.mipmap.chaping);
                 }
-                showUserMessage(n);
+                showUserMessage(n);//显示用户信息
                 prograss.dismiss();
             }
             @Override
@@ -140,6 +143,7 @@ public class endEntrust extends BaseActivity implements View.OnClickListener {
                     }).setPositiveButton("确定", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int i) {
+                            //判断点击了哪个按钮
                             if (good.isChecked() || bad.isChecked()) {
                                 if (good.isChecked()) {
                                     newComment = "好评";
@@ -182,8 +186,8 @@ public class endEntrust extends BaseActivity implements View.OnClickListener {
  */
     public void giveComment(final String com){
         SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("applyApplication","updateColumnsByWheres");
-        httpReponse.addWhereParams("id","=",applyId);
-        httpReponse.addColumnParams("comment",com);
+        httpReponse.addWhereParams("id","=",applyId);//对哪位用户的评价
+        httpReponse.addColumnParams("comment",com);//评价内容
         httpReponse.updateColumnsByWheres( new HttpCallBack() {
             @Override
             public void Success(String data){

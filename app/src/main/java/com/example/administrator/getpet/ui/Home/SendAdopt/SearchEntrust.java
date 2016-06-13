@@ -107,6 +107,8 @@ public class SearchEntrust extends BaseActivity implements View.OnClickListener 
                 intent.putExtra("connect_phone",items.get(position).getUsers().getPhone());
                 intent.putExtra("entrustId",items.get(position).getId());
                 intent.putExtra("award",String.valueOf(items.get(position).getAward()));
+                intent.putExtra("length",items.size());
+                intent.putExtra("position",position);
                 startActivity(intent);
             }
         });
@@ -210,7 +212,9 @@ public class SearchEntrust extends BaseActivity implements View.OnClickListener 
             }
         });
     }
-
+/*
+初次查询寄养信息
+ */
     private void QueryEntrust() {
         SimpleHttpPostUtil httpReponse= new SimpleHttpPostUtil("entrust","QueryList");
         httpReponse.addWhereParams("userId","!=",preferences.getString("id",""));
@@ -270,10 +274,10 @@ public class SearchEntrust extends BaseActivity implements View.OnClickListener 
     @Override
     public void onClick(View v) {
         switch(v.getId()) {
-            case R.id.tv_city:
+            case R.id.tv_city://进入城市筛选界面
                 startActivityForResult(new Intent(this, SelectCityActivity.class), 99);
                 break;
-            case R.id.back:
+            case R.id.back://返回
                 this.finish();
                 break;
         }
